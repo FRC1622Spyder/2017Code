@@ -132,12 +132,12 @@ private:
 		rightBackMotor->Set(speed);
 	}
 
-	void driveRobot(){
+	/*void driveRobot(){
 		double leftStick = driveStick->GetRawAxis(1);
 		double rightStick = driveStick->GetRawAxis(3);
 		driveLeft(accelerateLeft(leftStick));
 		driveRight(accelerateRight(rightStick));
-	}
+	}*/
 
 	void RobotInit() {
 		leftBackMotor->SetInverted(true);
@@ -159,8 +159,14 @@ private:
 		if(leftSpeed > 0.2 && leftSpeed > 0.8){
 			leftSpeed = 0.8;
 		}
+		else if(leftSpeed >= 0.2 && leftSpeed <= 0.5){
+			leftSpeed = leftSpeed / 2;
+		}
 		else if(leftSpeed < -0.2 && leftSpeed < -0.8){
 			leftSpeed = -0.8;
+		}
+		else if(leftSpeed <= -0.2 && leftSpeed >= -0.5){
+			leftSpeed = leftSpeed / 2;
 		}
 		else if(leftSpeed > -0.2 && leftSpeed < 0.2){
 			leftSpeed = 0;
@@ -169,8 +175,14 @@ private:
 		if(rightSpeed > 0.2 && rightSpeed > 0.8){
 			rightSpeed = 0.8;
 		}
+		else if(rightSpeed >= 0.2 && rightSpeed <= 0.5){
+			rightSpeed = rightSpeed / 2;
+		}
 		else if(rightSpeed < -0.2 && rightSpeed < -0.8){
 			rightSpeed = -0.8;
+		}
+		else if(rightSpeed <= -0.2 && rightSpeed >= -0.5){
+			rightSpeed = rightSpeed / 2;
 		}
 		else if(rightSpeed > -0.2 && rightSpeed < 0.2){
 			rightSpeed = 0;
