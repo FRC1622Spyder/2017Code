@@ -13,16 +13,19 @@ class Robot:public IterativeRobot {
 
 private:
 
-	Joystick *driveStick = new Joystick(0); //Declare joystick and motors
+	//Declare joystick and motors
+	Joystick *driveStick = new Joystick(0);
 	CANTalon *leftBackMotor = new CANTalon(9);
 	CANTalon *leftFrontMotor = new CANTalon(6);
 	CANTalon *rightBackMotor = new CANTalon(7);
 	CANTalon *rightFrontMotor = new CANTalon(8);
 
-	double speedValueLeft = 0.0; //Declare current speed
+	//Declare current speed
+	double speedValueLeft = 0.0;
 	double speedValueRight = 0.0;
 
-	//double leftPast = 0.0; //Ramp code - removed because it's currently unused
+	//Ramp code - removed because it's currently unused
+	//double leftPast = 0.0;
 	//double rightPast = 0.0;
 
 	/*double accelerateLeft(double maxSpeed) {
@@ -121,12 +124,14 @@ private:
 		}
 	}*/
 
-	void driveLeft(double speed){ //Drives left motors
+	//Drives left motors
+	void driveLeft(double speed){
 		leftFrontMotor->Set(speed);
 		leftBackMotor->Set(speed);
 	}
 
-	void driveRight(double speed){ //Drives right motors
+	//Drives right motors
+	void driveRight(double speed){
 		rightFrontMotor->Set(speed);
 		rightBackMotor->Set(speed);
 	}
@@ -139,7 +144,8 @@ private:
 	}*/
 
 	void RobotInit() {
-		leftBackMotor->SetInverted(true); //Inverts left motors
+		//Inverts left motors
+		leftBackMotor->SetInverted(true);
 		leftFrontMotor->SetInverted(true);
 	}
 
@@ -154,38 +160,51 @@ private:
 
 	void TeleopPeriodic() {
 		//driveRobot(); //Ramp code
-		double leftSpeed = driveStick->GetRawAxis(1); //Get left joystick
-		if(leftSpeed > 0.2 && leftSpeed > 0.8){ //If speed is positive, outside dead zone, and above 80% (set to max speed)
+		//Get left joystick
+		double leftSpeed = driveStick->GetRawAxis(1);
+		//If speed is positive, outside dead zone, and above 80% (set to max speed)
+		if(leftSpeed > 0.2 && leftSpeed > 0.8){
 			leftSpeed = 0.8;
 		}
-		else if(leftSpeed >= 0.2 && leftSpeed <= 0.5){ //If speed is positive, outside dead zone, and below 50% (set to half speed)
+		//If speed is positive, outside dead zone, and below 50% (set to half speed)
+		else if(leftSpeed >= 0.2 && leftSpeed <= 0.5){
 			leftSpeed = leftSpeed / 2;
 		}
-		else if(leftSpeed < -0.2 && leftSpeed < -0.8){ //If speed is negative, outside dead zone, and below -80% (set to max speed)
+		//If speed is negative, outside dead zone, and below -80% (set to max speed)
+		else if(leftSpeed < -0.2 && leftSpeed < -0.8){
 			leftSpeed = -0.8;
 		}
-		else if(leftSpeed <= -0.2 && leftSpeed >= -0.5){ //If speed is negative, outside dead zone, and above -50% (set to half speed)
+		//If speed is negative, outside dead zone, and above -50% (set to half speed)
+		else if(leftSpeed <= -0.2 && leftSpeed >= -0.5){
 			leftSpeed = leftSpeed / 2;
 		}
-		else if(leftSpeed > -0.2 && leftSpeed < 0.2){ //If speed is in dead zone (set to 0)
+		//If speed is in dead zone (set to 0)
+		else if(leftSpeed > -0.2 && leftSpeed < 0.2){
 			leftSpeed = 0;
 		}
-		double rightSpeed = driveStick->GetRawAxis(3); //Get right joystick
-		if(rightSpeed > 0.2 && rightSpeed > 0.8){ //If speed is positive, outside dead zone, and above 80% (set to max speed)
+		//Get right joystick
+		double rightSpeed = driveStick->GetRawAxis(3);
+		//If speed is positive, outside dead zone, and above 80% (set to max speed)
+		if(rightSpeed > 0.2 && rightSpeed > 0.8){
 			rightSpeed = 0.8;
 		}
-		else if(rightSpeed >= 0.2 && rightSpeed <= 0.5){ //If speed is positive, outside dead zone, and below 50% (set to half speed)
+		//If speed is positive, outside dead zone, and below 50% (set to half speed)
+		else if(rightSpeed >= 0.2 && rightSpeed <= 0.5){
 			rightSpeed = rightSpeed / 2;
 		}
-		else if(rightSpeed < -0.2 && rightSpeed < -0.8){ //If speed is negative, outside dead zone, and below -80% (set to max speed)
+		//If speed is negative, outside dead zone, and below -80% (set to max speed)
+		else if(rightSpeed < -0.2 && rightSpeed < -0.8){
 			rightSpeed = -0.8;
 		}
-		else if(rightSpeed <= -0.2 && rightSpeed >= -0.5){ //If speed is negative, outside dead zone, and above -50% (set to half speed)
+		//If speed is negative, outside dead zone, and above -50% (set to half speed)
+		else if(rightSpeed <= -0.2 && rightSpeed >= -0.5){
 			rightSpeed = rightSpeed / 2;
 		}
-		else if(rightSpeed > -0.2 && rightSpeed < 0.2){ //If speed is in dead zone (set to 0)
+		//If speed is in dead zone (set to 0)
+		else if(rightSpeed > -0.2 && rightSpeed < 0.2){
 			rightSpeed = 0;
 		}
+		//Drive the robot
 		driveLeft(leftSpeed);
 		driveRight(rightSpeed);
 	}
