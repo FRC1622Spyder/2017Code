@@ -1,0 +1,27 @@
+/*
+ * Climber.h
+ *
+ *  Created on: Feb 5, 2017
+ *      Author: Zack
+ */
+
+#ifndef SRC_CLIMBER_H_
+#define SRC_CLIMBER_H_
+#include <CANTalon.h>
+#include <Joystick.h>
+
+class Climber {
+
+private:
+	CANTalon *ClimberMotor;
+	Joystick *controlStick;
+	bool isWorking;
+	bool buttonPressed;
+	bool climbDirection;
+
+public:
+	void ClimberInit();
+	void ClimberTeleopPeriodic();
+};
+
+#endif /* SRC_CLIMBER_H_ */

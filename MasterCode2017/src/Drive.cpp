@@ -43,45 +43,45 @@ void Drive::DriveTeleopPeriodic() {
 	//Get left joystick
 	double leftSpeed = driveStick->GetRawAxis(1);
 	//If speed is positive, outside dead zone, and above 80% (set to max speed)
-	if(leftSpeed > 0.2 && leftSpeed > 0.8){
+	if(leftSpeed > 0.1 && leftSpeed > 0.8){
 		leftSpeed = 0.8;
 	}
 	//If speed is positive, outside dead zone, and below 50% (set to half speed)
-	else if(leftSpeed >= 0.2 && leftSpeed <= 0.5){
+	else if(leftSpeed >= 0.1 && leftSpeed <= 0.5){
 		leftSpeed = leftSpeed / 2;
 	}
 	//If speed is negative, outside dead zone, and below -80% (set to max speed)
-	else if(leftSpeed < -0.2 && leftSpeed < -0.8){
+	else if(leftSpeed < -0.1 && leftSpeed < -0.8){
 		leftSpeed = -0.8;
 	}
 	//If speed is negative, outside dead zone, and above -50% (set to half speed)
-	else if(leftSpeed <= -0.2 && leftSpeed >= -0.5){
+	else if(leftSpeed <= -0.1 && leftSpeed >= -0.5){
 		leftSpeed = leftSpeed / 2;
 	}
 	//If speed is in dead zone (set to 0)
-	else if(leftSpeed > -0.2 && leftSpeed < 0.2){
+	else if(leftSpeed > -0.1 && leftSpeed < 0.1){
 		leftSpeed = 0;
 	}
 	//Get right joystick
 	double rightSpeed = driveStick->GetRawAxis(3);
 	//If speed is positive, outside dead zone, and above 80% (set to max speed)
-	if(rightSpeed > 0.2 && rightSpeed > 0.8){
+	if(rightSpeed > 0.1 && rightSpeed > 0.8){
 		rightSpeed = 0.8;
 	}
 	//If speed is positive, outside dead zone, and below 50% (set to half speed)
-	else if(rightSpeed >= 0.2 && rightSpeed <= 0.5){
+	else if(rightSpeed >= 0.1 && rightSpeed <= 0.5){
 		rightSpeed = rightSpeed / 2;
 	}
 	//If speed is negative, outside dead zone, and below -80% (set to max speed)
-	else if(rightSpeed < -0.2 && rightSpeed < -0.8){
+	else if(rightSpeed < -0.1 && rightSpeed < -0.8){
 		rightSpeed = -0.8;
 	}
 	//If speed is negative, outside dead zone, and above -50% (set to half speed)
-	else if(rightSpeed <= -0.2 && rightSpeed >= -0.5){
+	else if(rightSpeed <= -0.1 && rightSpeed >= -0.5){
 		rightSpeed = rightSpeed / 2;
 	}
 	//If speed is in dead zone (set to 0)
-	else if(rightSpeed > -0.2 && rightSpeed < 0.2){
+	else if(rightSpeed > -0.1 && rightSpeed < 0.1){
 		rightSpeed = 0;
 	}
 	//Drive the robot

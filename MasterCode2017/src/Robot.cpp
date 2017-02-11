@@ -1,3 +1,4 @@
+#include <Climber.h>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -6,6 +7,7 @@
 #include <Feeder.h>
 #include <Intake.h>
 #include <Shooter.h>
+#include <Climber.h>
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
@@ -18,12 +20,14 @@ public:
 	Feeder feeder;
 	Intake intake;
 	Shooter shooter;
+	Climber climber;
 
 	void RobotInit() {
 		drive.DriveInit();
 		feeder.FeederInit();
 		intake.IntakeInit();
 		shooter.ShooterInit();
+		climber.ClimberInit();
 	}
 
 	void AutonomousInit() {
@@ -43,6 +47,7 @@ public:
 		feeder.FeederTeleopPeriodic();
 		intake.IntakeTeleopPeriodic();
 		shooter.ShooterTeleopPeriodic();
+		climber.ClimberTeleopPeriodic();
 	}
 
 	void TestPeriodic() {

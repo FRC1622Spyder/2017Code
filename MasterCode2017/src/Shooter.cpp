@@ -24,7 +24,7 @@ void Shooter::ShooterInit(){
 //Power should be between 1 and 0
 void Shooter::SpinFlywheel(double power){
 	//Use button to toggle spin
-	bool toggleSpin = controlStick->GetRawButton(7);
+	bool toggleSpin = controlStick->GetRawButton(6);
 	std::cout << "toggleSpin: "<< toggleSpin << std::endl;
 	std::cout << "isSpinning: " << isSpinning << std::endl;
 	std::cout << "buttonPressed: " << buttonPressed << std::endl;
