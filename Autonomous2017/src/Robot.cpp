@@ -200,11 +200,18 @@ public:
 		}
 		//Blue center
 		else if(autonomousChooser == 5){
-
+			driveForward(1.0, 71.76);
+			rotateLeft(0.5, 45);
+			driveForward(1.0,100);
+			rotateRight(1.0, 45);
+			driveForward(0.5,20);
 		}
 		//Blue right
 		else if(autonomousChooser == 6){
-
+			driveForward(1.0, 71.76); //drive forward for (185.3/2)(2/3)+10 in
+			rotateRight(0.5, 45); //rotate towards hopper, angle needs exact testing
+			driveForward(1.0,100);
+			driveForward(0.5,20);
 		}
 	}
 
