@@ -41,10 +41,10 @@ private:
 public:
 
 	Robot(){
-		leftBackMotor = new CANTalon(9);
-		leftFrontMotor = new CANTalon(6);
-		rightBackMotor = new CANTalon(7);
-		rightFrontMotor = new CANTalon(8);
+		leftBackMotor = new CANTalon(8);
+		leftFrontMotor = new CANTalon(4);
+		rightBackMotor = new CANTalon(1);
+		rightFrontMotor = new CANTalon(2);
 		leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 		rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 		leftFrontMotor->ConfigEncoderCodesPerRev(20);
