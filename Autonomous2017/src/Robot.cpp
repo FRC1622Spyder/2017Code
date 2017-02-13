@@ -251,7 +251,6 @@ public:
 		}
 		//Blue center
 		else if(autonomousChooser == 5){
-<<<<<<< HEAD
 			Timer *blue2 = new Timer();
 			driveForward(1.0 , 53.0);
 			blue2->Start();
@@ -280,7 +279,6 @@ public:
 			driveBackward(1.0, 52.0);
 			rotateRight(0.5, 90);
 			driveForward(1.0, 120.37);
-=======
 			driveForward(1.0, 71.76);
 			rotateLeft(0.5, 45);
 			driveForward(1.0,100);
@@ -293,7 +291,6 @@ public:
 			rotateRight(0.5, 45); //rotate towards hopper, angle needs exact testing
 			driveForward(1.0,100);
 			driveForward(0.5,20);
->>>>>>> origin/master
 		}
 	}
 
