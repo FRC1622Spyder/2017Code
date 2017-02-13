@@ -41,10 +41,10 @@ private:
 public:
 
 	Robot(){
-		leftBackMotor = new CANTalon(9);
-		leftFrontMotor = new CANTalon(6);
-		rightBackMotor = new CANTalon(7);
-		rightFrontMotor = new CANTalon(8);
+		leftBackMotor = new CANTalon(8);
+		leftFrontMotor = new CANTalon(4);
+		rightBackMotor = new CANTalon(1);
+		rightFrontMotor = new CANTalon(2);
 		leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 		rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 		leftFrontMotor->ConfigEncoderCodesPerRev(20);
@@ -60,12 +60,15 @@ public:
 		rightFrontMotor->SetPosition(0);
 		double encoderDistance = distance * pulse_per_inch;
 		double encoderValue = 0.0;
+		std::cout << "Final: " << encoderDistance << std::endl;
 		while(abs(encoderValue) <= encoderDistance){
 			leftFrontMotor->Set(speed);
 			leftBackMotor->Set(speed);
 			rightFrontMotor->Set(speed);
 			rightBackMotor->Set(speed);
-			encoderValue = rightFrontMotor->GetPosition();
+			encoderValue = rightFrontMotor->GetEncPosition();
+			std::cout << "Final: " << encoderDistance << std::endl;
+			std::cout << "Current:" << encoderValue <<std::endl;
 		}
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -154,35 +157,106 @@ public:
 	}
 
 	void AutonomousInit() {
+		rightFrontMotor->SetInverted(true);
+		rightBackMotor->SetInverted(true);
 		//Get autonomous choice
-		autonomousChooser = replaceThisInt;
+		autonomousChooser = 2;
 		//Autonomous default
 		if(autonomousChooser == 0){
 			driveForward(0.5, 40.0);
 		}
 		//Red left
 		else if(autonomousChooser == 1){
+			Timer *red1 = new Timer();
+			driveBackward(1.0,53.3);
+			rotateRight(0.5,45);
+			driveBackward(0.5,52.0);
+			red1->Start();
+			double time1 = red1 ->Get();
+			while(time1<3){
+				time1 = red1->Get();
+			}
+			driveBackward(1.0, 52.0);
+			rotateLeft(0.5, 90);
+			driveForward(1.0, 120.37);
 
 		}
 		//Red center
 		else if(autonomousChooser == 2){
+			Timer *red2 = new Timer();
+			driveForward(1.0 , 90.0);
+			red2->Start();
+			double time2 = red2->Get();
+
+			while(time2<3){
+			time2 = red2->Get();
+			}
+			//Zack is cheating on you
+			driveForward(-0.5,20);
+			rotateLeft(1.0,42);
+			driveForward(1.0,50.0);
 
 		}
 		//Red right
 		else if(autonomousChooser == 3){
-
+			Timer *red3 = new Timer();
+			driveForward(1.0, 53.3);
+			rotateLeft(0.5,45);
+			driveForward(0.5,52.0);
+			red3->Start();
+			double time3 = red3->Get();
+			while(time3<3){
+				time3 = red3->Get();
+			}
+			driveBackward(1.0, 52.0);
+			rotateRight(0.5, 90);
+			driveForward(1.0, 120.37);
 		}
 		//Blue left
 		else if(autonomousChooser == 4){
-
+			Timer *blue1 = new Timer();
+			driveForward(1.0,53.3);
+			rotateRight(0.5,45);
+			driveForward(0.5,52.0);
+			blue1->Start();
+			double time4 = blue1 ->Get();
+			while(time4<3){
+				time4 = blue1->Get();
+			}
+			driveBackward(1.0, 52.0);
+			rotateLeft(0.5, 90);
+			driveForward(1.0, 120.37);
 		}
 		//Blue center
 		else if(autonomousChooser == 5){
-
+			Timer *blue2 = new Timer();
+			driveForward(1.0 , 53.0);
+			blue2->Start();
+			double time5 = blue2->Get();
+			while(time5<3){
+				time5 = blue2->Get();
+			}
+			//Zack is cheating on you
+			driveBackward(0.5,5);
+			rotateRight(0.5,90);
+			driveForward(1.0,20);
+			rotateLeft(0.5,90);
+			driveForward(1.0,10);
 		}
 		//Blue right
 		else if(autonomousChooser == 6){
-
+			Timer *blue3 = new Timer();
+			driveForward(1.0, 53.3);
+			rotateLeft(0.5,45);
+			driveForward(0.5,52.0);
+			blue3->Start();
+			double time6 = blue3->Get();
+			while(time6<3){
+				time6 = blue3->Get();
+			}
+			driveBackward(1.0, 52.0);
+			rotateRight(0.5, 90);
+			driveForward(1.0, 120.37);
 		}
 	}
 
