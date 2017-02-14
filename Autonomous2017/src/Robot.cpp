@@ -70,10 +70,10 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue <<std::endl;
 		}
-		leftFrontMotor->Set(0.0);
-		leftBackMotor->Set(0.0);
-		rightFrontMotor->Set(0.0);
-		rightBackMotor->Set(0.0);
+		leftFrontMotor->StopMotor;
+		leftBackMotor->StopMotor;
+		rightFrontMotor->StopMotor;
+		rightBackMotor->StopMotor;
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
@@ -96,10 +96,10 @@ public:
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetPosition();
 		}
-		leftFrontMotor->Set(0.0);
-		leftBackMotor->Set(0.0);
-		rightFrontMotor->Set(0.0);
-		rightBackMotor->Set(0.0);
+		leftFrontMotor->StopMotor;
+		leftBackMotor->StopMotor;
+		rightFrontMotor->StopMotor;
+		rightBackMotor->StopMotor;
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
@@ -114,7 +114,7 @@ public:
 		//0.25 * 0.9425 = 0.235625 pulses per degree
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
-		double encoderDistance = 0.235625 * angle;
+		double encoderDistance = angle * pulse_per_degree;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
 			leftFrontMotor->Set(-speed);
@@ -125,10 +125,10 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue << std::endl;
 		}
-		leftFrontMotor->Set(0.0);
-		leftBackMotor->Set(0.0);
-		rightFrontMotor->Set(0.0);
-		rightBackMotor->Set(0.0);
+		leftFrontMotor->StopMotor;
+		leftBackMotor->StopMotor;
+		rightFrontMotor->StopMotor;
+		rightBackMotor->StopMotor;
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
@@ -143,7 +143,7 @@ public:
 		//0.25 * 0.9425 = 0.235625 pulse per degree
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
-		double encoderDistance = 0.235625 * angle;
+		double encoderDistance = angle *pulse_per_degree;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
 			leftFrontMotor->Set(speed);
@@ -152,10 +152,10 @@ public:
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetPosition();
 		}
-		leftFrontMotor->Set(0.0);
-		leftBackMotor->Set(0.0);
-		rightFrontMotor->Set(0.0);
-		rightBackMotor->Set(0.0);
+		leftFrontMotor->StopMotor;
+		leftBackMotor->StopMotor;
+		rightFrontMotor->StopMotor;
+		rightBackMotor->StopMotor;
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
