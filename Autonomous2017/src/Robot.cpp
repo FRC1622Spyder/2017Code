@@ -74,6 +74,8 @@ public:
 		leftBackMotor->Set(0.0);
 		rightFrontMotor->Set(0.0);
 		rightBackMotor->Set(0.0);
+		encoderDistance = 0.0;
+		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
 	}
@@ -88,16 +90,18 @@ public:
 		double encoderDistance = distance * pulse_per_inch;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
-			leftFrontMotor->Set(speed);
-			leftBackMotor->Set(speed);
-			rightFrontMotor->Set(speed);
-			rightBackMotor->Set(speed);
+			leftFrontMotor->Set(-speed);
+			leftBackMotor->Set(-speed);
+			rightFrontMotor->Set(-speed);
+			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetPosition();
 		}
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
 		rightFrontMotor->Set(0.0);
 		rightBackMotor->Set(0.0);
+		encoderDistance = 0.0;
+		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
 	}
@@ -118,11 +122,15 @@ public:
 			rightFrontMotor->Set(speed);
 			rightBackMotor->Set(speed);
 			encoderValue = rightFrontMotor->GetPosition();
+			std::cout << "Final: " << encoderDistance << std::endl;
+			std::cout << "Current:" << encoderValue << std::endl;
 		}
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
 		rightFrontMotor->Set(0.0);
 		rightBackMotor->Set(0.0);
+		encoderDistance = 0.0;
+		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
 	}
@@ -148,6 +156,8 @@ public:
 		leftBackMotor->Set(0.0);
 		rightFrontMotor->Set(0.0);
 		rightBackMotor->Set(0.0);
+		encoderDistance = 0.0;
+		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
 	}
@@ -209,11 +219,9 @@ public:
 			driveForward(1.0 , 90.0);
 			red2->Start();
 			double time2 = red2->Get();
-
 			while(time2<3){
 			time2 = red2->Get();
 			}
-			//Zack is cheating on you
 			driveForward(-0.5,20);
 			rotateLeft(1.0,42);
 			driveForward(1.0,50.0);
@@ -258,7 +266,6 @@ public:
 			while(time5<3){
 				time5 = blue2->Get();
 			}
-			//Zack is cheating on you
 			driveBackward(0.5,5);
 			rotateRight(0.5,90);
 			driveForward(1.0,20);
