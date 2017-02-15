@@ -188,25 +188,7 @@ public:
 		}
 		//Red center
 		else if(autonomousChooser == 2){
-			driveForward(1.0, 110.0); //drive forward at full power for [185.3-((185.3/2)(2/3))]-10 in
-					rotateLeft(0.5, 45); //angle to the gear port, angle needs exact testing
-					driveForward(0.25, 10); //drive up to the gear port
-					Timer *red1timer = new Timer();
-					red1timer->Start();
-					double time = red1timer->Get();
-					while(time < 3) { //wait for three seconds
-						leftFrontMotor->Set(0.0);
-						leftBackMotor->Set(0.0);
-						rightFrontMotor->Set(0.0);
-						rightBackMotor->Set(0.0);
-						time = red1timer->Get();
-					}
-					red1timer->Stop();
-					driveBackward(0.25, 10); //drive backwards 10 in
-					rotateRight(0.5, 90); //rotate towards hopper, angle needs exact testing
-					driveForward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
 
-				}
 		}
 		//Red right
 		else if(autonomousChooser == 3){
