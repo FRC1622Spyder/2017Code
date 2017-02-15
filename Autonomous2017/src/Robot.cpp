@@ -219,7 +219,6 @@ public:
 		}
 		//Red center
 		else if(autonomousChooser == 2){
-<<<<<<< HEAD
 			driveForward(1.0, 110.0); //drive forward at full power for [185.3-((185.3/2)(2/3))]-10 in
 					rotateLeft(0.5, 45); //angle to the gear port, angle needs exact testing
 					driveForward(0.25, 10); //drive up to the gear port
@@ -234,12 +233,9 @@ public:
 						time = red1timer->Get();
 					}
 					red1timer->Stop();
-					driveBackward(0.25, 10); //drive backwards 10 in
+					driveForward(-0.25, 10); //drive backwards 10 in
 					rotateRight(0.5, 90); //rotate towards hopper, angle needs exact testing
 					driveForward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
-
-				}
-=======
 			Timer *red2 = new Timer();
 			driveForward(1.0 , 90.0);
 			red2->Start();
@@ -250,8 +246,6 @@ public:
 			driveForward(-0.5,20.0);
 			rotateLeft(1.0,42.0);
 			driveForward(1.0,50.0);
-
->>>>>>> origin/master
 		}
 		//Red right
 		else if(autonomousChooser == 3){
