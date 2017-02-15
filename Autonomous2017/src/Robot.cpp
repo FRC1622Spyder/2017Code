@@ -36,7 +36,7 @@ private:
 	const double pi = PI;
 
 	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi);
-	const double pulse_per_degree = ((driveDiam * pi) / degreesPerCircle) * pulse_per_inch;
+	const double pulse_per_radian = ((driveDiam / 2) * pulse_per_inch) / 40;
 
 public:
 
@@ -70,17 +70,17 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue <<std::endl;
 		}
-		leftFrontMotor->StopMotor;
-		leftBackMotor->StopMotor;
-		rightFrontMotor->StopMotor;
-		rightBackMotor->StopMotor;
+		leftFrontMotor->StopMotor();
+		leftBackMotor->StopMotor();
+		rightFrontMotor->StopMotor();
+		rightBackMotor->StopMotor();
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
 	}
 
-	void driveBackward(double speed, double distance){
+	/*void driveBackward(double speed, double distance){
 		//wheel = 6 in. diameter
 		//20 pulses per revolution
 		//20 pulses per 6(pi) or 18.85 inches
@@ -95,16 +95,18 @@ public:
 			rightFrontMotor->Set(-speed);
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetPosition();
+			std::cout << "Final: " << encoderDistance << std::endl;
+			std::cout << "Current:" << encoderValue <<std::endl;
 		}
-		leftFrontMotor->StopMotor;
-		leftBackMotor->StopMotor;
-		rightFrontMotor->StopMotor;
-		rightBackMotor->StopMotor;
+		leftFrontMotor->StopMotor();
+		leftBackMotor->StopMotor();
+		rightFrontMotor->StopMotor();
+		rightBackMotor->StopMotor();
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
-	}
+	}*/
 
 	void rotateLeft(double speed, double angle){ //angle in degrees
 		//drive diameter =  28.75 in
@@ -114,7 +116,8 @@ public:
 		//0.25 * 0.9425 = 0.235625 pulses per degree
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
-		double encoderDistance = angle * pulse_per_degree;
+		double radianAngle = ((angle * pi) / 180);
+		double encoderDistance = radianAngle * pulse_per_radian;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
 			leftFrontMotor->Set(-speed);
@@ -125,10 +128,10 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue << std::endl;
 		}
-		leftFrontMotor->StopMotor;
-		leftBackMotor->StopMotor;
-		rightFrontMotor->StopMotor;
-		rightBackMotor->StopMotor;
+		leftFrontMotor->StopMotor();
+		leftBackMotor->StopMotor();
+		rightFrontMotor->StopMotor();
+		rightBackMotor->StopMotor();
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
@@ -143,7 +146,8 @@ public:
 		//0.25 * 0.9425 = 0.235625 pulse per degree
 		leftFrontMotor->SetPosition(0);
 		rightFrontMotor->SetPosition(0);
-		double encoderDistance = angle *pulse_per_degree;
+		double radianAngle = ((angle * pi) / 180);
+		double encoderDistance = radianAngle * pulse_per_radian;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
 			leftFrontMotor->Set(speed);
@@ -152,10 +156,10 @@ public:
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetPosition();
 		}
-		leftFrontMotor->StopMotor;
-		leftBackMotor->StopMotor;
-		rightFrontMotor->StopMotor;
-		rightBackMotor->StopMotor;
+		leftFrontMotor->StopMotor();
+		leftBackMotor->StopMotor();
+		rightFrontMotor->StopMotor();
+		rightBackMotor->StopMotor();
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
 		leftFrontMotor->SetPosition(0);
@@ -178,15 +182,15 @@ public:
 		//Red left
 		else if(autonomousChooser == 1){
 			Timer *red1 = new Timer();
-			driveBackward(1.0,53.3);
+			driveForward(-1.0,53.3);
 			rotateRight(0.5,45);
-			driveBackward(0.5,52.0);
+			driveForward(-0.5,52.0);
 			red1->Start();
 			double time1 = red1 ->Get();
 			while(time1<3){
 				time1 = red1->Get();
 			}
-			driveBackward(1.0, 52.0);
+			driveForward(-1.0, 52.0);
 			rotateLeft(0.5, 90);
 			driveForward(1.0, 120.37);
 
@@ -208,7 +212,7 @@ public:
 				time = red1timer->Get();
 			}
 			red1timer->Stop();
-			driveBackward(0.25, 10); //drive backwards 10 in
+			driveForward(-0.25, 10); //drive backwards 10 in
 			rotateRight(0.5, 90); //rotate towards hopper, angle needs exact testing
 			driveForward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
 
@@ -222,8 +226,8 @@ public:
 			while(time2<3){
 			time2 = red2->Get();
 			}
-			driveForward(-0.5,20);
-			rotateLeft(1.0,42);
+			driveForward(-0.5,20.0);
+			rotateLeft(1.0,42.0);
 			driveForward(1.0,50.0);
 
 		}
@@ -238,7 +242,7 @@ public:
 			while(time3<3){
 				time3 = red3->Get();
 			}
-			driveBackward(1.0, 52.0);
+			driveForward(-1.0, 52.0);
 			rotateRight(0.5, 90);
 			driveForward(1.0, 120.37);
 		}
@@ -253,7 +257,7 @@ public:
 			while(time4<3){
 				time4 = blue1->Get();
 			}
-			driveBackward(1.0, 52.0);
+			driveForward(-1.0, 52.0);
 			rotateLeft(0.5, 90);
 			driveForward(1.0, 120.37);
 		}
@@ -266,7 +270,7 @@ public:
 			while(time5<3){
 				time5 = blue2->Get();
 			}
-			driveBackward(0.5,5);
+			driveForward(-0.5,5);
 			rotateRight(0.5,90);
 			driveForward(1.0,20);
 			rotateLeft(0.5,90);
@@ -283,7 +287,7 @@ public:
 			while(time6<3){
 				time6 = blue3->Get();
 			}
-			driveBackward(1.0, 52.0);
+			driveForward(-1.0, 52.0);
 			rotateRight(0.5, 90);
 			driveForward(1.0, 120.37);
 			driveForward(1.0, 71.76);
