@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <cmath>
+#include <math.h>
 
 
 #include <IterativeRobot.h>
@@ -174,7 +174,7 @@ public:
 		autonomousChooser = replaceThisInt;
 		//Autonomous default
 		if(autonomousChooser == 0){
-			driveForward(0.5, 40.0);
+			driveBackward(0.5, 200.0);
 		}
 		//Red left Gear first
 		else if(autonomousChooser == 1){
@@ -190,7 +190,7 @@ public:
 			red1timer->Stop();
 			driveForward(0.25, 10.0); //drive backwards 10 in
 			rotateRight(0.5, 90.0); //rotate towards hopper, angle needs exact testing
-			driveForward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
+			driveBackward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
 
 		}
 		//Red center Gear first
@@ -204,14 +204,14 @@ public:
 			}
 			driveForward(0.5,20.0);
 			rotateLeft(0.7,45.0);
-			driveForward(1.0,50.0);
+			driveBackward(1.0,50.0);
 
 		}
 		//Red right Gear first
 		else if(autonomousChooser == 3){
 			Timer *red3 = new Timer();
 			driveBackward(1.0, 53.3);//114 to airship
-			rotateLeft(0.5,45);
+			rotateLeft(0.5,45.0);
 			driveBackward(0.5,52.0);
 			red3->Start();
 			double time3 = red3->Get();
@@ -219,8 +219,8 @@ public:
 				time3 = red3->Get();
 			}
 			driveForward(1.0, 52.0);
-			rotateLeft(0.5, 90.0);
-			driveForward(1.0, 120.37);
+			rotateRight(0.5, 90.0);
+			driveBackward(1.0, 120.37);
 		}
 		//Blue left Gear first
 		else if(autonomousChooser == 4){
@@ -234,8 +234,8 @@ public:
 				time4 = blue1->Get();
 			}
 			driveForward(1.0, 52.0);
-			rotateRight(0.5, 90);
-			driveForward(1.0, 120.37);
+			rotateLeft(0.5, 90.0);
+			driveBackward(1.0, 120.37);
 		}
 		//Blue center Gear first
 		else if(autonomousChooser == 5){
@@ -247,14 +247,14 @@ public:
 				time5 = blue2->Get();
 			}
 			driveForward(0.5,5);
-			rotateRight(0.5,90);
-
+			rotateLeft(0.5,90.0);
+			driveBackward(1.0,120.0);
 		}
 		//Blue right Gear first
 		else if(autonomousChooser == 6){
 			Timer *blue3 = new Timer();
 			driveBackward(1.0, 53.3);
-			rotateLeft(0.5,45);
+			rotateLeft(0.5,45.0);
 			driveBackward(0.5,52.0);
 			blue3->Start();
 			double time6 = blue3->Get();
@@ -262,7 +262,7 @@ public:
 				time6 = blue3->Get();
 			}
 			driveForward(1.0, 52.0);
-			rotateRight(0.5, 90);
+			rotateLeft(0.5, 90.0);
 			driveBackward(1.0, 120.37);
 
 		}
@@ -287,14 +287,12 @@ public:
 
 		}
 		//Blue right 2 Hopper first
-		else if(autonomousChooser == 12){}
-		driveForward(1.0, 71.76); //drive forward for (185.3/2)(2/3)+10 in
-		rotateRight(0.5, 45); //rotate towards hopper, angle needs exact testing
-		driveForward(1.0,100);
-		driveForward(0.5,20);
-
-
-
+		else if(autonomousChooser == 12){
+			driveForward(1.0, 71.76); //drive forward for (185.3/2)(2/3)+10 in
+			rotateRight(0.5, 45.0); //rotate towards hopper, angle needs exact testing
+			driveForward(1.0,100.0);
+			driveForward(0.5,20.0);
+		}
 	}
 
 
