@@ -36,7 +36,7 @@ private:
 	const double pi = PI;
 
 	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi);
-	const double pulse_per_radian = ((driveDiam / 2) * pulse_per_inch) / 40;
+	const double pulse_per_radian = ((driveDiam / 2) * pulse_per_inch) / 50;
 
 public:
 
@@ -219,9 +219,9 @@ public:
 		}
 		//Red center
 		else if(autonomousChooser == 2){
-			driveForward(1.0, 110.0); //drive forward at full power for [185.3-((185.3/2)(2/3))]-10 in
-					rotateLeft(0.5, 45); //angle to the gear port, angle needs exact testing
-					driveForward(0.25, 10); //drive up to the gear port
+			driveForward(1.0,93.0); //drive forward at full power for [185.3-((185.3/2)(2/3))]-10 in
+					//rotateLeft(0.5, 45.0); //angle to the gear port, angle needs exact testing
+					//driveForward(0.25, 10.0); //drive up to the gear port
 					Timer *red1timer = new Timer();
 					red1timer->Start();
 					double time = red1timer->Get();
@@ -233,9 +233,9 @@ public:
 						time = red1timer->Get();
 					}
 					red1timer->Stop();
-					driveForward(-0.25, 10); //drive backwards 10 in
-					rotateRight(0.5, 90); //rotate towards hopper, angle needs exact testing
-					driveForward(1.0, 71.76); //drive backwards for (185.3/2)(2/3)+10 in
+					driveForward(-0.5, 20.0); //drive backwards 10 in
+					rotateRight(0.5, 42.0); //rotate towards hopper, angle needs exact testing
+					driveForward(1.0, 20.0); //drive backwards for (185.3/2)(2/3)+10 in
 			Timer *red2 = new Timer();
 			driveForward(1.0 , 90.0);
 			red2->Start();
@@ -243,9 +243,6 @@ public:
 			while(time2<3){
 			time2 = red2->Get();
 			}
-			driveForward(-0.5,20.0);
-			rotateLeft(1.0,42.0);
-			driveForward(1.0,50.0);
 		}
 		//Red right
 		else if(autonomousChooser == 3){

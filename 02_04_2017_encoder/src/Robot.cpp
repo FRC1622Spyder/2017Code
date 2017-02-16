@@ -79,10 +79,10 @@ private:
 		}
 		buttononoff = joystick->GetRawButton(3);
 		if(buttononoff == true){
-			leftFront->Set(0.2);
-			rightFront->Set(0.2);
-			rightBack->Set(0.2);
-			leftBack->Set(0.2);
+			leftFront->Set(0.5);
+			rightFront->Set(-0.5);
+			rightBack->Set(-0.5);
+			leftBack->Set(0.5);
 		}
 		else if(buttononoff == false){
 			leftFront->Set(0.0);
