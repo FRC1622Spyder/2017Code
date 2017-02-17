@@ -55,8 +55,8 @@ public:
 		//20 pulses per revolution
 		//20 pulses per 6(pi) or 18.85 inches
 		//20 / 18.85 = 0.9425 pulses per 1 inch
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		double encoderDistance = distance * pulse_per_inch;
 		double encoderValue = 0.0;
 		std::cout << "Final: " << encoderDistance << std::endl;
@@ -69,14 +69,14 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue <<std::endl;
 		}
-		leftFrontMotor->StopMotor();
-		leftBackMotor->StopMotor();
-		rightFrontMotor->StopMotor();
-		rightBackMotor->StopMotor();
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
 	}
 
 	void driveBackward(double speed, double distance){
@@ -84,8 +84,8 @@ public:
 		//20 pulses per revolution
 		//20 pulses per 6(pi) or 18.85 inches
 		//20 / 18 = 0.9425 pulses per 1 inch
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		double encoderDistance = distance * pulse_per_inch;
 		double encoderValue = 0.0;
 		while(abs(encoderValue) <= encoderDistance){
@@ -95,14 +95,14 @@ public:
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetEncPosition();
 		}
-		leftFrontMotor->StopMotor();
-		leftBackMotor->StopMotor();
-		rightFrontMotor->StopMotor();
-		rightBackMotor->StopMotor();
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
 	}
 
 	void rotateLeft(double speed, double angle){ //angle in degrees
@@ -111,8 +111,8 @@ public:
 		//drive arc = 0.25 inches per degree
 		//0.9425 pulses per 1 in
 		//0.25 * 0.9425 = 0.235625 pulses per degree
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		double radianAngle = (angle * pi) / 180;
 		double encoderDistance = radianAngle * pulse_per_radian;
 		double encoderValue = 0.0;
@@ -125,14 +125,14 @@ public:
 			std::cout << "Final: " << encoderDistance << std::endl;
 			std::cout << "Current:" << encoderValue << std::endl;
 		}
-		leftFrontMotor->StopMotor();
-		leftBackMotor->StopMotor();
-		rightFrontMotor->StopMotor();
-		rightBackMotor->StopMotor();
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
 	}
 
 	void rotateRight(double speed, double angle){ //angle in degrees
@@ -141,8 +141,8 @@ public:
 		//drive arc = 0.25 inches per degree
 		//0.9425 pulses per 1 in
 		//0.25 * 0.9425 = 0.235625 pulse per degree
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		double radianAngle = (angle * pi) / 180;
 		double encoderDistance = radianAngle * pulse_per_radian;
 		double encoderValue = 0.0;
@@ -153,14 +153,14 @@ public:
 			rightBackMotor->Set(-speed);
 			encoderValue = rightFrontMotor->GetEncPosition();
 		}
-		leftFrontMotor->StopMotor();
-		leftBackMotor->StopMotor();
-		rightFrontMotor->StopMotor();
-		rightBackMotor->StopMotor();
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
 		encoderDistance = 0.0;
 		encoderValue = 0.0;
-		leftFrontMotor->SetPosition(0);
-		rightFrontMotor->SetPosition(0);
 	}
 
 	void RobotInit() {
@@ -171,7 +171,7 @@ public:
 		rightFrontMotor->SetInverted(true);
 		rightBackMotor->SetInverted(true);
 		//Get autonomous choice
-		autonomousChooser = replaceThisInt;
+		autonomousChooser = 2;
 		//Autonomous default
 		if(autonomousChooser == 0){
 			driveBackward(0.5, 200.0);
@@ -203,8 +203,22 @@ public:
 				time2 = red2->Get();
 			}
 			driveForward(0.5,20.0);
+			red2->Stop();
+			red2->Reset();
+			red2->Start();
+			time2 = red2->Get();
+			while(time2<0.5){
+				time2 = red2->Get();
+			}
 			rotateLeft(0.7,45.0);
-			driveBackward(1.0,50.0);
+			red2->Stop();
+			red2->Reset();
+			red2->Start();
+			time2 = red2->Get();
+			while(time2<0.5){
+				time2 = red2->Get();
+			}
+			driveBackward(0.7,130.0);
 
 		}
 		//Red right Gear first
