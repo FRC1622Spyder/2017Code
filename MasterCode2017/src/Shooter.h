@@ -13,8 +13,8 @@
 class Shooter {
 
 private:
-	Joystick *controlStick;
 	CANTalon *flywheelMotor;
+	Joystick *controlStick;
 	bool isSpinning;
 	bool buttonPressed;
 
