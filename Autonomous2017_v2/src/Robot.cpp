@@ -91,7 +91,7 @@ public:
 		}
 	}
 
-	void RotateLeft(double speed, double angle){
+	void RotateCounterClockwise(double speed, double angle){
 		double encoderValue = rightFrontMotor->GetEncPosition();
 		double radianAngle = angle * (pi /180);
 		double encoderDistance =  radianAngle * pulse_per_radian;
@@ -120,7 +120,7 @@ public:
 		}
 	}
 
-	void RotateRight(double speed, double angle){
+	void RotateClockwise(double speed, double angle){
 		double encoderValue = rightFrontMotor->GetEncPosition();
 		double radianAngle = angle * (pi /180);
 		double encoderDistance =  radianAngle * pulse_per_radian;
@@ -182,24 +182,184 @@ public:
 	}
 
 	void AutonomousPeriodic() {
+		//red left gears first
 		if(autonomousChooser == 1){
-
+			if (autonomousPhase == 0){
+				DriveBackward(0.7,110.0);//drive backward to base line
+			}
+			else if (autonomousPhase == 1){
+				RotateClockwise(0.3,45.0);//rotate clockwise to make us facing the dock for the gear
+			}
+			else if (autonomousPhase == 2){
+				DriveBackward(0.7,29.2);//drive backward up to the airship
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait for human player
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,29.2);//drive forward to the base line
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,135.0);//rotate counter clockwise to have mouth in the front
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7, 115.6);//drive forward to be ready to hit hopper right
+			}
+			else if (autonomousPhase == 7){
+				RotateCounterClockwise(0.3,45);//rotate counter clockwise 45 degrees to face hoppers
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7, 91.6);//drive up to the hopper
+			}
 		}
+		//red center gears first
 		else if(autonomousChooser == 2){
 			if(autonomousPhase == 0){
-				DriveBackward(0.7, 53.3);
+				DriveBackward(0.7, 53.3);//drive backward to airship
 			}
 			else if(autonomousPhase == 1){
-				Wait(3.0);
+				Wait(3.0);//wait for human player to grab the gear
 			}
 			else if(autonomousPhase == 2){
-				DriveForward(0.7, 10.0);
+				DriveForward(0.7, 26.65);//drive forward half way
 			}
 			else if(autonomousPhase == 3){
-				RotateLeft(0.5, 45.0);
+				RotateClockwise(0.5, 135.0);//rotate clockwise to have front facing the way we want
 			}
 			else if(autonomousPhase == 4){
-				DriveBackward(0.7, 50.0);
+				DriveForward(0.7,37.69);//drive to the middle of red left
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,45.0);//turn to facing the base line
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7, 115.6);//drive forward to prepare for the hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateCounterClockwise(0.3,45);//rotate 45 degrees counter clockwise to face hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7, 91.6);//drive up to the hopper
+			}
+		}
+		//red right gears first
+		else if (autonomousChooser == 3){
+			if (autonomousPhase == 0){
+				DriveBackward(0.7,110.0);//drive backward to the baseline
+			}
+			else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.3,45.0);//rotate 45 degrees counter clockwise to face the airship
+			}
+			else if (autonomousPhase == 2){
+				DriveBackward(0.7,29.2);//drive up to the airship
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait for the human player to grab the gear
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,29.2);// return to the base line
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,135);//rotate 135 degrees clockwise to make the front of the robot facing to the enemy
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7,34.25);// drive forward to prepare for the hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateClockwise(0.3,45);// rotate 45 degrees to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7,91.63);//drive forward to the hopper
+			}
+		}
+		//blue left gears first
+		else if (autonomousChooser == 4){
+			if (autonomousPhase == 0){
+				DriveBackward(0.7,110.0);// drive up to the baseline
+			}
+			else if (autonomousPhase == 1){
+				RotateClockwise(0.3,45.0);//rotate 45 clockwise to face the airship
+			}
+			else if (autonomousPhase == 2){
+				DriveBackward(0.7,29.2);//drive up to the airship
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait 3 second for the human player to grab the gear
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,29.2);//drive forward to reach the baseline
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,135);//rotate 135 degrees to make the front faceing the enemy
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7,34.25);//drive forward to prepare to drive to the hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateCounterClockwise(0.3,45);//rotate 45 degrees counter clockwise to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7,91.63);//drive up to the hopper
+			}
+		}
+		//blue center gears first
+		else if (autonomousChooser == 5){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7, 53.3);//drive backward to airship
+			}
+			else if(autonomousPhase == 1){
+				Wait(3.0);//wait for human player to grab the gear
+			}
+			else if(autonomousPhase == 2){
+				DriveForward(0.7, 26.65);//drive forward half way
+			}
+			else if(autonomousPhase == 3){
+				RotateClockwise(0.5, 135.0);//rotate clockwise to have front facing the way we want
+			}
+			else if(autonomousPhase == 4){
+				DriveForward(0.7,37.69);//drive to the middle of red left
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,45.0);//turn to facing the base line
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7,34.25);//drive forward to prepare for the hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateCounterClockwise(0.3,45);//rotate 45 degrees counter clockwise to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7,91.63);//drive up to the hopper
+			}
+		}
+		//blue right gears first
+		else if (autonomousChooser == 6){
+			if (autonomousPhase == 0){
+				DriveBackward(0.7,110.0);//drive backward to base line
+			}
+			else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.3,45.0);//rotate clockwise to make us facing the dock for the gear
+			}
+			else if (autonomousPhase == 2){
+				DriveBackward(0.7,29.2);//drive backward up to the airship
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait for human player
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,29.2);//drive forward to the base line
+			}
+			else if (autonomousPhase == 5){
+				RotateCounterClockwise(0.3,135.0);//rotate counter clockwise to have mouth in the front
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7, 115.6);//drive forward to prepare to hit the hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateClockwise(0.3,45);//rotate 45 degrees to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7, 91.6);//drive up to the hopper
 			}
 		}
 	}
