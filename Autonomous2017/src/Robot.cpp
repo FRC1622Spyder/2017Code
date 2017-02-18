@@ -16,7 +16,7 @@
 #define PULSE_PER_REV 860.0;
 #define PI 3.141593;
 
-class Robot: public IterativeRobot {
+//class Robot: public IterativeRobot {
 private:
 	int replaceThisInt;
 
