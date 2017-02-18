@@ -182,28 +182,168 @@ public:
 	}
 
 	void AutonomousPeriodic() {
+		//red left
 		if(autonomousChooser == 1){
+				if(autonomousPhase == 0){
+					DriveForward(0.7, 15);
+				}
+				else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.5, 45);
+		        }
+				else if (autonomousPhase == 2){
+	              DriveForward(0.7,12)
+				}
+				else if (autonomousPhase == 3){
+				wait(3.0);
+		        }
+				else if (autonomousPhase == 4){
+				DriveBackward(0.7, 5);
+		        }
+				else if (autonomousPhase == 5){
+				RotateClockwise(0.7, 45);
+	         	}
+				else if (autonomousPhase == 6){
+				DriveForward(0.7, 15);
+		        }
+				else if (autonomousPhase == 7){
+				Rotate(0.7, 45);
+		        }
+				else if (autonomousPhase == 8){
+				DriveForward(0.7, 10);
+		        }
+
 
 		}
+		//red center
 		else if(autonomousChooser == 2){
-			if(autonomousPhase == 0){
-				DriveBackward(0.7, 53.3);
-			}
-			else if(autonomousPhase == 1){
-				Wait(3.0);
-			}
-			else if(autonomousPhase == 2){
-				DriveForward(0.7, 10.0);
-			}
-			else if(autonomousPhase == 3){
-				RotateLeft(0.5, 45.0);
-			}
-			else if(autonomousPhase == 4){
-				DriveBackward(0.7, 50.0);
-			}
-		}
-	}
+					if(autonomousPhase == 0){
+				DriveForward(0.7, 10);
+					}
+					else if (autonomousPhase == 1){
+						RotateLeft(0.7, 45);
+					}
+					else if (autonomousPhase == 2){
+					DriveForward(0.7, 10);
+		            }
+					else if (autonomousPhase == 3){
+					RotateRight(0.7, 45);
+		            }
+					else if (autonomousPhase == 4){
+					DriveForward(0.7, 15);
+		            }
+					else if (autonomousPhase == 5){
+					RotateLeft(0.7, 45);
+		            }
+					else if (autonomousPhase == 6){
+					DriveForward(0.7,10);
+					}
+					else if (autonomousPhase == 7){
+					wait(3);
+		            }
+					else if (autonomousPhase == 8){
+					DriveBackward(0.7,10);
+		            }
+					else if (autonomousPhase == 9){
+					RotateRight(0.7, 45);
+	             	}
+					else if (autonomousPhase == 10){
+					DriveForward(0.7, 15);
+		            }
+					else if (autonomousPhase == 11){
+					RotateLeft(0.7, 45);
+		            }
+					else if (autonomousPhase == 12){
+					DriveForward(0.7, 10);
+	             	}
 
+		 }
+
+	//red left
+		else if(autonomousChooser == 3){
+			if(autonomousPhase == 1){
+			 DriveForward(0.7,10);
+			}
+			else if (autonomousPhase == 1){
+			RotateRight(0.7,5);
+		    }
+			else if (autonomousPhase == 2){
+			DriveForward(0.7,5);
+		    }
+			else if (autonomousPhase == 3){
+			DriveBackward(0.7,45);
+	     	}
+			else if (autonomousPhase == 4){
+			RotateLeft(0.7,45);
+		    }
+			else if (autonomousPhase == 5){
+			DriveForward(0.7,20);
+		    }
+			else if (autonomousPhase == 6){
+			RotateLeft(0.7, 45);
+		    }
+			else if (autonomousPhase == 7){
+			DriveForward(0.7,5);
+		    }
+			else if (autonomousPhase == 8){
+			DriveBackward(0.7,45);
+		    }
+			else if (autonomousPhase == 9){
+			RotateLeft(0.7,45);
+		    }
+			else if (autonomousPhase == 10){
+			DriveForward(0.7,20);
+		    }
+			else if (autonomousPhase == 11){
+			RotateRight(0.7,45);
+		    }
+			else if (autonomousPhase == 12){
+			DriveForward(0.7,10);
+		    }
+	}
+	//blue left
+		else if(autonomousChooser == 4){
+		    if(autonomousPhase == 0){
+			DriveForward(0.7, 20);
+		    }
+			else if (autonomousPhase == 1){
+				RotateLeft(0.7,10);
+			}
+			else if (autonomousPhase == 2){
+	            DriveForward(0.6 10);
+			}
+			else if (autonomousPhase == 3){
+                DriveBackward(0.7, 15);
+			}
+			else if (autonomousPhase == 4){
+                 RotateRight(0.3, 45)
+			}
+			else if (autonomousPhase == 5){
+                 DriveForward(0.7, 45);
+			}
+			else if (autonomousPhase == 6){
+                 RotateLeft(0.7, 45);
+			}
+			else if (autonomousPhase == 7){
+				DriveForward(0.7, 10);
+			}
+			else if (autonomousPhase == 8){
+				DriveBackward(0.7,45);
+			}
+			else if (autonomousPhase == 9){
+		        RotateClockwise(0.6, 45);
+			}
+			else if (autonomousPhase == 10){
+		        DriveForward(0.7,10)
+						}
+	      //blue left
+	    else if(autonomousChooser == 5){
+	                   if(autonomousPhase == 4){
+
+
+		//blue left
+	               else if(autonomousChooser == 4){
+			       if(autonomousPhase == 5)}
+	               }
 	void TeleopInit() {
 
 	}
