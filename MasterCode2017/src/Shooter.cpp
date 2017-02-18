@@ -4,9 +4,9 @@
 
 #include <math.h>
 #include <IterativeRobot.h>
+#include <Shooter.h>
 #include <Joystick.h>
 #include <CANTalon.h>
-#include <Shooter.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>

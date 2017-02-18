@@ -1,4 +1,3 @@
-#include <Climber.h>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -8,6 +7,7 @@
 #include <Intake.h>
 #include <Shooter.h>
 #include <Climber.h>
+#include <Dashboard.h>
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
@@ -21,6 +21,7 @@ public:
 	Intake intake;
 	Shooter shooter;
 	Climber climber;
+	Dashboard dashboard;
 
 	void RobotInit() {
 		drive.DriveInit();
@@ -28,6 +29,7 @@ public:
 		intake.IntakeInit();
 		shooter.ShooterInit();
 		climber.ClimberInit();
+		dashboard.DashboardInit();
 	}
 
 	void AutonomousInit() {
