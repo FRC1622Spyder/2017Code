@@ -13,7 +13,7 @@
 
 void Shooter::ShooterInit(){
 	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(9);
+	flywheelMotor = new CANTalon(8);//9 on test robot
 
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
@@ -24,7 +24,7 @@ void Shooter::ShooterInit(){
 //Power should be between 1 and 0
 void Shooter::SpinFlywheel(double power){
 	//Use button to toggle spin
-	bool toggleSpin = controlStick->GetRawButton(6);
+	bool toggleSpin = controlStick->GetRawButton(1);
 	std::cout << "toggleSpin: "<< toggleSpin << std::endl;
 	std::cout << "isSpinning: " << isSpinning << std::endl;
 	std::cout << "buttonPressed: " << buttonPressed << std::endl;
@@ -49,7 +49,7 @@ void Shooter::SpinFlywheel(double power){
 	//Spin flywheel
 	if(isSpinning == true){
 		//flywheelSpeed = pow(distance, 2) + distance + replaceThisInt;;
-		flywheelMotor->Set(power);
+		flywheelMotor->Set(-power);
 	}
 	else{
 		flywheelMotor->Set(0.0);

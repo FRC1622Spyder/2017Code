@@ -11,14 +11,14 @@
 #include <Joystick.h>
 
 void Feeder::FeederInit(){
-	feederMotor = new CANTalon(10);
+	feederMotor = new CANTalon(5);
 	controlStick = new Joystick(1);
 	isWorking = false;
 	buttonPressed = false;
 }
 
 void Feeder::FeederTeleopPeriodic() {
-	bool toggleWork = controlStick->GetRawButton(6);
+	bool toggleWork = controlStick->GetRawButton(2);
 	if(buttonPressed==false && toggleWork==true && isWorking==false){
 		isWorking = true;
 		buttonPressed = true;
@@ -34,7 +34,7 @@ void Feeder::FeederTeleopPeriodic() {
 
 
 	if(isWorking==true) {
-		feederMotor->Set(0.5);
+		feederMotor->Set(1.0);
 	}
 	else if(isWorking==false){
 		feederMotor->Set(0.0);

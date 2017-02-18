@@ -13,13 +13,14 @@
 void Climber::ClimberInit(){
 	ClimberMotor = new CANTalon(7);
 	controlStick = new Joystick(1);
-	isWorking = false;
-	buttonPressed = false;
-	climbDirection = true;
+	//isWorking = false;
+	//buttonPressed = false;
+	//climbDirection = true;
+
 }
 
 	void Climber::ClimberTeleopPeriodic() {
-		bool climbup = controlStick->GetRawButton(5);
+		/*bool climbup = controlStick->GetRawButton(5);
 		bool climbdown = controlStick->GetRawButton(7);
 		if(buttonPressed==false && climbup==true && isWorking==false){
 			isWorking = true;
@@ -55,7 +56,12 @@ void Climber::ClimberInit(){
 		}
 		else if(isWorking==false){
 			ClimberMotor->Set(0.0);
+		}*/
+		bool climb = controlStick->GetRawButton(5);
+		if(climb==true){
+		ClimberMotor->Set(-1.0);
 		}
-
-	}
-
+		else if(climb==false){
+		ClimberMotor->Set(0.0);
+		}
+		}

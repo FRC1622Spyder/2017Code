@@ -18,13 +18,13 @@ void Intake::IntakeInit(){
 }
 
 void Intake::RunIntake(){
-	bool intakeForward = controlStick->GetRawButton(1);
-	bool intakeBackward = controlStick->GetRawButton(2);
+	bool intakeForward = controlStick->GetRawButton(6);
+	bool intakeBackward = controlStick->GetRawButton(8);
 	if(intakeForward==true){
-		intakeMotor->Set(0.6);
+		intakeMotor->Set(-0.6);
 	}
 	else if(intakeBackward==true){
-		intakeMotor->Set(-0.6);
+		intakeMotor->Set(0.6);
 	}
 	else{
 		intakeMotor->Set(0.0);
