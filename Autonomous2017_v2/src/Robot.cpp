@@ -362,6 +362,176 @@ public:
 				DriveForward(0.7, 91.6);//drive up to the hopper
 			}
 		}
+		//red left
+		if(autonomousChooser == 7){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,208.9);//drive backward to prepare to hit the first hopper
+			}
+			else if (autonomousPhase == 1){
+				RotateClockwise(0.3,90);//rotate 90 degrees to face the hopper
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
+		//red center
+		else if(autonomousChooser == 8){
+
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,46.7);//drive forward to prepare to turn
+			}
+			else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,70.3);//drive forward to the middle of red right
+			}
+			else if (autonomousPhase == 3){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,34.3);//drive forward to prepare for the first hopper
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees to face the hopper
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+			else if (autonomousPhase == 7){
+				Wait(3.0);//wait 3 seconds for balls to flow out
+			}
+			else if (autonomousPhase == 8){
+				DriveBackward(0.7,91.6);//drive backward to return to the middle of the right
+			}
+			else if (autonomousPhase == 9){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 10){
+				DriveForward(0.7, 240.3);//drive forward for the next hopper
+			}
+			else if (autonomousPhase == 11){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degress to face the hopper
+			}
+			else if (autonomousPhase == 12){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
+
+		//red right
+		else if(autonomousChooser == 9){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,81.0);//drive forward to prepare for the first hopper
+			}
+			else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait 3 seconds for balls to flow out
+			}
+			else if (autonomousPhase == 4){
+				DriveBackward(0.7,91.6);//drive backward to return to the middle of the right
+			}
+			else if (autonomousPhase == 5){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7, 240.3);//drive forward for the next hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateClockwise(0.3,90.0);//rotate 90 degress to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
+		//blue left
+		else if(autonomousChooser == 10){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,81.0);//drive forward to prepare for the first hopper
+			}
+			else if (autonomousPhase == 1){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+			else if (autonomousPhase == 3){
+				Wait(3.0);//wait 3 seconds for balls to flow out
+			}
+			else if (autonomousPhase == 4){
+				DriveBackward(0.7,91.6);//drive backward to return to the middle of the right
+			}
+			else if (autonomousPhase == 5){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7, 240.3);//drive forward for the next hopper
+			}
+			else if (autonomousPhase == 7){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degress to face the hopper
+			}
+			else if (autonomousPhase == 8){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
+		//blue center
+		else if(autonomousChooser == 11){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,46.7);//drive forward to prepare to turn
+			}
+			else if (autonomousPhase == 1){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,70.3);//drive forward to the middle of red right
+			}
+			else if (autonomousPhase == 3){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees to face the base line
+			}
+			else if (autonomousPhase == 4){
+				DriveForward(0.7,34.3);//drive forward to prepare for the first hopper
+			}
+			else if (autonomousPhase == 5){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degrees to face the hopper
+			}
+			else if (autonomousPhase == 6){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+			else if (autonomousPhase == 7){
+				Wait(3.0);//wait 3 seconds for balls to flow out
+			}
+			else if (autonomousPhase == 8){
+				DriveBackward(0.7,91.6);//drive backward to return to the middle of the right
+			}
+			else if (autonomousPhase == 9){
+				RotateClockwise(0.3,90.0);//rotate 90 degrees
+			}
+			else if (autonomousPhase == 10){
+				DriveForward(0.7, 240.3);//drive forward for the next hopper
+			}
+			else if (autonomousPhase == 11){
+				RotateCounterClockwise(0.3,90.0);//rotate 90 degress to face the hopper
+			}
+			else if (autonomousPhase == 12){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
+		//blue right
+		else if(autonomousChooser == 12){
+			if(autonomousPhase == 0){
+				DriveBackward(0.7,208.9);//drive backward to prepare to hit the first hopper
+			}
+			else if (autonomousPhase == 1){
+				RotateCounterClockwise(0.3,90);//rotate 90 degrees to face the hopper
+			}
+			else if (autonomousPhase == 2){
+				DriveForward(0.7,91.6);//drive forward to hit the hopper
+			}
+		}
 	}
 
 	void TeleopInit() {
