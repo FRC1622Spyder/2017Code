@@ -19,7 +19,7 @@ void Feeder::FeederInit(){
 
 void Feeder::FeederTeleopPeriodic() {
 	bool toggleWork = controlStick->GetRawButton(2);
-	if(buttonPressed==false && toggleWork==true && isWorking==false){
+	/*if(buttonPressed==false && toggleWork==true && isWorking==false){
 		isWorking = true;
 		buttonPressed = true;
 	}
@@ -37,6 +37,12 @@ void Feeder::FeederTeleopPeriodic() {
 		feederMotor->Set(1.0);
 	}
 	else if(isWorking==false){
+		feederMotor->Set(0.0);
+	}*/
+	if(toggleWork == true){
+		feederMotor->Set(0.8);
+	}
+	else if(toggleWork == false){
 		feederMotor->Set(0.0);
 	}
 }

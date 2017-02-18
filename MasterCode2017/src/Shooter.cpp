@@ -18,38 +18,87 @@ void Shooter::ShooterInit(){
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
 	isSpinning = false;
-	buttonPressed = false;
+	togglePressed = false;
 }
 
 //Power should be between 1 and 0
-void Shooter::SpinFlywheel(double power){
+void Shooter::SpinFlywheel(){
 	//Use button to toggle spin
-	bool toggleSpin = controlStick->GetRawButton(1);
-	std::cout << "toggleSpin: "<< toggleSpin << std::endl;
-	std::cout << "isSpinning: " << isSpinning << std::endl;
-	std::cout << "buttonPressed: " << buttonPressed << std::endl;
+	bool toggleSpin = controlStick->GetRawButton(6);
+	bool up = controlStick->GetRawButton(5);
+	bool down = controlStick->GetRawButton(7);
 	//If button is pressed, flywheel is not spinning, and button was not pressed before
 	//(spin flywheel and set button to 'pressed')
-	if(toggleSpin == true && isSpinning == false && buttonPressed == false){
+	if(toggleSpin == true && isSpinning == false && togglePressed == false){
+		flywheelSpeed = 1;
 		isSpinning = true;
-		buttonPressed = true;
+		togglePressed = true;
 	}
 	//If button is pressed, flywheel is spinning, and button was not pressed before
 	//(stop spinning flywheel and set button to 'pressed')
-	else if(toggleSpin == true && isSpinning == true && buttonPressed == false){
+	else if(toggleSpin == true && isSpinning == true && togglePressed == false){
+		flywheelSpeed = 0;
 		isSpinning = false;
-		buttonPressed = true;
+		togglePressed = true;
 	}
 
 	//If button is not pressed (set button to 'not pressed')
 	if(toggleSpin == false){
-		buttonPressed = false;
+		togglePressed = false;
+	}
+
+	if(up == true && upPressed == false){
+		if(flywheelSpeed < 4){
+			flywheelSpeed++;
+		}
+		upPressed = true;
+	}
+
+	if(up == false){
+		upPressed = false;
+	}
+
+	if(down == true && downPressed == false){
+		if(flywheelSpeed > 1){
+			flywheelSpeed--;
+		}
+		downPressed = true;
+	}
+
+	if(down == false){
+		downPressed = false;
 	}
 
 	//Spin flywheel
 	if(isSpinning == true){
-		//flywheelSpeed = pow(distance, 2) + distance + replaceThisInt;;
-		flywheelMotor->Set(-power);
+		if(flywheelSpeed == 1){
+			flywheelMotor->Set(0.7);
+			SmartDashboard::PutBoolean("DB/LED 3", true);
+		}
+		else if(flywheelSpeed == 2){
+			flywheelMotor->Set(0.8);
+			SmartDashboard::PutBoolean("DB/LED 3", true);
+			SmartDashboard::PutBoolean("DB/LED 2", true);
+		}
+		else if(flywheelSpeed == 3){
+			flywheelMotor->Set(0.9);
+			SmartDashboard::PutBoolean("DB/LED 3", true);
+			SmartDashboard::PutBoolean("DB/LED 2", true);
+			SmartDashboard::PutBoolean("DB/LED 1", true);
+		}
+		else if(flywheelSpeed == 4){
+			flywheelMotor->Set(1.0);
+			SmartDashboard::PutBoolean("DB/LED 3", true);
+			SmartDashboard::PutBoolean("DB/LED 2", true);
+			SmartDashboard::PutBoolean("DB/LED 1", true);
+			SmartDashboard::PutBoolean("DB/LED 0", true);
+		}
+		else {
+			SmartDashboard::PutBoolean("DB/LED 3", false);
+			SmartDashboard::PutBoolean("DB/LED 2", false);
+			SmartDashboard::PutBoolean("DB/LED 1", false);
+			SmartDashboard::PutBoolean("DB/LED 0", false);
+		}
 	}
 	else{
 		flywheelMotor->Set(0.0);
@@ -57,5 +106,5 @@ void Shooter::SpinFlywheel(double power){
 }
 
 void Shooter::ShooterTeleopPeriodic() {
-	SpinFlywheel(1.0);
+	SpinFlywheel();
 }

@@ -57,7 +57,7 @@ void Climber::ClimberInit(){
 		else if(isWorking==false){
 			ClimberMotor->Set(0.0);
 		}*/
-		bool climb = controlStick->GetRawButton(5);
+		bool climb = controlStick->GetRawButton(1);
 		if(climb==true){
 		ClimberMotor->Set(-1.0);
 		}

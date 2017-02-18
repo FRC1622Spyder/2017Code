@@ -16,11 +16,14 @@ private:
 	CANTalon *flywheelMotor;
 	Joystick *controlStick;
 	bool isSpinning;
-	bool buttonPressed;
+	bool togglePressed;
+	bool upPressed;
+	bool downPressed;
+	int flywheelSpeed;
 
 public:
 	void ShooterInit();
-	void SpinFlywheel(double power);
+	void SpinFlywheel();
 	void ShooterTeleopPeriodic();
 };
 
