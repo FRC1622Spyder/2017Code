@@ -3,7 +3,6 @@
 #include <string>
 #include <math.h>
 
-
 #include <IterativeRobot.h>
 #include <CANTalon.h>
 #include <Encoder.h>
