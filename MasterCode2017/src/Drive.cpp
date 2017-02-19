@@ -40,8 +40,24 @@ void Drive::DriveRight(double speed){
 
 void Drive::DriveTeleopPeriodic() {
 	//driveRobot(); //Ramp code
+	bool toggleButton = driveStick->GetRawButton(3); //change that number later
+	if(toggleButton == true && buttonPressed == false && halfSpeed == false){
+		halfSpeed = true;
+		buttonPressed = true;
+	}
+	else if(toggleButton == true && buttonPressed == false && halfSpeed == true){
+		halfSpeed = false;
+		buttonPressed = true;
+	}
+
+	if(toggleButton == false){
+		buttonPressed = false;
+	}
 	//Get left joystick
 	double leftSpeed = driveStick->GetRawAxis(1);
+	if(halfSpeed == true){
+		leftSpeed = leftSpeed / 2;
+	}
 	//If speed is positive, outside dead zone, and above 80% (set to max speed)
 	if(leftSpeed > 0.1 && leftSpeed > 0.8){
 		leftSpeed = 0.8;
@@ -64,6 +80,9 @@ void Drive::DriveTeleopPeriodic() {
 	}
 	//Get right joystick
 	double rightSpeed = driveStick->GetRawAxis(3);
+	if(halfSpeed == true){
+		rightSpeed = rightSpeed / 2;
+	}
 	//If speed is positive, outside dead zone, and above 80% (set to max speed)
 	if(rightSpeed > 0.1 && rightSpeed > 0.8){
 		rightSpeed = 0.8;

@@ -22,6 +22,9 @@ private:
 	double speedValueLeft = 0.0;
 	double speedValueRight = 0.0;
 
+	bool buttonPressed = false;
+	bool halfSpeed = false;
+
 public:
 	void DriveInit();
 	void DriveLeft(double speed);
