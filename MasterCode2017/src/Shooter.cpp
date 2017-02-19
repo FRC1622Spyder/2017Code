@@ -13,7 +13,7 @@
 
 void Shooter::ShooterInit(){
 	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(8);//9 on test robot
+	flywheelMotor = new CANTalon(6);//6 on test robot, 9 on real
 
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
@@ -74,17 +74,23 @@ void Shooter::SpinFlywheel(){
 		if(flywheelSpeed == 1){
 			flywheelMotor->Set(0.7);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
+			SmartDashboard::PutBoolean("DB/LED 2", false);
+			SmartDashboard::PutBoolean("DB/LED 1", false);
+			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 2){
 			flywheelMotor->Set(0.8);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
+			SmartDashboard::PutBoolean("DB/LED 1", false);
+			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 3){
 			flywheelMotor->Set(0.9);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", true);
+			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 4){
 			flywheelMotor->Set(1.0);
@@ -102,6 +108,10 @@ void Shooter::SpinFlywheel(){
 	}
 	else{
 		flywheelMotor->Set(0.0);
+		SmartDashboard::PutBoolean("DB/LED 3", false);
+		SmartDashboard::PutBoolean("DB/LED 2", false);
+		SmartDashboard::PutBoolean("DB/LED 1", false);
+		SmartDashboard::PutBoolean("DB/LED 0", false);
 	}
 }
 
