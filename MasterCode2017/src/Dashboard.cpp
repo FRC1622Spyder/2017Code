@@ -29,6 +29,8 @@ void Dashboard::DashboardInit(){
 int Dashboard::AutoSelect(){
 	DriverStation &drive = DriverStation::GetInstance();
 	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
+	bool shoot = SmartDashboard::GetBoolean("BD/Button 1", false);
+	if(shoot == false){
 	if(hopperFirst == false){
 		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
 			if(drive.GetLocation() == 1){
@@ -75,6 +77,15 @@ int Dashboard::AutoSelect(){
 			else if(drive.GetLocation() == 3){
 				return 12;
 			}
+		}
+	}
+	}
+	else if(shoot == true){
+		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+			return 13;
+		}
+		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+			return 14;
 		}
 	}
 
