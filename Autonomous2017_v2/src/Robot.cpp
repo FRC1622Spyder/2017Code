@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <memory>
 #include <string>
 #include <math.h>
@@ -182,8 +182,12 @@ public:
 	}
 
 	void AutonomousPeriodic() {
+		//in case of encoders breaking
+		if(autonomousChooser == 0){
+
+		}
 		//red left gears first
-		if(autonomousChooser == 1){
+	else if(autonomousChooser == 1){
 			if (autonomousPhase == 0){
 				DriveBackward(0.7,110.0);//drive backward to base line
 			}
