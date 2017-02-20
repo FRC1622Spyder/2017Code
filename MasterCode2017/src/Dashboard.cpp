@@ -30,62 +30,68 @@ int Dashboard::AutoSelect(){
 	DriverStation &drive = DriverStation::GetInstance();
 	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
 	bool shoot = SmartDashboard::GetBoolean("BD/Button 1", false);
-	if(shoot == false){
-		if(hopperFirst == false){
-			if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-				if(drive.GetLocation() == 1){
-					return 1;
-				}
-				else if(drive.GetLocation() == 2){
-					return 2;
-				}
-				else if(drive.GetLocation() == 3){
-					return 3;
-				}
-			}
-			else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-				if(drive.GetLocation() == 1){
-					return 4;
-				}
-				else if(drive.GetLocation() == 2){
-					return 5;
-				}
-				else if(drive.GetLocation() == 3){
-					return 6;
-				}
-			}
-		}
-		else{
-			if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-				if(drive.GetLocation() == 1){
-					return 7;
-				}
-				else if(drive.GetLocation() == 2){
-					return 8;
-				}
-				else if(drive.GetLocation() == 3){
-					return 9;
-				}
-			}
-			else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-				if(drive.GetLocation() == 1){
-					return 10;
-				}
-				else if(drive.GetLocation() == 2){
-					return 11;
-				}
-				else if(drive.GetLocation() == 3){
-					return 12;
-				}
-			}
-		}
+	bool disable = SmartDashboard::GetBoolean("BD/Button 3", false);
+	if(disable == true){
+		return 0;
 	}
-	else if(shoot == true){
-		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-			return 13;
+	else {
+		if(shoot == false){
+			if(hopperFirst == false){
+				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+					if(drive.GetLocation() == 1){
+						return 1;
+					}
+					else if(drive.GetLocation() == 2){
+						return 2;
+					}
+					else if(drive.GetLocation() == 3){
+						return 3;
+					}
+				}
+				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+					if(drive.GetLocation() == 1){
+						return 4;
+					}
+					else if(drive.GetLocation() == 2){
+						return 5;
+					}
+					else if(drive.GetLocation() == 3){
+						return 6;
+					}
+				}
+			}
+			else{
+				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+					if(drive.GetLocation() == 1){
+						return 7;
+					}
+					else if(drive.GetLocation() == 2){
+						return 8;
+					}
+					else if(drive.GetLocation() == 3){
+						return 9;
+					}
+				}
+				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+					if(drive.GetLocation() == 1){
+						return 10;
+					}
+					else if(drive.GetLocation() == 2){
+						return 11;
+					}
+					else if(drive.GetLocation() == 3){
+						return 12;
+					}
+				}
+			}
 		}
-		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-			return 14;
+		else if(shoot == true){
+			if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+				return 13;
+			}
+			else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+				return 14;
+			}
 		}
 	}
 

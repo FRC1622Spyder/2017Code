@@ -12,7 +12,7 @@
 
 void Drive::DriveInit() {
 	driveStick = new Joystick(0);
-	leftBackMotor = new CANTalon(3);//8 on the test robot
+	leftBackMotor = new CANTalon(3);//8 on the test robot, 3 on actual robot
 	leftFrontMotor = new CANTalon(4);
 	rightBackMotor = new CANTalon(1);
 	rightFrontMotor = new CANTalon(2);
