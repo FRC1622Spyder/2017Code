@@ -8,6 +8,7 @@
 #include <Shooter.h>
 #include <Climber.h>
 #include <Dashboard.h>
+#include <Autonomous.h>
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
@@ -22,6 +23,7 @@ public:
 	Shooter shooter;
 	Climber climber;
 	Dashboard dashboard;
+	Autonomous autonomous;
 
 	void RobotInit() {
 		drive.DriveInit();
@@ -33,11 +35,11 @@ public:
 	}
 
 	void AutonomousInit() {
-
+		autonomous.AutonomousInit();
 	}
 
 	void AutonomousPeriodic() {
-
+		autonomous.AutonomousPeriodic();
 	}
 
 	void TeleopInit() {
