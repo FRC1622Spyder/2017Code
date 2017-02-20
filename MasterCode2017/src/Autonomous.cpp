@@ -148,10 +148,10 @@ void Autonomous::Wait(double time){
 }
 
 void Autonomous::AutonomousInit(){
-	leftBackMotor = new CANTalon(3);//8 on the test robot, 3 on actual robot
-	leftFrontMotor = new CANTalon(4);
-	rightBackMotor = new CANTalon(1);
-	rightFrontMotor = new CANTalon(2);
+	leftBackMotor = new CANTalon(4);//8 on the test robot, 3 on actual robot
+	leftFrontMotor = new CANTalon(3);
+	rightBackMotor = new CANTalon(2);
+	rightFrontMotor = new CANTalon(1);
 
 	rightBackMotor->SetInverted(true);
 	rightFrontMotor->SetInverted(true);

@@ -13,10 +13,10 @@
 class Robot: public frc::IterativeRobot {
 private:
 
-	CANTalon *leftFront = new CANTalon(4);
-	CANTalon *leftBack = new CANTalon(8);
-	CANTalon *rightFront = new CANTalon(2);
-	CANTalon *rightBack = new CANTalon(1);
+	CANTalon *leftFront = new CANTalon(3);
+	CANTalon *leftBack = new CANTalon(4);
+	CANTalon *rightFront = new CANTalon(1);
+	CANTalon *rightBack = new CANTalon(2);
 	Joystick *joystick = new Joystick(0);
 	bool button = false;
 	bool buttonReset = false;
@@ -79,10 +79,10 @@ private:
 		}
 		buttononoff = joystick->GetRawButton(3);
 		if(buttononoff == true){
-			leftFront->Set(0.5);
-			rightFront->Set(-0.5);
-			rightBack->Set(-0.5);
-			leftBack->Set(0.5);
+			leftFront->Set(0.3);
+			rightFront->Set(0.3);
+			rightBack->Set(0.3);
+			leftBack->Set(0.3);
 		}
 		else if(buttononoff == false){
 			leftFront->Set(0.0);
