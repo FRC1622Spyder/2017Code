@@ -5,6 +5,7 @@
 #include <math.h>
 #include <IterativeRobot.h>
 #include <Shooter.h>
+#include <DriverStation.h>
 #include <Joystick.h>
 #include <CANTalon.h>
 #include <LiveWindow/LiveWindow.h>
@@ -13,7 +14,7 @@
 
 void Shooter::ShooterInit(){
 	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(6);//6 on test robot, 9 on real
+	flywheelMotor = new CANTalon(9);//6 on test robot, 9 on real
 
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
@@ -25,8 +26,8 @@ void Shooter::ShooterInit(){
 void Shooter::SpinFlywheel(){
 	//Use button to toggle spin
 	bool toggleSpin = controlStick->GetRawButton(6);
-	bool up = controlStick->GetRawButton(5);
-	bool down = controlStick->GetRawButton(7);
+	DriverStation &povStick = DriverStation::GetInstance();
+	int pov = povStick.GetStickPOV(1,0);
 	//If button is pressed, flywheel is not spinning, and button was not pressed before
 	//(spin flywheel and set button to 'pressed')
 	if(toggleSpin == true && isSpinning == false && togglePressed == false){
@@ -47,53 +48,53 @@ void Shooter::SpinFlywheel(){
 		togglePressed = false;
 	}
 
-	if(up == true && upPressed == false){
+	if(pov == 0 && upPressed == false){
 		if(flywheelSpeed < 4){
 			flywheelSpeed++;
 		}
 		upPressed = true;
 	}
 
-	if(up == false){
+	if(pov != 0){
 		upPressed = false;
 	}
 
-	if(down == true && downPressed == false){
+	if(pov == 180 && downPressed == false){
 		if(flywheelSpeed > 1){
 			flywheelSpeed--;
 		}
 		downPressed = true;
 	}
 
-	if(down == false){
+	if(pov != 180){
 		downPressed = false;
 	}
 
 	//Spin flywheel
 	if(isSpinning == true){
 		if(flywheelSpeed == 1){
-			flywheelMotor->Set(0.7);
+			flywheelMotor->Set(-0.7);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", false);
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 2){
-			flywheelMotor->Set(0.8);
+			flywheelMotor->Set(-0.8);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 3){
-			flywheelMotor->Set(0.9);
+			flywheelMotor->Set(-0.9);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", true);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 4){
-			flywheelMotor->Set(1.0);
+			flywheelMotor->Set(-1.0);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", true);

@@ -9,6 +9,7 @@
 #define SRC_SHOOTER_H_
 #include <CANTalon.h>
 #include <Joystick.h>
+#include <DriverStation.h>
 
 class Shooter {
 
