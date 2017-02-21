@@ -18,14 +18,17 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Autonomous::DriveForward(double speed, double distance){
+	//periodic--updates every 200 ms
 	double encoderValue = rightFrontMotor->GetEncPosition();
 	double encoderDistance = distance * pulse_per_inch;
+	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
 		leftFrontMotor->Set(speed);
 		leftBackMotor->Set(speed);
 		rightFrontMotor->Set(speed);
 		rightBackMotor->Set(speed);
 	}
+	//pause for 25 periods (0.5 seconds)
 	else if(counter <= 25){
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -33,6 +36,7 @@ void Autonomous::DriveForward(double speed, double distance){
 		rightBackMotor->Set(0.0);
 		counter++;
 	}
+	//reset variables and increment autonomous phase
 	else {
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -46,6 +50,7 @@ void Autonomous::DriveForward(double speed, double distance){
 }
 
 void Autonomous::DriveBackward(double speed, double distance){
+	//move robot while the encoder is less than total distance
 	double encoderValue = rightFrontMotor->GetEncPosition();
 	double encoderDistance = distance * pulse_per_inch;
 	if(abs(encoderValue) <= encoderDistance){
@@ -54,6 +59,7 @@ void Autonomous::DriveBackward(double speed, double distance){
 		rightFrontMotor->Set(-speed);
 		rightBackMotor->Set(-speed);
 	}
+	//wait for 25 periods (0.5 seconds)
 	else if(counter <= 25){
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -62,6 +68,7 @@ void Autonomous::DriveBackward(double speed, double distance){
 		counter++;
 		std::cout << counter << std::endl;
 	}
+	//reset variables and increment autonomous phase
 	else {
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -75,15 +82,18 @@ void Autonomous::DriveBackward(double speed, double distance){
 }
 
 void Autonomous::RotateCounterclockwise(double speed, double angle){
+	//periodic--updates every 200 ms
 	double encoderValue = rightFrontMotor->GetEncPosition();
 	double radianAngle = angle * (pi /180);
 	double encoderDistance =  radianAngle * pulse_per_radian;
+	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
 		leftFrontMotor->Set(-speed);
 		leftBackMotor->Set(-speed);
 		rightFrontMotor->Set(speed);
 		rightBackMotor->Set(speed);
 	}
+	//wait for 25 periods (0.5 seconds)
 	else if(counter <= 25){
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -91,6 +101,7 @@ void Autonomous::RotateCounterclockwise(double speed, double angle){
 		rightBackMotor->Set(0.0);
 		counter++;
 	}
+	//reset variables and increment autonomous phase
 	else {
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -104,14 +115,17 @@ void Autonomous::RotateCounterclockwise(double speed, double angle){
 }
 
 void Autonomous::RotateClockwise(double speed, double angle){
+	//periodic--updates every 200 ms
 	double encoderValue = rightFrontMotor->GetEncPosition();
 	double radianAngle = angle * (pi /180);
 	double encoderDistance =  radianAngle * pulse_per_radian;
+	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
 		leftFrontMotor->Set(speed);
 		leftBackMotor->Set(speed);
 		rightFrontMotor->Set(-speed);
 		rightBackMotor->Set(-speed);
+	//wait for 25 periods (0.5 seconds)
 	}
 	else if(counter <= 25){
 		leftFrontMotor->Set(0.0);
@@ -120,6 +134,7 @@ void Autonomous::RotateClockwise(double speed, double angle){
 		rightBackMotor->Set(0.0);
 		counter++;
 	}
+	//reset variables and increment autonomous phase
 	else {
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);

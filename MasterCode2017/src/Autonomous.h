@@ -25,8 +25,8 @@ private:
 	const double pulsePerRev = PULSE_PER_REV;
 	const double pi = PI;
 
-	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi);
-	const double pulse_per_radian = (driveDiam / 2) * pulse_per_inch;
+	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi); //calculates encoder pulses per inch
+	const double pulse_per_radian = (driveDiam / 2) * pulse_per_inch; //calculates encoder pulses per radian
 
 	int autonomousPhase;
 	int counter;
