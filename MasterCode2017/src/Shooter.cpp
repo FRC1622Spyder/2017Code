@@ -14,7 +14,7 @@
 
 void Shooter::ShooterInit(){
 	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(9);//6 on test robot, 9 on real
+	flywheelMotor = new CANTalon(8);//6 on test robot, 8 on real
 
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 

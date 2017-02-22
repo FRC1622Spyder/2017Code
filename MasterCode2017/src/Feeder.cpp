@@ -18,7 +18,7 @@ void Feeder::FeederInit(){
 }
 
 void Feeder::FeederTeleopPeriodic() {
-	bool toggleWork = controlStick->GetRawButton(2);
+	bool toggleWork = controlStick->GetRawButton(8);
 	/*if(buttonPressed==false && toggleWork==true && isWorking==false){
 		isWorking = true;
 		buttonPressed = true;

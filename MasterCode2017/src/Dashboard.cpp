@@ -29,8 +29,8 @@ void Dashboard::DashboardInit(){
 int Dashboard::AutoSelect(){
 	DriverStation &drive = DriverStation::GetInstance();
 	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
-	bool shoot = SmartDashboard::GetBoolean("BD/Button 1", false);
-	bool disable = SmartDashboard::GetBoolean("BD/Button 3", false);
+	bool shoot = SmartDashboard::GetBoolean("DB/Button 1", false);
+	bool disable = SmartDashboard::GetBoolean("DB/Button 3", false);
 	if(disable == true){
 		return 0;
 	}

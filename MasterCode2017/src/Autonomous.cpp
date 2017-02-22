@@ -19,7 +19,7 @@
 
 void Autonomous::DriveForward(double speed, double distance){
 	//periodic--updates every 200 ms
-	double encoderValue = rightFrontMotor->GetEncPosition();
+	double encoderValue = leftFrontMotor->GetEncPosition();
 	double encoderDistance = distance * pulse_per_inch;
 	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
@@ -51,7 +51,7 @@ void Autonomous::DriveForward(double speed, double distance){
 
 void Autonomous::DriveBackward(double speed, double distance){
 	//move robot while the encoder is less than total distance
-	double encoderValue = rightFrontMotor->GetEncPosition();
+	double encoderValue = leftFrontMotor->GetEncPosition();
 	double encoderDistance = distance * pulse_per_inch;
 	if(abs(encoderValue) <= encoderDistance){
 		leftFrontMotor->Set(-speed);
@@ -83,7 +83,7 @@ void Autonomous::DriveBackward(double speed, double distance){
 
 void Autonomous::RotateCounterclockwise(double speed, double angle){
 	//periodic--updates every 200 ms
-	double encoderValue = rightFrontMotor->GetEncPosition();
+	double encoderValue = leftFrontMotor->GetEncPosition();
 	double radianAngle = angle * (pi /180);
 	double encoderDistance =  radianAngle * pulse_per_radian;
 	//move robot while the encoder is less than total distance
@@ -116,7 +116,7 @@ void Autonomous::RotateCounterclockwise(double speed, double angle){
 
 void Autonomous::RotateClockwise(double speed, double angle){
 	//periodic--updates every 200 ms
-	double encoderValue = rightFrontMotor->GetEncPosition();
+	double encoderValue = leftFrontMotor->GetEncPosition();
 	double radianAngle = angle * (pi /180);
 	double encoderDistance =  radianAngle * pulse_per_radian;
 	//move robot while the encoder is less than total distance
@@ -194,181 +194,181 @@ void Autonomous::AutonomousPeriodic(){
 	//red left gears first
 	else if(autonomousChooser == 1){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,110.0);//drive backward to base line
+			DriveBackward(0.7,80.5);//drive backward to base line
 		}
 		else if (autonomousPhase == 1){
 			RotateClockwise(0.3,45.0);//rotate clockwise to make us facing the dock for the gear
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,29.2);//drive backward up to the airship
+			DriveBackward(0.7,32.0);//drive backward up to the airship
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for human player
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,29.2);//drive forward to the base line
+			DriveForward(0.7,32.0);//drive forward to the base line
 		}
 		else if (autonomousPhase == 5){
 			RotateClockwise(0.3,135.0);//rotate counter clockwise to have mouth in the front
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7, 115.6);//drive forward to be ready to hit hopper right
+			DriveForward(0.7, 81.0);//drive forward to be ready to hit hopper right
 		}
 		else if (autonomousPhase == 7){
-			RotateCounterclockwise(0.3,45);//rotate counter clockwise 45 degrees to face hoppers
+			RotateCounterclockwise(0.3,90.0);//rotate counter clockwise 45 degrees to face hoppers
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7, 91.6);//drive up to the hopper
+			DriveForward(0.7, 96.5);//drive up to the hopper
 		}
 	}
 	//red center gears first
 	else if(autonomousChooser == 2){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7, 53.3);//drive backward to airship
+			DriveBackward(0.7,80.5);//drive backward to airship
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for human player to grab the gear
 		}
 		else if(autonomousPhase == 2){
-			DriveForward(0.7, 26.65);//drive forward half way
+			DriveForward(0.7,40.0);//drive forward half way
 		}
 		else if(autonomousPhase == 3){
-			RotateClockwise(0.5, 135.0);//rotate clockwise to have front facing the way we want
+			RotateClockwise(0.5,135.0);//rotate clockwise to have front facing the way we want
 		}
 		else if(autonomousPhase == 4){
-			DriveForward(0.7,37.69);//drive to the middle of red left
+			DriveForward(0.7,85.0);//drive to the middle of red left
 		}
 		else if (autonomousPhase == 5){
 			RotateClockwise(0.3,45.0);//turn to facing the base line
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7, 115.6);//drive forward to prepare for the hopper
+			DriveForward(0.7, 250.8);//drive forward to prepare for the hopper
 		}
 		else if (autonomousPhase == 7){
-			RotateCounterclockwise(0.3,45);//rotate 45 degrees counter clockwise to face hopper
+			RotateCounterclockwise(0.3,90.0);//rotate 45 degrees counter clockwise to face hopper
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7, 91.6);//drive up to the hopper
+			DriveForward(0.7,96.5);//drive up to the hopper
 		}
 	}
 	//red right gears first
 	else if (autonomousChooser == 3){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,110.0);//drive backward to the baseline
+			DriveBackward(0.7,80.5);//drive backward to the baseline
 		}
 		else if (autonomousPhase == 1){
 			RotateCounterclockwise(0.3,45.0);//rotate 45 degrees counter clockwise to face the airship
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,29.2);//drive up to the airship
+			DriveBackward(0.7,32.0);//drive up to the airship
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human player to grab the gear
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,29.2);// return to the base line
+			DriveForward(0.7,32.0);// return to the base line
 		}
 		else if (autonomousPhase == 5){
 			RotateClockwise(0.3,135);//rotate 135 degrees clockwise to make the front of the robot facing to the enemy
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7,34.25);// drive forward to prepare for the hopper
+			DriveForward(0.7,36.5);// drive forward to prepare for the hopper
 		}
 		else if (autonomousPhase == 7){
-			RotateClockwise(0.3,45);// rotate 45 degrees to face the hopper
+			RotateClockwise(0.3,90.0);// rotate 45 degrees to face the hopper
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7,91.63);//drive forward to the hopper
+			DriveForward(0.7,96.5);//drive forward to the hopper
 		}
 	}
 	//blue left gears first
 	else if (autonomousChooser == 4){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,110.0);// drive up to the baseline
+			DriveBackward(0.7,80.5);// drive up to the baseline
 		}
 		else if (autonomousPhase == 1){
 			RotateClockwise(0.3,45.0);//rotate 45 clockwise to face the airship
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,29.2);//drive up to the airship
+			DriveBackward(0.7,32.0);//drive up to the airship
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait 3 second for the human player to grab the gear
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,29.2);//drive forward to reach the baseline
+			DriveForward(0.7,32.0);//drive forward to reach the baseline
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,135);//rotate 135 degrees to make the front faceing the enemy
+			RotateClockwise(0.3,135.0);//rotate 135 degrees to make the front faceing the enemy
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7,34.25);//drive forward to prepare to drive to the hopper
+			DriveForward(0.7,36.5);//drive forward to prepare to drive to the hopper
 		}
 		else if (autonomousPhase == 7){
 			RotateCounterclockwise(0.3,45);//rotate 45 degrees counter clockwise to face the hopper
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7,91.63);//drive up to the hopper
+			DriveForward(0.7,96.5);//drive up to the hopper
 		}
 	}
 	//blue center gears first
 	else if (autonomousChooser == 5){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7, 53.3);//drive backward to airship
+			DriveBackward(0.7, 80.5);//drive backward to airship
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for human player to grab the gear
 		}
 		else if(autonomousPhase == 2){
-			DriveForward(0.7, 26.65);//drive forward half way
+			DriveForward(0.7, 40.0);//drive forward half way
 		}
 		else if(autonomousPhase == 3){
 			RotateClockwise(0.5, 135.0);//rotate clockwise to have front facing the way we want
 		}
 		else if(autonomousPhase == 4){
-			DriveForward(0.7,37.69);//drive to the middle of red left
+			DriveForward(0.7,85.0);//drive to the middle of red left
 		}
 		else if (autonomousPhase == 5){
 			RotateClockwise(0.3,45.0);//turn to facing the base line
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7,34.25);//drive forward to prepare for the hopper
+			DriveForward(0.7,250.8);//drive forward to prepare for the hopper
 		}
 		else if (autonomousPhase == 7){
 			RotateCounterclockwise(0.3,45);//rotate 45 degrees counter clockwise to face the hopper
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7,91.63);//drive up to the hopper
+			DriveForward(0.7,96.5);//drive up to the hopper
 		}
 	}
 	//blue right gears first
 	else if (autonomousChooser == 6){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,110.0);//drive backward to base line
+			DriveBackward(0.7,80.5);//drive backward to base line
 		}
 		else if (autonomousPhase == 1){
 			RotateCounterclockwise(0.3,45.0);//rotate clockwise to make us facing the dock for the gear
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,29.2);//drive backward up to the airship
+			DriveBackward(0.7,32.0);//drive backward up to the airship
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for human player
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,29.2);//drive forward to the base line
+			DriveForward(0.7,32.0);//drive forward to the base line
 		}
 		else if (autonomousPhase == 5){
 			RotateCounterclockwise(0.3,135.0);//rotate counter clockwise to have mouth in the front
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7, 115.6);//drive forward to prepare to hit the hopper
+			DriveForward(0.7, 81.0);//drive forward to prepare to hit the hopper
 		}
 		else if (autonomousPhase == 7){
 			RotateClockwise(0.3,45);//rotate 45 degrees to face the hopper
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7, 91.6);//drive up to the hopper
+			DriveForward(0.7, 95.6);//drive up to the hopper
 		}
 	}
 	//red left
