@@ -272,7 +272,7 @@ void Autonomous::AutonomousPeriodic(){
 			RotateClockwise(0.3,135);//rotate 135 degrees clockwise to make the front of the robot facing to the enemy
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7,36.5);// drive forward to prepare for the hopper
+			DriveForward(0.7,91.0);// drive forward to prepare for the hopper
 		}
 		else if (autonomousPhase == 7){
 			RotateClockwise(0.3,90.0);// rotate 45 degrees to face the hopper
@@ -302,7 +302,7 @@ void Autonomous::AutonomousPeriodic(){
 			RotateClockwise(0.3,135.0);//rotate 135 degrees to make the front faceing the enemy
 		}
 		else if (autonomousPhase == 6){
-			DriveForward(0.7,36.5);//drive forward to prepare to drive to the hopper
+			DriveForward(0.7,81.0);//drive forward to prepare to drive to the hopper
 		}
 		else if (autonomousPhase == 7){
 			RotateCounterclockwise(0.3,45);//rotate 45 degrees counter clockwise to face the hopper
@@ -339,7 +339,7 @@ void Autonomous::AutonomousPeriodic(){
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);//drive up to the hopper
-		}
+		}+
 	}
 	//blue right gears first
 	else if (autonomousChooser == 6){
