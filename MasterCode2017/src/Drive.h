@@ -1,10 +1,3 @@
-/*
- * Drive.h
- *
- *  Created on: Feb 5, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_DRIVE_H_
 #define SRC_DRIVE_H_
 #include <Joystick.h>
@@ -12,18 +5,7 @@
 
 class Drive {
 
-private:
-	Joystick *driveStick;
-	CANTalon *leftBackMotor;
-	CANTalon *leftFrontMotor;
-	CANTalon *rightBackMotor;
-	CANTalon *rightFrontMotor;
-
-	double speedValueLeft = 0.0;
-	double speedValueRight = 0.0;
-
-	bool buttonPressed = false;
-	bool halfSpeed = false;
+private:Joystick *driveStick;CANTalon *leftBackMotor;CANTalon *leftFrontMotor;CANTalon *rightBackMotor;CANTalon *rightFrontMotor;double speedValueLeft = 0.0;double speedValueRight = 0.0;bool buttonPressed = false;bool halfSpeed = false;
 
 public:
 	void DriveInit();

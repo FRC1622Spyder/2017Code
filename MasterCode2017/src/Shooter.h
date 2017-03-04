@@ -1,10 +1,3 @@
-/*
- * Shooter.h
- *
- *  Created on: Feb 5, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_SHOOTER_H_
 #define SRC_SHOOTER_H_
 #include <CANTalon.h>

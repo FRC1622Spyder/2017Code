@@ -1,9 +1,8 @@
-/*
- * Autonomous.h
- *
- *  Created on: Feb 20, 2017
- *      Author: Zack
- */
+//please enjoy our code
+//it's written all in haiku
+//wait, just the comments
+
+//the first line has five / the second line has seven / the third line has five
 
 #ifndef SRC_AUTONOMOUS_H_
 #define SRC_AUTONOMOUS_H_
@@ -25,8 +24,8 @@ private:
 	const double pulsePerRev = PULSE_PER_REV;
 	const double pi = PI;
 
-	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi); //calculates encoder pulses per inch
-	const double pulse_per_radian = (driveDiam / 2) * pulse_per_inch; //calculates encoder pulses per radian
+	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi);
+	const double pulse_per_radian = (driveDiam / 2) * pulse_per_inch;
 
 	int autonomousPhase;
 	int counter;

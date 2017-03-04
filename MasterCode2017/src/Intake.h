@@ -1,10 +1,3 @@
-/*
- * Intake.h
- *
- *  Created on: Feb 5, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_INTAKE_H_
 #define SRC_INTAKE_H_
 #include <CANTalon.h>

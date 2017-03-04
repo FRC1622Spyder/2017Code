@@ -1,10 +1,3 @@
-/*
- * Dashboard.h
- *
- *  Created on: Feb 18, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_DASHBOARD_H_
 #define SRC_DASHBOARD_H_
 #include <SmartDashboard/SmartDashboard.h>

@@ -1,9 +1,3 @@
-/*
- * Dashboard.cpp
- *
- *  Created on: Feb 18, 2017
- *      Author: Zack
- */
 #include <iostream>
 #include <memory>
 #include <string>
@@ -19,33 +13,33 @@
 #include <Dashboard.h>
 
 void Dashboard::DashboardInit(){
-	//if a camera doesn't already exist, create a camera
+	//if no camera / you should make a camera / so drivers can see 
 	if(cam.GetName() != "Camera"){
-		//create a camera that automatically sends images to the dashboard
+		//create camera / that automatically / sends pics to dashboard
 		cam = CameraServer::GetInstance()->StartAutomaticCapture("Camera", "/dev/video0");
-		//set the camera brightness
+		//set the camera / brightness twenty five percent / so it's not too bright 
 		cam.SetBrightness(25);
-		//set the camera resolution
+		//set resolution / or pixels on the dashboard / in four eighty p 
 		cam.SetResolution(640, 480);
 	}
 }
 
 int Dashboard::AutoSelect(){
-	//create a pointer to the driver station
+	//create a pointer / it points to driver station / and gives us data
 	DriverStation &drive = DriverStation::GetInstance();
-	//get button values from the dashboard
+	//get button values / it gets them from the dashboard / for all of these things
 	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
 	bool shoot = SmartDashboard::GetBoolean("DB/Button 1", false);
 	bool disable = SmartDashboard::GetBoolean("DB/Button 3", false);
-	//if the autonomous should be disabled, return 0
+	//if autonomous / happens to be disabled / it returns zero 
 	if(disable == true){
 		return 0;
 	}
-	//if the autonomous should be disables, run through all of the options
+	//if autonomous / does not request disabled / run through all options
 	else {
-		//if the autonomous does not shoot, run through the hopper options
+		//if autonomous / function does not have shooting / run through hopper code
 		if(shoot == false){
-			//if the hopper should not be reached first, run through the gear options
+			//if hopper not first / run through all the gear options / there are six of them
 			if(hopperFirst == false){
 				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
 					if(drive.GetLocation() == 1){
@@ -70,7 +64,7 @@ int Dashboard::AutoSelect(){
 					}
 				}
 			}
-			//if the hopper should be reached first, run through the hopper options
+			//if hopper comes first / run through the hopper options / there are also six
 			else{
 				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
 					if(drive.GetLocation() == 1){
@@ -96,7 +90,7 @@ int Dashboard::AutoSelect(){
 				}
 			}
 		}
-		//if autonomous should shoot, run through shooting options
+		//if autonomous / does include shooting functions / run through those options 
 		else{
 			if(drive.GetAlliance() == DriverStation::Alliance::kRed){
 				return 13;
@@ -106,7 +100,7 @@ int Dashboard::AutoSelect(){
 			}
 		}
 	}
-	//default return, if none of the others trigger
+	//the default return / if none of others trigger / it returns zero 
 	return 0;
 }
 

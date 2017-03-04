@@ -1,10 +1,3 @@
-/*
- * Climber.h
- *
- *  Created on: Feb 5, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_CLIMBER_H_
 #define SRC_CLIMBER_H_
 #include <CANTalon.h>

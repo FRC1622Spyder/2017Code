@@ -11,22 +11,20 @@
 #include <Joystick.h>
 
 void Climber::ClimberInit(){
-	//declare the motor
+	//declares the motor / on the port number seven / for climbing the rope
 	ClimberMotor = new CANTalon(7);
-	//declare the controller
+	//declares controller / it is also a joystick / on port number one 
 	controlStick = new Joystick(1);
 }
 void Climber::ClimberTeleopPeriodic() {
-	//declare the button 1
+	//declare the button / the button is button one / it runs the climber 
 	bool climb = controlStick->GetRawButton(1);
-	//if button is presses
+	//if button is pressed / the motor will start running / at a speed of one 
 	if(climb==true){
-		//motor is running
 		ClimberMotor->Set(-1.0);
 	}
-	//if button is not pressed
+	//if button not pressed / the motor won't start running / it's at speed zero
 	else if(climb==false){
-		//motor is not running
 		ClimberMotor->Set(0.0);
 	}
 }

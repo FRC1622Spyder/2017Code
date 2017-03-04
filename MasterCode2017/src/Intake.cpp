@@ -11,34 +11,32 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Intake::IntakeInit(){
-	//declare the controller
+	//declares controller / which runs the intake motor / it is a joystick
 	controlStick = new Joystick(1);
-	//declare intake motor
+	//makes intake motor / it sucks up all of the balls / on port number six
 	intakeMotor = new CANTalon(6);
 	intakeForward = false;
 	intakeBackward = false;
 }
 
 void Intake::RunIntake(){
-	//declare buttons
+	//declare more buttons / for intake, forward and back / they're on the joystick
 	bool intakeForward = controlStick->GetRawButton(2);
 	bool intakeBackward = controlStick->GetRawButton(4);
-	//if button 2 is pressed
+	//if button two pressed / it will run intake forward / at speed of point six
 	if(intakeForward==true){
-		//run intake forward
 		intakeMotor->Set(-0.6);
 	}
-	//if button 4 is pressed
+	//if button four pressed / intake will be run backward / also at point six
 	else if(intakeBackward==true){
-		//run motor backward
 		intakeMotor->Set(0.6);
 	}
-	//if nothing is pressed
+	//if no button pressed / makes the intake stop moving / so speed is zero
 	else{
 		intakeMotor->Set(0.0);
 	}
 }
 void Intake::IntakeTeleopPeriodic() {
-	//run the intake funtion above
+	//this is a function / it runs the code above / and hopefully works
 	RunIntake();
 }

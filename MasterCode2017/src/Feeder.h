@@ -1,10 +1,3 @@
-/*
- * Feeder.h
- *
- *  Created on: Feb 5, 2017
- *      Author: Zack
- */
-
 #ifndef SRC_FEEDER_H_
 #define SRC_FEEDER_H_
 #include <CANTalon.h>

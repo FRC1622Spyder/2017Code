@@ -11,38 +11,38 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Drive::DriveInit() {
-	//declare joystick
+	//declares a joystick / which will be used for driving / uses port zero
 	driveStick = new Joystick(0);
-	//declare motors
+	//declares the motors / for all sides of the robot / three, four, one, and two 
 	leftBackMotor = new CANTalon(3);
 	leftFrontMotor = new CANTalon(4);
 	rightBackMotor = new CANTalon(1);
 	rightFrontMotor = new CANTalon(2);
-	//invert the left side
+	//inverts the left side / so that the robot drives straight / or else it will spin 
 	leftBackMotor->SetInverted(true);
 	leftFrontMotor->SetInverted(true);
-	//add QuadEncoders to motors
+	//adds QuadEncoders / to track motor position / on both of the sides 
 	leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
-	speedValueLeft = 0.0;//left side speed
-	speedValueRight = 0.0;//right side speed
+	speedValueLeft = 0.0;
+	speedValueRight = 0.0;
 }
-//Drives left motors
+//this is a function / that drives the left side motors / it uses doubles 
 void Drive::DriveLeft(double speed){
 	leftFrontMotor->Set(speed);
 	leftBackMotor->Set(speed);
 }
 
-//Drives right motors
+//another function / but drives right motors instead / doubles used, also 
 void Drive::DriveRight(double speed){
 	rightFrontMotor->Set(speed);
 	rightBackMotor->Set(speed);
 }
 
 void Drive::DriveTeleopPeriodic() {
-	//driveRobot(); //Ramp code
-	bool toggleButton = driveStick->GetRawButton(3); //change that number later
+	//this is a toggle / so robot drives at half speed / 'cuz it's more exact 
+	bool toggleButton = driveStick->GetRawButton(3);
 	if(toggleButton == true && buttonPressed == false && halfSpeed == false){
 		halfSpeed = true;
 		buttonPressed = true;
@@ -53,59 +53,68 @@ void Drive::DriveTeleopPeriodic() {
 	}
 
 	if(toggleButton == false){
-		buttonPressed = false;
+		buttonPressed = false;	
 	}
-	//Get left joystick
+	
+	//gets left joystick speed / to make robot start driving / from the left axis
 	double leftSpeed = driveStick->GetRawAxis(1);
 	if(halfSpeed == true){
 		leftSpeed = leftSpeed / 2;
 	}
-	//If speed is positive, outside dead zone, and above 80% (set to max speed)
+	//if driving forward / and speed is above point eight / and above point one 
+	//set maximum speed / to a value of point eight / burning motors sucks 
 	if(leftSpeed > 0.1 && leftSpeed > 0.8){
 		leftSpeed = 0.8;
 	}
-	//If speed is positive, outside dead zone, and below 50% (set to half speed)
+	//if driving forward / but speed is below point five / and outside dead zone
+	//divide speed by two / to provide better control / so we don't hit things
 	else if(leftSpeed >= 0.1 && leftSpeed <= 0.5){
 		leftSpeed = leftSpeed / 2;
 	}
-	//If speed is negative, outside dead zone, and below -80% (set to max speed)
+	//if driving backward / with a speed above point eight / and not in dead zone
+	//set maximum speed / with magnitude of point eight / not magnitude one
 	else if(leftSpeed < -0.1 && leftSpeed < -0.8){
 		leftSpeed = -0.8;
 	}
-	//If speed is negative, outside dead zone, and above -50% (set to half speed)
+	//if driving backward / and outside of the dead zone / and below point five
+	//multiply by half / so we don't crash the robot / by driving too fast
 	else if(leftSpeed <= -0.1 && leftSpeed >= -0.5){
 		leftSpeed = leftSpeed / 2;
 	}
-	//If speed is in dead zone (set to 0)
+	//if speed in dead zone / speed should be set to zero / in case joystick drifts
 	else if(leftSpeed > -0.1 && leftSpeed < 0.1){
 		leftSpeed = 0;
 	}
-	//Get right joystick
+	//gets left joystick speed / to make robot start driving / from the left axis
 	double rightSpeed = driveStick->GetRawAxis(3);
 	if(halfSpeed == true){
 		rightSpeed = rightSpeed / 2;
 	}
-	//If speed is positive, outside dead zone, and above 80% (set to max speed)
+	//if driving forward / and speed is above point eight / and above point one 
+	//set maximum speed / to a value of point eight / burning motors sucks 
 	if(rightSpeed > 0.1 && rightSpeed > 0.8){
 		rightSpeed = 0.8;
 	}
-	//If speed is positive, outside dead zone, and below 50% (set to half speed)
+	//if driving forward / but speed is below point five / and outside dead zone
+	//divide speed by two / to provide better control / so we don't hit things
 	else if(rightSpeed >= 0.1 && rightSpeed <= 0.5){
 		rightSpeed = rightSpeed / 2;
 	}
-	//If speed is negative, outside dead zone, and below -80% (set to max speed)
+	//if driving backward / with a speed above point eight / and not in dead zone
+	//set maximum speed / with magnitude of point eight / not magnitude one
 	else if(rightSpeed < -0.1 && rightSpeed < -0.8){
 		rightSpeed = -0.8;
 	}
-	//If speed is negative, outside dead zone, and above -50% (set to half speed)
+	//if driving backward / and outside of the dead zone / and below point five
+	//multiply by half / so we don't crash the robot / by driving too fast
 	else if(rightSpeed <= -0.1 && rightSpeed >= -0.5){
 		rightSpeed = rightSpeed / 2;
 	}
-	//If speed is in dead zone (set to 0)
+	//if speed in dead zone / speed should be set to zero / in case joystick drifts
 	else if(rightSpeed > -0.1 && rightSpeed < 0.1){
 		rightSpeed = 0;
 	}
-	//Drive the robot
+	//drive the robot / with modified speed values / post-calculations
 	DriveLeft(leftSpeed);
 	DriveRight(rightSpeed);
 }
