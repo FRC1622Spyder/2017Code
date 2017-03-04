@@ -13,9 +13,11 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Shooter::ShooterInit(){
-	controlStick = new Joystick(1);//declare whitch controller
-	flywheelMotor = new CANTalon(8);//declare the motor
-	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);//this motor has an encoder
+	//declare controller and motors
+	controlStick = new Joystick(1);
+	flywheelMotor = new CANTalon(8);
+	//add an encoder
+	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	isSpinning = false;
 	togglePressed = false;
 }
@@ -45,30 +47,41 @@ void Shooter::SpinFlywheel(){
 		togglePressed = false;
 	}
 
-	if(pov == 0 && upPressed == false){//if up on
+	//if up on the d-pad is pressed
+	if(pov == 0 && upPressed == false){
 		if(flywheelSpeed < 4){
+			//decrease the motor speed by 1 factor
 			flywheelSpeed++;
 		}
-		upPressed = true;//variable is true
+		//set variable to false
+		upPressed = true;
 	}
 
-	if(pov != 0){//if not equal to 0
-		upPressed = false;//speed increse not presses
+	//if up on the d-pad is not pressed
+	if(pov != 0){
+		//speed increase not pressed
+		upPressed = false;
 	}
 
-	if(pov == 180 && downPressed == false){//if down on the d-pad is pressed
+	//if down on the d-pad is pressed
+	if(pov == 180 && downPressed == false){
 		if(flywheelSpeed > 1){
-			flywheelSpeed--;//decrese the motor speed by 1 factor
+			//decrease the motor speed by 1 factor
+			flywheelSpeed--;
 		}
+		//set variable to false
 		downPressed = true;
 	}
 
+	//if down on the d-pad is not pressed
 	if(pov != 180){
+		//speed decrease not pressed
 		downPressed = false;
 	}
 
 	//Spin flywheel
 	if(isSpinning == true){
+		//if flywheel is at lowest speed, activate 1 light and set speed to 0.7
 		if(flywheelSpeed == 1){
 			flywheelMotor->Set(-0.7);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
@@ -76,6 +89,7 @@ void Shooter::SpinFlywheel(){
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
+		//if flywheel is at second speed, activate 2 lights and set speed to 0.8
 		else if(flywheelSpeed == 2){
 			flywheelMotor->Set(-0.8);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
@@ -83,6 +97,7 @@ void Shooter::SpinFlywheel(){
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
+		//if flywheel is at third speed, activate 3 lights and set speed to 0.9
 		else if(flywheelSpeed == 3){
 			flywheelMotor->Set(-0.9);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
@@ -90,6 +105,7 @@ void Shooter::SpinFlywheel(){
 			SmartDashboard::PutBoolean("DB/LED 1", true);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
+		//if flywheel is at highest speed, activate 4 lights and set speed to 1.0
 		else if(flywheelSpeed == 4){
 			flywheelMotor->Set(-1.0);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
@@ -97,6 +113,7 @@ void Shooter::SpinFlywheel(){
 			SmartDashboard::PutBoolean("DB/LED 1", true);
 			SmartDashboard::PutBoolean("DB/LED 0", true);
 		}
+		//if flywheel is off, turn all lights off
 		else {
 			SmartDashboard::PutBoolean("DB/LED 3", false);
 			SmartDashboard::PutBoolean("DB/LED 2", false);
@@ -104,6 +121,7 @@ void Shooter::SpinFlywheel(){
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 	}
+	//if flywheel is off, turn all lights off
 	else{
 		flywheelMotor->Set(0.0);
 		SmartDashboard::PutBoolean("DB/LED 3", false);
@@ -114,5 +132,6 @@ void Shooter::SpinFlywheel(){
 }
 
 void Shooter::ShooterTeleopPeriodic() {
+	//spin the flywheel
 	SpinFlywheel();
 }
