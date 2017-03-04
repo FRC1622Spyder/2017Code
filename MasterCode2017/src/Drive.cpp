@@ -11,15 +11,17 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Drive::DriveInit() {
+	//declare joystick
 	driveStick = new Joystick(0);
-	leftBackMotor = new CANTalon(3);//declare left back motor
-	leftFrontMotor = new CANTalon(4);//declare left front motor
-	rightBackMotor = new CANTalon(1);//declare right back motor
-	rightFrontMotor = new CANTalon(2);//right front motor
-//invert the left side
+	//declare motors
+	leftBackMotor = new CANTalon(3);
+	leftFrontMotor = new CANTalon(4);
+	rightBackMotor = new CANTalon(1);
+	rightFrontMotor = new CANTalon(2);
+	//invert the left side
 	leftBackMotor->SetInverted(true);
 	leftFrontMotor->SetInverted(true);
-//which motors have the encoders
+	//add QuadEncoders to motors
 	leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
