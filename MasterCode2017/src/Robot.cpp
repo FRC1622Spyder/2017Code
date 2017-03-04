@@ -17,6 +17,7 @@
 class Robot: public frc::IterativeRobot {
 public:
 
+	//declare objects for each subsystem
 	Drive drive;
 	Feeder feeder;
 	Intake intake;
@@ -26,6 +27,7 @@ public:
 	Autonomous autonomous;
 
 	void RobotInit() {
+		//run init functions for each subsystem
 		drive.DriveInit();
 		feeder.FeederInit();
 		intake.IntakeInit();
@@ -35,10 +37,12 @@ public:
 	}
 
 	void AutonomousInit() {
+		//run autonomous init, including autoselect
 		autonomous.AutonomousInit();
 	}
 
 	void AutonomousPeriodic() {
+		//run autonomous periodic functions
 		autonomous.AutonomousPeriodic();
 	}
 
@@ -47,6 +51,7 @@ public:
 	}
 
 	void TeleopPeriodic() {
+		//run teleop periodic functions for each subsystem
 		drive.DriveTeleopPeriodic();
 		feeder.FeederTeleopPeriodic();
 		intake.IntakeTeleopPeriodic();
