@@ -48,7 +48,7 @@ void Shooter::SpinFlywheel(){
 		togglePressed = false;
 	}
 
-	if(pov == 0 && upPressed == false){//if
+	if(pov == 0 && upPressed == false){//if up on
 		if(flywheelSpeed < 4){
 			flywheelSpeed++;
 		}
