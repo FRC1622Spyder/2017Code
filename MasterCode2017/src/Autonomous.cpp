@@ -17,9 +17,12 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
+//-1 <= speed <= 1; distance in inches
 void Autonomous::DriveForward(double speed, double distance){
 	//periodic--updates every 200 ms
+	//get the encoder position
 	double encoderValue = leftFrontMotor->GetEncPosition();
+	//multiply the final distance by the conversion factor
 	double encoderDistance = distance * pulse_per_inch;
 	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
@@ -49,24 +52,27 @@ void Autonomous::DriveForward(double speed, double distance){
 	}
 }
 
+//-1 <= speed <= 1; distance in inches
 void Autonomous::DriveBackward(double speed, double distance){
-	//move robot while the encoder is less than total distance
+	//periodic--updates every 200 ms
+	//get the encoder position
 	double encoderValue = leftFrontMotor->GetEncPosition();
+	//multiply the final distance by the conversion factor
 	double encoderDistance = distance * pulse_per_inch;
+	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
 		leftFrontMotor->Set(-speed);
 		leftBackMotor->Set(-speed);
 		rightFrontMotor->Set(-speed);
 		rightBackMotor->Set(-speed);
 	}
-	//wait for 25 periods (0.5 seconds)
+	//pause for 25 periods (0.5 seconds)
 	else if(counter <= 25){
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
 		rightFrontMotor->Set(0.0);
 		rightBackMotor->Set(0.0);
 		counter++;
-		std::cout << counter << std::endl;
 	}
 	//reset variables and increment autonomous phase
 	else {
@@ -81,10 +87,14 @@ void Autonomous::DriveBackward(double speed, double distance){
 	}
 }
 
+////-1 <= speed <= 1; angle in degrees
 void Autonomous::RotateCounterclockwise(double speed, double angle){
 	//periodic--updates every 200 ms
+	//get encoder position
 	double encoderValue = leftFrontMotor->GetEncPosition();
+	//convert angle to radians
 	double radianAngle = angle * (pi /180);
+	//multiply angle by conversion factor
 	double encoderDistance =  radianAngle * pulse_per_radian;
 	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
@@ -114,10 +124,14 @@ void Autonomous::RotateCounterclockwise(double speed, double angle){
 	}
 }
 
+//-1 <= speed <= 1; angle in degrees
 void Autonomous::RotateClockwise(double speed, double angle){
 	//periodic--updates every 200 ms
+	//get encoder value
 	double encoderValue = leftFrontMotor->GetEncPosition();
+	//convert angle to radians
 	double radianAngle = angle * (pi /180);
+	//multiply angle by conversion factor
 	double encoderDistance =  radianAngle * pulse_per_radian;
 	//move robot while the encoder is less than total distance
 	if(abs(encoderValue) <= encoderDistance){
@@ -147,8 +161,11 @@ void Autonomous::RotateClockwise(double speed, double angle){
 	}
 }
 
+//time in seconds
 void Autonomous::Wait(double time){
+	//convert time to periods
 	double periods = time * 50;
+	//wait for the specified number of periods
 	if(counter <= periods){
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -156,6 +173,7 @@ void Autonomous::Wait(double time){
 		rightBackMotor->Set(0.0);
 		counter++;
 	}
+	//reset variables and increment autonomous phase
 	else{
 		counter = 0;
 		autonomousPhase++;
@@ -163,26 +181,34 @@ void Autonomous::Wait(double time){
 }
 
 void Autonomous::AutonomousInit(){
+	//declare motors
 	leftBackMotor = new CANTalon(4);//8 on the test robot, 3 on actual robot
 	leftFrontMotor = new CANTalon(3);
 	rightBackMotor = new CANTalon(2);
 	rightFrontMotor = new CANTalon(1);
 
+	//invert right side motors
 	rightBackMotor->SetInverted(true);
 	rightFrontMotor->SetInverted(true);
 
+	//set encoder type to QuadEncoder
 	leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
+	//set encoder codes per revolution to 20
 	leftFrontMotor->ConfigEncoderCodesPerRev(20);
 	rightFrontMotor->ConfigEncoderCodesPerRev(20);
 
+	//reset encoders
 	leftFrontMotor->SetEncPosition(0);
 	rightFrontMotor->SetEncPosition(0);
 
+	//create a dashboard object
 	Dashboard dashboard;
+	//reset variables
 	autonomousPhase = 0;
 	counter = 0;
+	//select the autonomous using the AutoSelect function from the dashboard object
 	autonomousChooser = dashboard.AutoSelect();
 }
 
