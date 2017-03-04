@@ -339,7 +339,7 @@ void Autonomous::AutonomousPeriodic(){
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);//drive up to the hopper
-		}+
+		}
 	}
 	//blue right gears first
 	else if (autonomousChooser == 6){
