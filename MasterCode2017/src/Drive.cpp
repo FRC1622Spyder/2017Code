@@ -12,19 +12,19 @@
 
 void Drive::DriveInit() {
 	driveStick = new Joystick(0);
-	leftBackMotor = new CANTalon(3);//8 on the test robot, 3 on actual robot
-	leftFrontMotor = new CANTalon(4);
-	rightBackMotor = new CANTalon(1);
-	rightFrontMotor = new CANTalon(2);
-
+	leftBackMotor = new CANTalon(3);//declare left back motor
+	leftFrontMotor = new CANTalon(4);//declare left front motor
+	rightBackMotor = new CANTalon(1);//declare right back motor
+	rightFrontMotor = new CANTalon(2);//right front motor
+//invert the left side
 	leftBackMotor->SetInverted(true);
 	leftFrontMotor->SetInverted(true);
-
+//which motors have the encoders
 	leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
-	speedValueLeft = 0.0;
-	speedValueRight = 0.0;
+	speedValueLeft = 0.0;//left side speed
+	speedValueRight = 0.0;//right side speed
 }
 //Drives left motors
 void Drive::DriveLeft(double speed){

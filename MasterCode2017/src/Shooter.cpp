@@ -13,15 +13,12 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 void Shooter::ShooterInit(){
-	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(8);//6 on test robot, 8 on real
-
-	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
-
+	controlStick = new Joystick(1);//declare whitch controller
+	flywheelMotor = new CANTalon(8);//declare the motor
+	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);//this motor has an encoder
 	isSpinning = false;
 	togglePressed = false;
 }
-
 //Power should be between 1 and 0
 void Shooter::SpinFlywheel(){
 	//Use button to toggle spin
@@ -52,16 +49,16 @@ void Shooter::SpinFlywheel(){
 		if(flywheelSpeed < 4){
 			flywheelSpeed++;
 		}
-		upPressed = true;
+		upPressed = true;//variable is true
 	}
 
 	if(pov != 0){//if not equal to 0
 		upPressed = false;//speed increse not presses
 	}
 
-	if(pov == 180 && downPressed == false){
+	if(pov == 180 && downPressed == false){//if down on the d-pad is pressed
 		if(flywheelSpeed > 1){
-			flywheelSpeed--;
+			flywheelSpeed--;//decrese the motor speed by 1 factor
 		}
 		downPressed = true;
 	}

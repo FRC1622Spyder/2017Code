@@ -11,57 +11,15 @@
 #include <Joystick.h>
 
 void Climber::ClimberInit(){
-	ClimberMotor = new CANTalon(7);
-	controlStick = new Joystick(1);
-	//isWorking = false;
-	//buttonPressed = false;
-	//climbDirection = true;
-
+	ClimberMotor = new CANTalon(7);//declare the motor
+	controlStick = new Joystick(1);//declare the controller
 }
-
-	void Climber::ClimberTeleopPeriodic() {
-		/*bool climbup = controlStick->GetRawButton(5);
-		bool climbdown = controlStick->GetRawButton(7);
-		if(buttonPressed==false && climbup==true && isWorking==false){
-			isWorking = true;
-			buttonPressed = true;
-			climbDirection = true;
-		}
-		else if(buttonPressed==false && climbup==true && isWorking==true){
-			isWorking = false;
-			buttonPressed = true;
-			climbDirection = true;
-		}
-		else if(buttonPressed==false && climbdown==true && isWorking==false){
-			isWorking = true;
-			buttonPressed = true;
-			climbDirection = false;
-		}
-		else if(buttonPressed==false && climbdown==true && isWorking==true){
-			isWorking = false;
-			buttonPressed = true;
-			climbDirection = false;
-		}
-
-		if(climbup==false){
-			buttonPressed = false;
-		}
-
-
-		if(isWorking==true && climbDirection==true) {
-			ClimberMotor->Set(1.0);
-		}
-		else if(isWorking==true && climbDirection==false){
-			ClimberMotor->Set(-0.5);
-		}
-		else if(isWorking==false){
-			ClimberMotor->Set(0.0);
-		}*/
-		bool climb = controlStick->GetRawButton(1);
-		if(climb==true){
-		ClimberMotor->Set(-1.0);
-		}
-		else if(climb==false){
-		ClimberMotor->Set(0.0);
-		}
-		}
+void Climber::ClimberTeleopPeriodic() {
+	bool climb = controlStick->GetRawButton(1);//declare the button 1
+	if(climb==true){//if button is presses
+		ClimberMotor->Set(-1.0);//motor is running
+	}
+	else if(climb==false){//if button is not pressed
+		ClimberMotor->Set(0.0);//motor is not running
+	}
+}
