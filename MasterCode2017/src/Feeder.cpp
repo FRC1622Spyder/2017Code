@@ -11,16 +11,21 @@
 #include <Joystick.h>
 
 void Feeder::FeederInit(){
-	feederMotor = new CANTalon(5);// declare the feeder motor
-	controlStick = new Joystick(1);//declare the controller
+	// declare the feeder motor
+	feederMotor = new CANTalon(5);
+	//declare the controller
+	controlStick = new Joystick(1);
 }
 
 void Feeder::FeederTeleopPeriodic() {
-	bool toggleWork = controlStick->GetRawButton(8);//declare the button
-	if(toggleWork == true){//button is pressed
-		feederMotor->Set(0.8);//motor going at 80% full speed
+	//declare the button
+	bool toggleWork = controlStick->GetRawButton(8);
+	//if button is pressed, run motor
+	if(toggleWork == true){
+		feederMotor->Set(0.8);
 	}
-	else if(toggleWork == false){//button not pressed
-		feederMotor->Set(0.0);//motor off
+	//if button is not pressed, disable motor
+	else if(toggleWork == false){
+		feederMotor->Set(0.0);
 	}
 }
