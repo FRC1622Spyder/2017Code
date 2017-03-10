@@ -31,6 +31,24 @@ int Dashboard::AutoSelect(){
 	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
 	bool shoot = SmartDashboard::GetBoolean("DB/Button 1", false);
 	bool disable = SmartDashboard::GetBoolean("DB/Button 3", false);
+	double position = SmartDashboard::GetNumber("DB/Slider 0", 2.5);
+	int positionNumber = 0;
+	//if the top slider / is in leftmost position / set position one
+	if(position <= 1.666){
+		positionNumber = 1;
+	}
+	//if the top slider / is in center position / set position two
+	else if(position > 1.666 && position < 3.333){
+		positionNumber = 2;
+	}
+	//if the top slider / is in rightmost position / set position three
+	else if(position >= 3.333){
+		positionNumber = 3;
+	}
+	//if slider is screwed / return value of zero / so nothing crashes
+	else{
+		return 0;
+	}
 	//if autonomous / happens to be disabled / it returns zero 
 	if(disable == true){
 		return 0;
@@ -42,24 +60,24 @@ int Dashboard::AutoSelect(){
 			//if hopper not first / run through all the gear options / there are six of them
 			if(hopperFirst == false){
 				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-					if(drive.GetLocation() == 1){
+					if(positionNumber == 1){
 						return 1;
 					}
-					else if(drive.GetLocation() == 2){
+					else if(positionNumber == 2){
 						return 2;
 					}
-					else if(drive.GetLocation() == 3){
+					else if(positionNumber == 3){
 						return 3;
 					}
 				}
 				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-					if(drive.GetLocation() == 1){
+					if(positionNumber == 1){
 						return 4;
 					}
-					else if(drive.GetLocation() == 2){
+					else if(positionNumber == 2){
 						return 5;
 					}
-					else if(drive.GetLocation() == 3){
+					else if(positionNumber == 3){
 						return 6;
 					}
 				}
@@ -67,24 +85,24 @@ int Dashboard::AutoSelect(){
 			//if hopper comes first / run through the hopper options / there are also six
 			else{
 				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-					if(drive.GetLocation() == 1){
+					if(positionNumber == 1){
 						return 7;
 					}
-					else if(drive.GetLocation() == 2){
+					else if(positionNumber == 2){
 						return 8;
 					}
-					else if(drive.GetLocation() == 3){
+					else if(positionNumber == 3){
 						return 9;
 					}
 				}
 				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-					if(drive.GetLocation() == 1){
+					if(positionNumber == 1){
 						return 10;
 					}
-					else if(drive.GetLocation() == 2){
+					else if(positionNumber == 2){
 						return 11;
 					}
-					else if(drive.GetLocation() == 3){
+					else if(positionNumber == 3){
 						return 12;
 					}
 				}
