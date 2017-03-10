@@ -19,7 +19,7 @@ void Feeder::FeederInit(){
 
 void Feeder::FeederTeleopPeriodic() {
 	//declare the button / which activates the feeder / is on the joystick 
-	bool toggleWork = controlStick->GetRawButton(8);
+	bool toggleWork = controlStick->GetRawButton(6);
 	//if button is pressed / it will start running motor / at speed of point eight
 	if(toggleWork == true){
 		feederMotor->Set(0.8);

@@ -18,7 +18,7 @@ void Climber::ClimberInit(){
 }
 void Climber::ClimberTeleopPeriodic() {
 	//declare the button / the button is button one / it runs the climber 
-	bool climb = controlStick->GetRawButton(1);
+	bool climb = controlStick->GetRawButton(3);
 	//if button is pressed / the motor will start running / at a speed of one 
 	if(climb==true){
 		ClimberMotor->Set(-1.0);

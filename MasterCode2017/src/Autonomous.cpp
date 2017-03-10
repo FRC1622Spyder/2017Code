@@ -202,16 +202,16 @@ void Autonomous::AutonomousPeriodic(){
 			RotateClockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,32.0);
+			DriveBackward(0.4,32.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,32.0);//drive back to base line / rotate to face front for once / then drive to hopper
+			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,135.0);
+			RotateCounterclockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7, 81.0);
@@ -226,7 +226,7 @@ void Autonomous::AutonomousPeriodic(){
 	//our spot is red mid / triggers one hopper after / we go for the gear
 	else if(autonomousChooser == 2){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -235,13 +235,13 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7,40.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if(autonomousPhase == 3){
-			RotateClockwise(0.5,135.0);
+			RotateClockwise(0.5,90.0);
 		}
 		else if(autonomousPhase == 4){
 			DriveForward(0.7,85.0);
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,45.0);
+			RotateCounterclockwise(0.3,90.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7, 250.8);
@@ -262,22 +262,22 @@ void Autonomous::AutonomousPeriodic(){
 			RotateCounterclockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,32.0);
+			DriveBackward(0.4,20.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,32.0);//drive back to base line / rotate to face front for once / then drive to hopper
+			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,135);
+			RotateClockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7,91.0);
 		}
 		else if (autonomousPhase == 7){
-			RotateClockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
@@ -292,22 +292,22 @@ void Autonomous::AutonomousPeriodic(){
 			RotateClockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,32.0);
+			DriveBackward(0.4,20.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,32.0);//drive back to base line / rotate to face front for once / then drive to hopper
+			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,135.0);
+			RotateCounterclockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7,81.0);
 		}
 		else if (autonomousPhase == 7){
-			RotateCounterclockwise(0.3,45);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			RotateClockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
@@ -316,7 +316,7 @@ void Autonomous::AutonomousPeriodic(){
 	//our spot is blue mid / triggers one hopper after / we go for the gear
 	else if (autonomousChooser == 5){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7, 80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5, 80.5);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -325,19 +325,19 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7, 40.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if(autonomousPhase == 3){
-			RotateClockwise(0.5, 135.0);
+			RotateCounterclockwise(0.5, 90.0);
 		}
 		else if(autonomousPhase == 4){
 			DriveForward(0.7,85.0);
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,45.0);
+			RotateClockwise(0.3,90.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7,250.8);
 		}
 		else if (autonomousPhase == 7){
-			RotateCounterclockwise(0.3,45);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			RotateCounterclockwise(0.3,90);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
@@ -352,25 +352,25 @@ void Autonomous::AutonomousPeriodic(){
 			RotateCounterclockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.7,32.0);
+			DriveBackward(0.4,20.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
 		}
 		else if (autonomousPhase == 4){
-			DriveForward(0.7,32.0);//drive back to base line / rotate to face front for once / then drive to hopper
+			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateCounterclockwise(0.3,135.0);
+			RotateClockwise(0.3,90.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7, 81.0);
 		}
 		else if (autonomousPhase == 7){
-			RotateClockwise(0.3,45);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			Wait(3.0);
 		}
 		else if (autonomousPhase == 8){
-			DriveForward(0.7, 95.6);
+			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 	}
 	//our spot is red left / triggers one hopper only / we don't do a gear
