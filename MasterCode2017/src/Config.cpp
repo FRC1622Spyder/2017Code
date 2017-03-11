@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <memory>
 #include <string>
@@ -159,11 +159,11 @@ int Config::GetControlMapping(std::string mapping){
 			}
 		}
 	}
-	else if(motor == "Feeder"){
+	else if(mapping == "Feeder"){
 		while(std::getline(configRead, property)){
-			if(property.find("Feeder Motor") != std::string::npos){
-				port = property[16];
-				return port;
+			if(property.find("Feeder Button") != std::string::npos){
+				map = property[16];
+				return map;
 			}
 		}
 	}
