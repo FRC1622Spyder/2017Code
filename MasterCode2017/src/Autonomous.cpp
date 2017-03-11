@@ -235,13 +235,13 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7,40.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if(autonomousPhase == 3){
-			RotateClockwise(0.5,90.0);
+			RotateCounterclockwise(0.5,90.0);
 		}
 		else if(autonomousPhase == 4){
 			DriveForward(0.7,85.0);
 		}
 		else if (autonomousPhase == 5){
-			RotateCounterclockwise(0.3,90.0);
+			RotateClockwise(0.3,90.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7, 250.8);
@@ -271,13 +271,13 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,135.0);
+			RotateCounterclockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7,91.0);
 		}
 		else if (autonomousPhase == 7){
-			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			RotateClockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
@@ -301,13 +301,13 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateCounterclockwise(0.3,135.0);
+			RotateClockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7,81.0);
 		}
 		else if (autonomousPhase == 7){
-			RotateClockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
@@ -325,7 +325,7 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7, 40.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if(autonomousPhase == 3){
-			RotateCounterclockwise(0.5, 90.0);
+			RotateClockwise(0.5, 90.0);
 		}
 		else if(autonomousPhase == 4){
 			DriveForward(0.7,85.0);
@@ -361,16 +361,16 @@ void Autonomous::AutonomousPeriodic(){
 			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 		else if (autonomousPhase == 5){
-			RotateClockwise(0.3,90.0);
+			RotateCounterclockwise(0.3,135.0);
 		}
 		else if (autonomousPhase == 6){
 			DriveForward(0.7, 81.0);
 		}
 		else if (autonomousPhase == 7){
-			Wait(3.0);
+			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
 		}
 		else if (autonomousPhase == 8){
-			RotateCounterclockwise(0.3,90.0);//rotate to hopper / we hit it head on for balls / to fall on the bot
+			DriveForward(0.7,96.5);
 		}
 	}
 	//our spot is red left / triggers one hopper only / we don't do a gear
