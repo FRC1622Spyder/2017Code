@@ -10,13 +10,15 @@
 
 class Config{
 private:
-	int motors[9];
-	int controls[9];
-
+	enum MOTOR{LeftFront, LeftBack, RightFront, RightBack,
+		Intake, Feeder, Shooter, Climber};
+	enum MAPPING{LeftAnalog, RightAnalog, HalfSpeedToggle,
+		IntakeIn, IntakeOut, Feeder, Shooter, ShooterIncreaseSpeed,
+		ShooterDecreaseSpeed, Climber};
 public:
 	void ConfigInit();
-	int GetMotorPort(std::string motor);
-	int GetControlMapping(std::string control);
+	int GetMotorPort(MOTOR motor);
+	int GetControlMapping(MAPPING mapping);
 };
 
 #endif
