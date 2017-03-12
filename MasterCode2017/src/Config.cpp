@@ -3,7 +3,6 @@
 #include <memory>
 #include <string>
 
-#include <Preferences.h>
 #include <Config.h>
 
 void Config::ConfigInit(){
@@ -12,8 +11,8 @@ void Config::ConfigInit(){
 	std::string validationString;
 	configRead.open("config.properties");
 	configWrite.open("config.properties");
-	if(std::getline(configRead, validationString) != "##1622-Spyder 2017 Config"){
-		configWrite << "##1622-Spyder 2017 Config";
+	if(std::getline(configRead, validationString) != "##1622-SPYDER CONFIG 2017"){
+		configWrite << "##1622-SPYDER CONFIG 2017";
 		configWrite << '\n' << "##DO NOT EDIT THIS HEADER";
 		configWrite << '\n' << "##ALWAYS FORMAT ENTRIES WITH THE DEFAULT SPACING";
 		configWrite << '\n' << "##LIKE THIS: Sample Motor = 9";
