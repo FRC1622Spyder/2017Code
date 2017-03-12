@@ -30,13 +30,13 @@ public:
 
 	void RobotInit() {
 		//run init functions / for all of the subsystems / so robot might work
+		config.ConfigInit();
 		drive.DriveInit();
 		feeder.FeederInit();
 		intake.IntakeInit();
 		shooter.ShooterInit();
 		climber.ClimberInit();
 		dashboard.DashboardInit();
-		config.ConfigInit();
 	}
 
 	void AutonomousInit() {

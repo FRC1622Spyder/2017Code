@@ -7,6 +7,8 @@ class Intake {
 private:
 	Joystick *controlStick;
 	CANTalon *intakeMotor; //6
+	int IntakeInButton;
+	int IntakeOutButton;
 	bool intakeForward;
 	bool intakeBackward;
 

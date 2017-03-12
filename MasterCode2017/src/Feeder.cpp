@@ -9,17 +9,20 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <CANTalon.h>
 #include <Joystick.h>
+#include <Config.h>
 
 void Feeder::FeederInit(){
 	// declare the motor / which will control the feeder / it's a CANTalon
-	feederMotor = new CANTalon(5);
+	Config config;
+	feederMotor = new CANTalon(config.GetMotorPort(Config::FeederMotor));
+	FeederButton = config.GetControlMapping(Config::FeederMapping);
 	//declare the joystick / which will control the feeder / it is a joystick
 	controlStick = new Joystick(1);
 }
 
 void Feeder::FeederTeleopPeriodic() {
 	//declare the button / which activates the feeder / is on the joystick 
-	bool toggleWork = controlStick->GetRawButton(6);
+	bool toggleWork = controlStick->GetRawButton(FeederButton);
 	//if button is pressed / it will start running motor / at speed of point eight
 	if(toggleWork == true){
 		feederMotor->Set(0.95);

@@ -9,6 +9,9 @@ class Shooter {
 private:
 	CANTalon *flywheelMotor;
 	Joystick *controlStick;
+	int ShooterToggle;
+	int IncreaseSpeed;
+	int DecreaseSpeed;
 	bool isSpinning;
 	bool togglePressed;
 	bool upPressed;

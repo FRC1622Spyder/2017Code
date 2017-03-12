@@ -49,7 +49,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 	configRead.open("config.properties");
 	std::string property;
 	int port;
-	if(motor == LeftFront){
+	if(motor == LeftFrontMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Left Front Motor") != std::string::npos){
 				port = property[19];
@@ -58,7 +58,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == LeftBack){
+	else if(motor == LeftBackMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Left Back Motor") != std::string::npos){
 				port = property[18];
@@ -67,7 +67,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == RightFront){
+	else if(motor == RightFrontMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Right Front Motor") != std::string::npos){
 				port = property[20];
@@ -76,7 +76,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == RightBack){
+	else if(motor == RightBackMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Right Back Motor") != std::string::npos){
 				port = property[19];
@@ -85,7 +85,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == Intake){
+	else if(motor == IntakeMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Intake Motor") != std::string::npos){
 				port = property[15];
@@ -94,7 +94,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == Feeder){
+	else if(motor == FeederMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Feeder Motor") != std::string::npos){
 				port = property[15];
@@ -103,7 +103,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == Shooter){
+	else if(motor == ShooterMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Shooter Motor") != std::string::npos){
 				port = property[16];
@@ -112,7 +112,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 			}
 		}
 	}
-	else if(motor == Climber){
+	else if(motor == ClimberMotor){
 		while(std::getline(configRead, property)){
 			if(property.find("Climber Motor") != std::string::npos){
 				port = property[16];
@@ -129,7 +129,7 @@ int Config::GetControlMapping(MAPPING mapping){
 	configRead.open("config.properties");
 	std::string property;
 	int map;
-	if(mapping == LeftAnalog){
+	if(mapping == LeftAnalogMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Left Analog Stick") != std::string::npos){
 				map = property[20];
@@ -138,7 +138,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == RightAnalog){
+	else if(mapping == RightAnalogMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Right Analog Stick") != std::string::npos){
 				map = property[21];
@@ -147,7 +147,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == HalfSpeedToggle){
+	else if(mapping == HalfSpeedToggleMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Half Speed Toggle") != std::string::npos){
 				map = property[20];
@@ -156,7 +156,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == IntakeIn){
+	else if(mapping == IntakeInMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Intake In Button") != std::string::npos){
 				map = property[19];
@@ -165,7 +165,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == IntakeOut){
+	else if(mapping == IntakeOutMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Intake Out Button") != std::string::npos){
 				map= property[20];
@@ -174,7 +174,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == Feeder){
+	else if(mapping == FeederMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Feeder Button") != std::string::npos){
 				map = property[16];
@@ -183,7 +183,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == Shooter){
+	else if(mapping == ShooterMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Shooter Toggle") != std::string::npos){
 				map = property[17];
@@ -192,7 +192,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == ShooterIncreaseSpeed){
+	else if(mapping == ShooterIncreaseSpeedMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Shooter Increase Speed POV") != std::string::npos){
 				if(property.length() == 30){
@@ -218,7 +218,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == ShooterDecreaseSpeed){
+	else if(mapping == ShooterDecreaseSpeedMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Shooter Decrease Speed POV") != std::string::npos){
 				if(property.length() == 30){
@@ -244,7 +244,7 @@ int Config::GetControlMapping(MAPPING mapping){
 			}
 		}
 	}
-	else if(mapping == Climber){
+	else if(mapping == ClimberMapping){
 		while(std::getline(configRead, property)){
 			if(property.find("Climber Button") != std::string::npos){
 				map = property[17];

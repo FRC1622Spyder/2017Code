@@ -8,6 +8,7 @@ class Climber {
 private:
 	CANTalon *ClimberMotor;
 	Joystick *controlStick;
+	int climberButton;
 	bool isWorking;
 	bool buttonPressed;
 	bool climbDirection;

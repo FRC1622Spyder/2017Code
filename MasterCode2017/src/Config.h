@@ -9,13 +9,12 @@
 #define SRC_CONFIG_H_
 
 class Config{
-private:
-	enum MOTOR{LeftFront, LeftBack, RightFront, RightBack,
-		Intake, Feeder, Shooter, Climber};
-	enum MAPPING{LeftAnalog, RightAnalog, HalfSpeedToggle,
-		IntakeIn, IntakeOut, Feeder, Shooter, ShooterIncreaseSpeed,
-		ShooterDecreaseSpeed, Climber};
 public:
+	enum MOTOR{LeftFrontMotor, LeftBackMotor, RightFrontMotor, RightBackMotor,
+		IntakeMotor, FeederMotor, ShooterMotor, ClimberMotor};
+	enum MAPPING{LeftAnalogMapping, RightAnalogMapping, HalfSpeedToggleMapping,
+		IntakeInMapping, IntakeOutMapping, FeederMapping, ShooterMapping,
+		ShooterIncreaseSpeedMapping, ShooterDecreaseSpeedMapping, ClimberMapping};
 	void ConfigInit();
 	int GetMotorPort(MOTOR motor);
 	int GetControlMapping(MAPPING mapping);

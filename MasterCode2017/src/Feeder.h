@@ -8,6 +8,7 @@ class Feeder {
 private:
 	CANTalon *feederMotor;
 	Joystick *controlStick;
+	int FeederButton;
 	bool isWorking;
 	bool buttonPressed;
 

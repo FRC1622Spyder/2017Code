@@ -9,20 +9,24 @@
 #include <Intake.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Config.h>
 
 void Intake::IntakeInit(){
 	//declares controller / which runs the intake motor / it is a joystick
 	controlStick = new Joystick(1);
 	//makes intake motor / it sucks up all of the balls / on port number six
-	intakeMotor = new CANTalon(6);
+	Config config;
+	intakeMotor = new CANTalon(config.GetMotorPort(Config::IntakeMotor));
+	IntakeInButton = config.GetControlMapping(Config::IntakeInMapping);
+	IntakeOutButton = config.GetControlMapping(Config::IntakeOutMapping);
 	intakeForward = false;
 	intakeBackward = false;
 }
 
 void Intake::RunIntake(){
 	//declare more buttons / for intake, forward and back / they're on the joystick
-	bool intakeForward = controlStick->GetRawButton(1);
-	bool intakeBackward = controlStick->GetRawButton(4);
+	bool intakeForward = controlStick->GetRawButton(IntakeInButton);
+	bool intakeBackward = controlStick->GetRawButton(IntakeOutButton);
 	//if button two pressed / it will run intake forward / at speed of point six
 	if(intakeForward==true){
 		intakeMotor->Set(-0.6);

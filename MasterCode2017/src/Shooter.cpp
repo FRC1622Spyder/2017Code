@@ -11,11 +11,16 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Config.h>
 
 void Shooter::ShooterInit(){
 	//declares controller / in addition to motors / which will run shooter
 	controlStick = new Joystick(1);
-	flywheelMotor = new CANTalon(8);
+	Config config;
+	flywheelMotor = new CANTalon(config.GetMotorPort(Config::ShooterMotor));
+	ShooterToggle = config.GetControlMapping(Config::ShooterMapping);
+	IncreaseSpeed = config.GetControlMapping(Config::ShooterIncreaseSpeedMapping);
+	DecreaseSpeed = config.GetControlMapping(Config::ShooterDecreaseSpeedMapping);
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	isSpinning = false;
 	togglePressed = false;
@@ -23,7 +28,7 @@ void Shooter::ShooterInit(){
 
 void Shooter::SpinFlywheel(){
 	//another toggle / turns the flywheel on and off / it is a button 
-	bool toggleSpin = controlStick->GetRawButton(5);
+	bool toggleSpin = controlStick->GetRawButton(ShooterToggle);
 	DriverStation &povStick = DriverStation::GetInstance();
 	int pov = povStick.GetStickPOV(1,0);
 	if(toggleSpin == true && isSpinning == false && togglePressed == false){
@@ -42,7 +47,7 @@ void Shooter::SpinFlywheel(){
 	}
 
 	//if d-pad up pressed / increase the speed of flywheel / by a count of one 
-	if(pov == 0 && upPressed == false){
+	if(pov == IncreaseSpeed && upPressed == false){
 		if(flywheelSpeed < 4){
 			flywheelSpeed++;
 		}
@@ -50,12 +55,12 @@ void Shooter::SpinFlywheel(){
 	}
 
 	//if up is not pressed / speed of flywheel not increased / boolean is false
-	if(pov != 0){
+	if(pov != IncreaseSpeed){
 		upPressed = false;
 	}
 
 	//if d-pad down pressed / decrease the speed of flywheel / by a count of one 
-	if(pov == 180 && downPressed == false){
+	if(pov == DecreaseSpeed && downPressed == false){
 		if(flywheelSpeed > 1){
 			flywheelSpeed--;
 		}
@@ -63,7 +68,7 @@ void Shooter::SpinFlywheel(){
 	}
 
 	//if up is not pressed / speed of flywheel not increased / boolean is false
-	if(pov != 180){
+	if(pov != DecreaseSpeed){
 		downPressed = false;
 	}
 

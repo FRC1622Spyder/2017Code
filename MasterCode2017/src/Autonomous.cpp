@@ -166,16 +166,16 @@ void Autonomous::Wait(double time){
 
 void Autonomous::AutonomousInit(){
 	//declaring the motors / ports 1 through 4 oh what fun / they are CANTalons
-	leftBackMotor = new CANTalon(4);
+	/*leftBackMotor = new CANTalon(4);
 	leftFrontMotor = new CANTalon(3);
 	rightBackMotor = new CANTalon(2);
-	rightFrontMotor = new CANTalon(1);
+	rightFrontMotor = new CANTalon(1);*/
 
-	/*Config config;
-	leftBackMotor = new CANTalon(config.GetMotorPort(Config::LeftBack));
-	leftFrontMotor = new CANTalon(config.GetMotorPort(Config::LeftFront));
-	rightBackMotor = new CANTalon(config.GetMotorPort(Config::RightBack));
-	rightFrontMotor = new CANTalon(config.GetMotorPort(Config::RightFront));*/
+	Config config;
+	leftBackMotor = new CANTalon(config.GetMotorPort(Config::LeftBackMotor));
+	leftFrontMotor = new CANTalon(config.GetMotorPort(Config::LeftFrontMotor));
+	rightBackMotor = new CANTalon(config.GetMotorPort(Config::RightBackMotor));
+	rightFrontMotor = new CANTalon(config.GetMotorPort(Config::RightFrontMotor));
 
 	rightBackMotor->SetInverted(true);
 	rightFrontMotor->SetInverted(true);

@@ -9,15 +9,17 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Config.h>
 
 void Drive::DriveInit() {
 	//declares a joystick / which will be used for driving / uses port zero
 	driveStick = new Joystick(0);
 	//declares the motors / for all sides of the robot / three, four, one, and two 
-	leftBackMotor = new CANTalon(3);
-	leftFrontMotor = new CANTalon(4);
-	rightBackMotor = new CANTalon(1);
-	rightFrontMotor = new CANTalon(2);
+	Config config;
+	leftBackMotor = new CANTalon(config.GetMotorPort(Config::LeftBackMotor));
+	leftFrontMotor = new CANTalon(config.GetMotorPort(Config::LeftFrontMotor));
+	rightBackMotor = new CANTalon(config.GetMotorPort(Config::RightBackMotor));
+	rightFrontMotor = new CANTalon(config.GetMotorPort(Config::RightFrontMotor));
 	//inverts the left side / so that the robot drives straight / or else it will spin 
 	leftBackMotor->SetInverted(true);
 	leftFrontMotor->SetInverted(true);
@@ -27,6 +29,10 @@ void Drive::DriveInit() {
 
 	speedValueLeft = 0.0;
 	speedValueRight = 0.0;
+
+	LeftAxis = config.GetControlMapping(Config::LeftAnalogMapping);
+	RightAxis = config.GetControlMapping(Config::RightAnalogMapping);
+	SpeedToggle = config.GetControlMapping(Config::HalfSpeedToggleMapping);
 }
 //this is a function / that drives the left side motors / it uses doubles 
 void Drive::DriveLeft(double speed){
@@ -42,7 +48,7 @@ void Drive::DriveRight(double speed){
 
 void Drive::DriveTeleopPeriodic() {
 	//this is a toggle / so robot drives at half speed / 'cuz it's more exact 
-	bool toggleButton = driveStick->GetRawButton(1);
+	bool toggleButton = driveStick->GetRawButton(SpeedToggle);
 	if(toggleButton == true && buttonPressed == false && halfSpeed == false){
 		halfSpeed = true;
 		buttonPressed = true;
@@ -57,7 +63,7 @@ void Drive::DriveTeleopPeriodic() {
 	}
 	
 	//gets left joystick speed / to make robot start driving / from the left axis
-	double leftSpeed = driveStick->GetRawAxis(1);
+	double leftSpeed = driveStick->GetRawAxis(LeftAxis);
 	if(halfSpeed == true){
 		leftSpeed = leftSpeed / 2;
 	}
@@ -86,7 +92,7 @@ void Drive::DriveTeleopPeriodic() {
 		leftSpeed = 0;
 	}
 	//gets left joystick speed / to make robot start driving / from the left axis
-	double rightSpeed = driveStick->GetRawAxis(3);
+	double rightSpeed = driveStick->GetRawAxis(RightAxis);
 	if(halfSpeed == true){
 		rightSpeed = rightSpeed / 2;
 	}

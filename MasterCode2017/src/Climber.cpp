@@ -9,16 +9,19 @@
 #include <CANTalon.h>
 #include <Climber.h>
 #include <Joystick.h>
+#include <Config.h>
 
 void Climber::ClimberInit(){
 	//declares the motor / on the port number seven / for climbing the rope
-	ClimberMotor = new CANTalon(7);
+	Config config;
+	ClimberMotor = new CANTalon(config.GetMotorPort(Config::ClimberMotor));
+	climberButton = config.GetControlMapping(Config::ClimberMapping);
 	//declares controller / it is also a joystick / on port number one 
 	controlStick = new Joystick(1);
 }
 void Climber::ClimberTeleopPeriodic() {
-	//declare the button / the button is button one / it runs the climber 
-	bool climb = controlStick->GetRawButton(3);
+	//declare the button / button is climber button / it runs the climber
+	bool climb = controlStick->GetRawButton(climberButton);
 	//if button is pressed / the motor will start running / at a speed of one 
 	if(climb==true){
 		ClimberMotor->Set(-1.0);
