@@ -204,13 +204,13 @@ void Autonomous::AutonomousPeriodic(){
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if(autonomousChooser == 1){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateClockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateClockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.4,32.0);
+			DriveBackward(0.4,60.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -220,7 +220,7 @@ void Autonomous::AutonomousPeriodic(){
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if(autonomousChooser == 2){
 		if(autonomousPhase == 0){
-			DriveBackward(0.5,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,59.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -230,13 +230,13 @@ void Autonomous::AutonomousPeriodic(){
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if (autonomousChooser == 3){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateCounterclockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.4,20.0);
+			DriveBackward(0.4,60.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -246,26 +246,23 @@ void Autonomous::AutonomousPeriodic(){
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if (autonomousChooser == 4){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateClockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateClockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.4,20.0);
+			DriveBackward(0.4,60.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
-		}
-		else if (autonomousPhase == 4){
-			DriveForward(0.7,20.0);//drive back to base line / rotate to face front for once / then drive to hopper
 		}
 	}
 	//our spot is blue mid / triggers one hopper after / we go for the gear
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if (autonomousChooser == 5){
 		if(autonomousPhase == 0){
-			DriveBackward(0.5, 80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5, 59.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if(autonomousPhase == 1){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
@@ -275,13 +272,13 @@ void Autonomous::AutonomousPeriodic(){
 	//except that we don't / hit a hopper anymore / because it's too hard
 	else if (autonomousChooser == 6){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,80.5);//gear port is on back / so we must drive backwards to / deliver the gear
+			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,45.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateCounterclockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
-			DriveBackward(0.4,20.0);
+			DriveBackward(0.4,60.0);
 		}
 		else if (autonomousPhase == 3){
 			Wait(3.0);//wait for the human / why are they so very slow / let us hurry up
