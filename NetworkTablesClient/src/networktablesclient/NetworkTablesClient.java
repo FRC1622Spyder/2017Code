@@ -6,7 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class NetworkTablesClient extends JFrame {
-
+    //declares integers / for all the ports and mappings / to assign values
     int LeftFrontMotor;
     int LeftBackMotor;
     int RightFrontMotor;
@@ -27,23 +27,23 @@ public class NetworkTablesClient extends JFrame {
     int ShooterDecreaseSpeed;
     int ClimberButton;
 
+    //makes NetworkTable / to send values to robot / for ports and mappings
     NetworkTable table;
 
+    //creates components / to be used in the window / so we can view things
     JFrame frame = new JFrame("ConfigTable 1622");
     static JTextArea text = new JTextArea(25, 40);
-    static JScrollPane output = new JScrollPane(text, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    final static JScrollBar vscroll = output.getVerticalScrollBar();
+    static JScrollPane output = new JScrollPane(text, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
     public static void main(String[] args) {
         new NetworkTablesClient().run();
     }
 
+    //designs the window / that will output the values / we get from config
     public NetworkTablesClient() {
         frame.setLayout(new FlowLayout());
         frame.setSize(500, 500);
         frame.setResizable(false);
-        output.createVerticalScrollBar();
-        output.setAutoscrolls(true);
         frame.add(output);
         text.setEditable(false);
         /*text.append('\n' + "Left Front Motor Port: " + table.getNumber("LeftFrontMotor", -1));
@@ -65,6 +65,7 @@ public class NetworkTablesClient extends JFrame {
          text.append('\n' + "Shooter Increase Speed POV: " + table.getNumber("ShooterIncreaseSpeed", -1));
          text.append('\n' + "Shooter Decrease Speed POV: " + table.getNumber("ShooterDecreaseSpeed", -1));
          text.append('\n' + "Climber Button: " + table.getNumber("ClimberButton", -1));*/
+        //adds text to text field / that shows us ports and mappings / so we can see them
         text.append("Left Front Motor Port: " + LeftFrontMotor);
         text.append('\n' + "Left Back Motor Port: " + LeftBackMotor);
         text.append('\n' + "Right Front Motor Port: " + RightFrontMotor);
@@ -90,22 +91,26 @@ public class NetworkTablesClient extends JFrame {
     }
 
     public void run() {
+        //gets the location / of the file for the config / in user desktop
         String directory = System.getProperty("user.home");
         String configFile = directory + "\\Desktop\\config.properties";
         System.out.println(configFile);
         String line = null;
+        //sets NetworkTable / as the client, not server / prepares to send stuff
         NetworkTable.setClientMode();
         NetworkTable.setTeam(1622);
         table = NetworkTable.getTable("ConfigTable");
+        //creates an instance / of the visible window / so we can see it
         NetworkTablesClient client = new NetworkTablesClient();
+        //reads the config / and checks the very first line / sees if it's screwed up
         FileReader configRead = null;
         BufferedReader bufferedReader = null;
         try {
             configRead = new FileReader(configFile);
             bufferedReader = new BufferedReader(configRead);
+            //if first line is wrong / completely rewrite the file / as a precaution
             if (!bufferedReader.readLine().equals("##1622-SPYDER CONFIG 2017")) {
                 FileWriter write = new FileWriter(configFile);
-                //cedchiu@gmail.com
                 BufferedWriter configWrite = new BufferedWriter(write);
                 configWrite.write("##1622-SPYDER CONFIG 2017");
                 configWrite.write('\n' + "##DO NOT EDIT THIS HEADER");
@@ -137,8 +142,12 @@ public class NetworkTablesClient extends JFrame {
             }
         } catch (Exception ex) {
         }
+        
+        //loop the following / so that it keeps repeating / so values update
         while (true) {
             try {
+                //update the values / from the configuration / file on the desktop
+                //it reads through each line / and then retrieves some values / for ports and motors
                 configRead = new FileReader(configFile);
                 bufferedReader = new BufferedReader(configRead);
                 while ((line = bufferedReader.readLine()) != null) {
@@ -172,7 +181,12 @@ public class NetworkTablesClient extends JFrame {
                         FeederButton = Character.getNumericValue(line.charAt(16));
                     } else if (line.contains("Shooter Toggle")) {
                         ShooterToggle = Character.getNumericValue(line.charAt(17));
-                    } else if (line.contains("Shooter Increase Speed")) {
+                    } else if (line.contains("Climber Button")) {
+                        ClimberButton = Character.getNumericValue(line.charAt(17));
+                    }
+                    //these ones are special / could be two or three digits / so we change things up
+                    //retrieves each digit / and strings them together as / multiples of ten 
+                    else if (line.contains("Shooter Increase Speed")) {
                         if (line.length() == 30) {
                             ShooterIncreaseSpeed = Character.getNumericValue(line.charAt(29));
                         } else if (line.length() == 31) {
@@ -198,14 +212,13 @@ public class NetworkTablesClient extends JFrame {
                             int hundreds = Character.getNumericValue(line.charAt(29)) * 100;
                             ShooterDecreaseSpeed = hundreds + tens + ones;
                         }
-                    } else if (line.contains("Climber Button")) {
-                        ClimberButton = Character.getNumericValue(line.charAt(17));
                     }
                 }
-            } catch (FileNotFoundException ex) {
+            }
+            //error four oh four / if the file cannot be found / write out a new file
+            catch (FileNotFoundException ex) {
                 try {
                     FileWriter write = new FileWriter(configFile);
-                    //cedchiu@gmail.com
                     BufferedWriter configWrite = new BufferedWriter(write);
                     configWrite.write("##1622-SPYDER CONFIG 2017");
                     configWrite.write('\n' + "##DO NOT EDIT THIS HEADER");
@@ -238,6 +251,7 @@ public class NetworkTablesClient extends JFrame {
                 }
             } catch (IOException ex) {
             }
+            //still in the while loop / so this will repeat itself / updates the table
             try {
                 table.putNumber("LeftFrontMotor", LeftFrontMotor);
                 table.putNumber("LeftBackMotor", LeftBackMotor);
@@ -258,26 +272,8 @@ public class NetworkTablesClient extends JFrame {
                 table.putNumber("ShooterDecreaseSpeed", ShooterDecreaseSpeed);
                 table.putNumber("ClimberButton", ClimberButton);
 
+                //updates the window / using the values that just / got sent to table
                 text.setText("");
-                /*text.append('\n' + "Left Front Motor Port: " + table.getNumber("LeftFrontMotor", -1));
-                 text.append('\n' + "Left Back Motor Port: " + table.getNumber("LeftBackMotor", -1));
-                 text.append('\n' + "Right Front Motor Port: " + table.getNumber("RightFrontMotor", -1));
-                 text.append('\n' + "Right Back Motor Port: " + table.getNumber("RightBackMotor", -1));
-                 text.append('\n' + "Intake Motor Port: " + table.getNumber("IntakeMotor", -1));
-                 text.append('\n' + "Feeder Motor Port: " + table.getNumber("FeederMotor", -1));
-                 text.append('\n' + "Shooter Motor Port: " + table.getNumber("ShooterMotor", -1));
-                 text.append('\n' + "Climber Motor Port: " + table.getNumber("ClimberMotor", -1));
-                 text.append('\n' + "");
-                 text.append('\n' + "Left Analog Stick: " + table.getNumber("LeftAnalog", -1));
-                 text.append('\n' + "Right Analog Stick: " + table.getNumber("RightAnalog", -1));
-                 text.append('\n' + "Half Speed Toggle: " + table.getNumber("HalfSpeedToggle", -1));
-                 text.append('\n' + "Intake In Button: " + table.getNumber("IntakeInButton", -1));
-                 text.append('\n' + "Intake Out Button: " + table.getNumber("IntakeOutButton", -1));
-                 text.append('\n' + "Feeder Button: " + table.getNumber("FeederButton", -1));
-                 text.append('\n' + "Shooter Toggle: " + table.getNumber("ShooterToggle", -1));
-                 text.append('\n' + "Shooter Increase Speed POV: " + table.getNumber("ShooterIncreaseSpeed", -1));
-                 text.append('\n' + "Shooter Decrease Speed POV: " + table.getNumber("ShooterDecreaseSpeed", -1));
-                 text.append('\n' + "Climber Button: " + table.getNumber("ClimberButton", -1));*/
                 text.append("Left Front Motor Port: " + LeftFrontMotor);
                 text.append('\n' + "Left Back Motor Port: " + LeftBackMotor);
                 text.append('\n' + "Right Front Motor Port: " + RightFrontMotor);
@@ -301,6 +297,7 @@ public class NetworkTablesClient extends JFrame {
             } catch (Exception ex) {
 
             }
+            //waits for one second / so that constant refreshes / don't freeze the system
             try {
                 Thread.sleep(1000);
             } catch (Exception ex) {

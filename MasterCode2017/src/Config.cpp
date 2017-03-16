@@ -76,6 +76,7 @@ int Config::GetMotorPort(Config::MOTOR motor){
 int Config::GetControlMapping(MAPPING mapping){
 	int map;
 	//finds out the button / that is used on the joystick / that we need to map
+	//then gets the mapping / value from network table / and then returns it
 	if(mapping == LeftAnalogMapping){
 		map = (int) table->GetNumber("LeftAnalog", 1);
 		return map;
@@ -116,5 +117,6 @@ int Config::GetControlMapping(MAPPING mapping){
 		map = (int) table->GetNumber("ClimberButton", 3);
 		return map;
 	}
+	//default return of / negative one 'cuz it would / be bad otherwise
 	return -1;
 }

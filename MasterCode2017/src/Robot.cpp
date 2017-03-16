@@ -29,14 +29,9 @@ public:
 	Config config;
 
 	void RobotInit() {
-		//run init functions / for all of the subsystems / so robot might work
+		//run init functions / for the config and dashboard / so robot might work
 		config.ConfigInit();
-		drive.DriveInit();
-		feeder.FeederInit();
-		intake.IntakeInit();
-		shooter.ShooterInit();
-		climber.ClimberInit();
-		//dashboard.DashboardInit();
+		dashboard.DashboardInit();
 	}
 
 	void AutonomousInit() {
@@ -50,7 +45,12 @@ public:
 	}
 
 	void TeleopInit() {
-
+		//initializes / the rest of the subsystems / so that we can drive
+		drive.DriveInit();
+		feeder.FeederInit();
+		intake.IntakeInit();
+		shooter.ShooterInit();
+		climber.ClimberInit();
 	}
 
 	void TeleopPeriodic() {
