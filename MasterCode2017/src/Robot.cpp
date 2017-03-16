@@ -36,7 +36,7 @@ public:
 		intake.IntakeInit();
 		shooter.ShooterInit();
 		climber.ClimberInit();
-		dashboard.DashboardInit();
+		//dashboard.DashboardInit();
 	}
 
 	void AutonomousInit() {

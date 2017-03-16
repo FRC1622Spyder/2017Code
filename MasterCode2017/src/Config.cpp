@@ -4,253 +4,117 @@
 #include <string>
 
 #include <Config.h>
+#include <NetworkTables/NetworkTable.h>
 
 void Config::ConfigInit(){
-	std::ifstream configRead;
-	std::ofstream configWrite;
-	std::string validationString;
-	configRead.open("config.properties");
-	configWrite.open("config.properties");
-	if(std::getline(configRead, validationString) != "##1622-SPYDER CONFIG 2017"){
-		configWrite << "##1622-SPYDER CONFIG 2017";
-		configWrite << '\n' << "##DO NOT EDIT THIS HEADER";
-		configWrite << '\n' << "##ALWAYS FORMAT ENTRIES WITH THE DEFAULT SPACING";
-		configWrite << '\n' << "##LIKE THIS: Sample Motor = 9";
+	//a variable / it's for the network table / called ConfigTable
+	//table->SetServerMode();
+	//table->SetTeam(1622);
+	table = NetworkTable::GetTable("ConfigTable");
 
-		configWrite << '\n' << '\n' << "##Motor Ports";
-		configWrite << '\n' << "Left Front Motor = 3";
-		configWrite << '\n' << "Left Back Motor = 4";
-		configWrite << '\n' << "Right Front Motor = 1";
-		configWrite << '\n' << "Right Back Motor = 2";
-		configWrite << '\n' << "Intake Motor = 6";
-		configWrite << '\n' << "Feeder Motor = 5";
-		configWrite << '\n' << "Shooter Motor = 8";
-		configWrite << '\n' << "Climber Motor = 7";
-
-		configWrite << '\n' << '\n' << "##Control Mapping:";
-		configWrite << '\n' << "Left Analog Stick = 1";
-		configWrite << '\n' << "Right Analog Stick = 3";
-		configWrite << '\n' << "Half Speed Toggle = 1";
-		configWrite << '\n' << "Intake In Button = 1";
-		configWrite << '\n' << "Intake Out Button = 4";
-		configWrite << '\n' << "Feeder Button = 6";
-		configWrite << '\n' << "Shooter Toggle = 5";
-		configWrite << '\n' << "Shooter Increase Speed POV = 0";
-		configWrite << '\n' << "Shooter Decrease Speed POV = 180";
-		configWrite << '\n' << "Climber Button = 3";
-	}
-	configRead.close();
-	configWrite.close();
+	//sets default values / because it would be bad if / they didn't exist
+    table->PutNumber("LeftFrontMotor", 3);
+    table->PutNumber("LeftBackMotor", 4);
+    table->PutNumber("RightFrontMotor", 1);
+    table->PutNumber("RightBackMotor", 2);
+    table->PutNumber("IntakeMotor", 6);
+    table->PutNumber("FeederMotor", 5);
+    table->PutNumber("ShooterMotor", 8);
+    table->PutNumber("ClimberMotor", 7);
+    table->PutNumber("LeftAnalog", 1);
+    table->PutNumber("RightAnalog", 3);
+    table->PutNumber("HalfSpeedToggle", 1);
+    table->PutNumber("IntakeInButton", 1);
+    table->PutNumber("IntakeOutButton", 4);
+    table->PutNumber("FeederButton", 6);
+    table->PutNumber("ShooterToggle", 5);
+    table->PutNumber("ShooterIncreaseSpeed", 0);
+    table->PutNumber("ShooterDecreaseSpeed", 180);
+    table->PutNumber("ClimberButton", 3);
 }
 
 int Config::GetMotorPort(Config::MOTOR motor){
-	std::ifstream configRead;
-	configRead.open("config.properties");
-	std::string property;
 	int port;
+	//depending on which / motor port is requested / finds out which motor
+	//uses network table / to find and return the port / as an integer
 	if(motor == LeftFrontMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Left Front Motor") != std::string::npos){
-				port = property[19];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("LeftFrontMotor", 3);
+		return port;
 	}
 	else if(motor == LeftBackMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Left Back Motor") != std::string::npos){
-				port = property[18];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("LeftBackMotor", 4);
+		return port;
 	}
 	else if(motor == RightFrontMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Right Front Motor") != std::string::npos){
-				port = property[20];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("RightFrontMotor", 1);
+		return port;
 	}
 	else if(motor == RightBackMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Right Back Motor") != std::string::npos){
-				port = property[19];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("RightBackMotor", 2);
+		return port;
 	}
 	else if(motor == IntakeMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Intake Motor") != std::string::npos){
-				port = property[15];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("IntakeMotor", 6);
+		return port;
 	}
 	else if(motor == FeederMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Feeder Motor") != std::string::npos){
-				port = property[15];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("FeederMotor", 5);
+		return port;
 	}
 	else if(motor == ShooterMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Shooter Motor") != std::string::npos){
-				port = property[16];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("ShooterMotor", 8);
+		return port;
 	}
 	else if(motor == ClimberMotor){
-		while(std::getline(configRead, property)){
-			if(property.find("Climber Motor") != std::string::npos){
-				port = property[16];
-				configRead.close();
-				return port;
-			}
-		}
+		port = (int) table->GetNumber("ClimberMotor", 7);
+		return port;
 	}
+	//if motor unknown / return is negative one / so things don't screw up
 	return -1;
 }
 
 int Config::GetControlMapping(MAPPING mapping){
-	std::ifstream configRead;
-	configRead.open("config.properties");
-	std::string property;
 	int map;
+	//finds out the button / that is used on the joystick / that we need to map
 	if(mapping == LeftAnalogMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Left Analog Stick") != std::string::npos){
-				map = property[20];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("LeftAnalog", 1);
+		return map;
 	}
 	else if(mapping == RightAnalogMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Right Analog Stick") != std::string::npos){
-				map = property[21];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("RightAnalog", 3);
+		return map;
 	}
 	else if(mapping == HalfSpeedToggleMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Half Speed Toggle") != std::string::npos){
-				map = property[20];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("HalfSpeedToggle", 1);
+		return map;
 	}
 	else if(mapping == IntakeInMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Intake In Button") != std::string::npos){
-				map = property[19];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("IntakeInButton", 1);
+		return map;
 	}
 	else if(mapping == IntakeOutMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Intake Out Button") != std::string::npos){
-				map= property[20];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("IntakeOutButton", 4);
+		return map;
 	}
 	else if(mapping == FeederMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Feeder Button") != std::string::npos){
-				map = property[16];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("FeederButton", 6);
+		return map;
 	}
 	else if(mapping == ShooterMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Shooter Toggle") != std::string::npos){
-				map = property[17];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("ShooterButton", 5);
+		return map;
 	}
 	else if(mapping == ShooterIncreaseSpeedMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Shooter Increase Speed POV") != std::string::npos){
-				if(property.length() == 30){
-					map = property[29];
-				}
-				else if(property.length() == 31){
-					int ones = property[30];
-					int tens = property[29];
-					map = tens + ones;
-				}
-				else if(property.length() == 32){
-					int ones = property[31];
-					int tens = property[30];
-					int hundreds = property[29];
-					map = hundreds + tens + ones;
-				}
-				else {
-					configRead.close();
-					return -1;
-				}
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("ShooterIncreaseSpeed", 0);
+		return map;
 	}
 	else if(mapping == ShooterDecreaseSpeedMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Shooter Decrease Speed POV") != std::string::npos){
-				if(property.length() == 30){
-					map = property[29];
-				}
-				else if(property.length() == 31){
-					int ones = property[30];
-					int tens = property[29];
-					map = tens + ones;
-				}
-				else if(property.length() == 32){
-					int ones = property[31];
-					int tens = property[30];
-					int hundreds = property[29];
-					map = hundreds + tens + ones;
-				}
-				else {
-					configRead.close();
-					return -1;
-				}
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("ShooterDecreaseSpeed", 180);
+		return map;
 	}
 	else if(mapping == ClimberMapping){
-		while(std::getline(configRead, property)){
-			if(property.find("Climber Button") != std::string::npos){
-				map = property[17];
-				configRead.close();
-				return map;
-			}
-		}
+		map = (int) table->GetNumber("ClimberButton", 3);
+		return map;
 	}
 	return -1;
 }

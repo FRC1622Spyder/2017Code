@@ -3,11 +3,14 @@
 #include <memory>
 #include <string>
 
+#include <NetworkTables/NetworkTable.h>
+
 #ifndef SRC_CONFIG_H_
 #define SRC_CONFIG_H_
 
 class Config{
 public:
+	std::shared_ptr<NetworkTable> table;
 	enum MOTOR{LeftFrontMotor, LeftBackMotor, RightFrontMotor, RightBackMotor,
 		IntakeMotor, FeederMotor, ShooterMotor, ClimberMotor};
 	enum MAPPING{LeftAnalogMapping, RightAnalogMapping, HalfSpeedToggleMapping,
