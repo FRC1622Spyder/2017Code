@@ -41,11 +41,18 @@ public class NetworkTablesClient extends JFrame {
 
     //designs the window / that will output the values / we get from config
     public NetworkTablesClient() {
+        //regulates layout / and sets the size of window / and adds the text box
         frame.setLayout(new FlowLayout());
         frame.setSize(500, 500);
         frame.setResizable(false);
         frame.add(output);
+        //user can't change text / also moves the window to / center of the screen
         text.setEditable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        //program exits when / the output window is closed / because of reasons
+        //including this one: / it runs infinitely if / we don't make it stop 
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         /*text.append('\n' + "Left Front Motor Port: " + table.getNumber("LeftFrontMotor", -1));
          text.append('\n' + "Left Back Motor Port: " + table.getNumber("LeftBackMotor", -1));
          text.append('\n' + "Right Front Motor Port: " + table.getNumber("RightFrontMotor", -1));
@@ -85,9 +92,6 @@ public class NetworkTablesClient extends JFrame {
         text.append('\n' + "Shooter Increase Speed POV: " + ShooterIncreaseSpeed);
         text.append('\n' + "Shooter Decrease Speed POV: " + ShooterDecreaseSpeed);
         text.append('\n' + "Climber Button: " + ClimberButton);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void run() {
@@ -142,12 +146,22 @@ public class NetworkTablesClient extends JFrame {
             }
         } catch (Exception ex) {
         }
-        
+        //updates the tables / this will run infinitely / 'til window is closed
+        UpdateTables();
+    }
+    
+    public void UpdateTables(){
+        //sets variables / 'cuz they're not universal / and it's a new scope 
+        String directory = System.getProperty("user.home");
+        String configFile = directory + "\\Desktop\\config.properties";
+        String line = null;
+        FileReader configRead = null;
+        BufferedReader bufferedReader = null;
         //loop the following / so that it keeps repeating / so values update
         while (true) {
             try {
                 //update the values / from the configuration / file on the desktop
-                //it reads through each line / and then retrieves some values / for ports and motors
+                //it reads through each line / and then retrieves some values / for ports and mappings
                 configRead = new FileReader(configFile);
                 bufferedReader = new BufferedReader(configRead);
                 while ((line = bufferedReader.readLine()) != null) {
