@@ -149,6 +149,23 @@ void Autonomous::RotateClockwise(double speed, double angle){
 	}
 }
 
+void Autonomous::Shoot(double speed, double time){
+	double periods = time * 50;
+	if(counter <= periods){
+		shooterMotor->Set(-speed);
+		if(counter >= 50){
+			feederMotor->Set(-0.95);
+		}
+		counter++;
+	}
+	else{
+		feederMotor->Set(0.0);
+		shooterMotor->Set(0.0);
+		counter = 0;
+		autonomousPhase++;
+	}
+}
+
 void Autonomous::Wait(double time){
 	double periods = time * 50;
 	if(counter <= periods){
@@ -166,16 +183,14 @@ void Autonomous::Wait(double time){
 
 void Autonomous::AutonomousInit(){
 	//declaring the motors / ports 1 through 4 oh what fun / they are CANTalons
-	/*leftBackMotor = new CANTalon(4);
-	leftFrontMotor = new CANTalon(3);
-	rightBackMotor = new CANTalon(2);
-	rightFrontMotor = new CANTalon(1);*/
-
 	Config config;
 	leftBackMotor = new CANTalon(config.GetMotorPort(Config::LeftBackMotor));
 	leftFrontMotor = new CANTalon(config.GetMotorPort(Config::LeftFrontMotor));
 	rightBackMotor = new CANTalon(config.GetMotorPort(Config::RightBackMotor));
 	rightFrontMotor = new CANTalon(config.GetMotorPort(Config::RightFrontMotor));
+
+	shooterMotor = new CANTalon(config.GetMotorPort(Config::ShooterMotor));
+	feederMotor = new CANTalon(config.GetMotorPort(Config::FeederMotor));
 
 	rightBackMotor->SetInverted(true);
 	rightFrontMotor->SetInverted(true);
@@ -631,6 +646,28 @@ void Autonomous::AutonomousPeriodic(){
 		}
 		else if (autonomousPhase == 8){
 			DriveForward(0.7,96.5);
+		}
+	}
+	else if(autonomousChooser == 19){
+		if (autonomousPhase == 0){
+			DriveBackward(0.7,40.0);
+		}
+		else if (autonomousPhase == 1){
+			RotateCounterclockwise(0.3,45.0);
+		}
+		else if (autonomousPhase == 2){
+			Shoot(0.6, 10.0);
+		}
+	}
+	else if(autonomousChooser == 20){
+		if (autonomousPhase == 0){
+			DriveBackward(0.7,40.0);
+		}
+		else if (autonomousPhase == 1){
+			RotateClockwise(0.3,45.0);
+		}
+		else if (autonomousPhase == 2){
+			Shoot(0.6, 10.0);
 		}
 	}
 }
