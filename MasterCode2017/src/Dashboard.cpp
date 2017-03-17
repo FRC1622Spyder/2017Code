@@ -28,8 +28,9 @@ int Dashboard::AutoSelect(){
 	//create a pointer / it points to driver station / and gives us data
 	DriverStation &drive = DriverStation::GetInstance();
 	//get button values / it gets them from the dashboard / for all of these things
-	bool hopperFirst = SmartDashboard::GetBoolean("DB/Button 0", false);
-	bool shoot = SmartDashboard::GetBoolean("DB/Button 1", false);
+	bool hopperOnly = SmartDashboard::GetBoolean("DB/Button 0", false);
+	bool shootOnly = SmartDashboard::GetBoolean("DB/Button 1", false);
+	bool gearAndHopper = SmartDashboard::GetBoolean("DB/Button 2", false);
 	bool disable = SmartDashboard::GetBoolean("DB/Button 3", false);
 	double position = SmartDashboard::GetNumber("DB/Slider 0", 2.5);
 	int positionNumber = 0;
@@ -49,79 +50,98 @@ int Dashboard::AutoSelect(){
 	else{
 		return 0;
 	}
+
 	//if autonomous / happens to be disabled / it returns zero 
 	if(disable == true){
 		return 0;
 	}
-	//if autonomous / does not request disabled / run through all options
-	else {
-		//if autonomous / function does not have shooting / run through hopper code
-		if(shoot == false){
-			//if hopper not first / run through all the gear options / there are six of them
-			if(hopperFirst == false){
-				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-					if(positionNumber == 1){
-						return 1;
-					}
-					else if(positionNumber == 2){
-						return 2;
-					}
-					else if(positionNumber == 3){
-						return 3;
-					}
-				}
-				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-					if(positionNumber == 1){
-						return 4;
-					}
-					else if(positionNumber == 2){
-						return 5;
-					}
-					else if(positionNumber == 3){
-						return 6;
-					}
-				}
+	//if autonomous / wants to do hopper only / run through hopper code
+	else if(hopperOnly == true){
+		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+			if(positionNumber == 1){
+				return 7;
 			}
-			//if hopper comes first / run through the hopper options / there are also six
-			else{
-				if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-					if(positionNumber == 1){
-						return 7;
-					}
-					else if(positionNumber == 2){
-						return 8;
-					}
-					else if(positionNumber == 3){
-						return 9;
-					}
-				}
-				else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-					if(positionNumber == 1){
-						return 10;
-					}
-					else if(positionNumber == 2){
-						return 11;
-					}
-					else if(positionNumber == 3){
-						return 12;
-					}
-				}
+			else if(positionNumber == 2){
+				return 8;
+			}
+			else if(positionNumber == 3){
+				return 9;
 			}
 		}
-		//if autonomous / does include shooting functions / run through those options 
-		else{
-			if(drive.GetAlliance() == DriverStation::Alliance::kRed){
-				return 13;
+		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+			if(positionNumber == 1){
+				return 10;
 			}
-			else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
-				return 14;
+			else if(positionNumber == 2){
+				return 11;
+			}
+			else if(positionNumber == 3){
+				return 12;
 			}
 		}
 	}
-	//the default return / if none of others trigger / it returns zero 
+	//if autonomous / does include shooting functions / run through those options
+	else if(shootOnly == true){
+		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+			return 19;
+		}
+		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+			return 20;
+		}
+	}
+	//if gear and hopper / will both be necessary / use these six options
+	else if(gearAndHopper == true){
+		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+			if(positionNumber == 1){
+				return 13;
+			}
+			else if(positionNumber == 2){
+				return 14;
+			}
+			else if(positionNumber == 3){
+				return 15;
+			}
+		}
+		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+			if(positionNumber == 1){
+				return 16;
+			}
+			else if(positionNumber == 2){
+				return 17;
+			}
+			else if(positionNumber == 3){
+				return 18;
+			}
+		}
+	}
+	//these six are default / we place a gear and then stop / use these most often
+	else{
+		if(drive.GetAlliance() == DriverStation::Alliance::kRed){
+			if(positionNumber == 1){
+				return 1;
+			}
+			else if(positionNumber == 2){
+				return 2;
+			}
+			else if(positionNumber == 3){
+				return 3;
+			}
+		}
+		else if(drive.GetAlliance() == DriverStation::Alliance::kBlue){
+			if(positionNumber == 1){
+				return 4;
+			}
+			else if(positionNumber == 2){
+				return 5;
+			}
+			else if(positionNumber == 3){
+				return 6;
+			}
+		}
+	}
+	//the default return / if none of others trigger / it returns zero
 	return 0;
 }
-
 
 
 
