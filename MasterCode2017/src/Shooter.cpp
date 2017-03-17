@@ -70,28 +70,28 @@ void Shooter::SpinFlywheel(){
 	//spinning the flywheel / using variable speeds / and use dashboard lights
 	if(isSpinning == true){
 		if(flywheelSpeed == 1){
-			flywheelMotor->Set(-0.7);
+			flywheelMotor->Set(-0.5);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", false);
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 2){
-			flywheelMotor->Set(-0.8);
+			flywheelMotor->Set(-0.6);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", false);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 3){
-			flywheelMotor->Set(-0.9);
+			flywheelMotor->Set(-0.7);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", true);
 			SmartDashboard::PutBoolean("DB/LED 0", false);
 		}
 		else if(flywheelSpeed == 4){
-			flywheelMotor->Set(-1.0);
+			flywheelMotor->Set(-0.8);
 			SmartDashboard::PutBoolean("DB/LED 3", true);
 			SmartDashboard::PutBoolean("DB/LED 2", true);
 			SmartDashboard::PutBoolean("DB/LED 1", true);
