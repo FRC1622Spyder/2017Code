@@ -9,7 +9,6 @@
 #include <Climber.h>
 #include <Dashboard.h>
 #include <Autonomous.h>
-#include <Config.h>
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
@@ -26,7 +25,6 @@ public:
 	Climber climber;
 	Dashboard dashboard;
 	Autonomous autonomous;
-	Config config;
 
 	void RobotInit() {
 		//run init functions / for all of the subsystems / so robot might work
@@ -36,7 +34,6 @@ public:
 		shooter.ShooterInit();
 		climber.ClimberInit();
 		dashboard.DashboardInit();
-		config.ConfigInit();
 	}
 
 	void AutonomousInit() {

@@ -13,7 +13,6 @@
 #include <CANTalon.h>
 #include <Autonomous.h>
 #include <Dashboard.h>
-#include <Config.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
