@@ -25,7 +25,7 @@ void Feeder::FeederTeleopPeriodic() {
 	bool toggleWork = controlStick->GetRawButton(FeederButton);
 	//if button is pressed / it will start running motor / at speed of point eight
 	if(toggleWork == true){
-		feederMotor->Set(0.95);
+		feederMotor->Set(-0.95);
 	}
 	//if button not pressed / it will stop running motor / so speed is zero
 	else if(toggleWork == false){
