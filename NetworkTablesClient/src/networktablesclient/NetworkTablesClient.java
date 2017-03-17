@@ -19,7 +19,7 @@ public class NetworkTablesClient extends JFrame {
     int LeftAnalog;
     int RightAnalog;
     int HalfSpeedToggle;
-    int IntakeInButton;
+    int IntakeInButton; 
     int IntakeOutButton;
     int FeederButton;
     int ShooterToggle;
@@ -53,25 +53,6 @@ public class NetworkTablesClient extends JFrame {
         //program exits when / the output window is closed / because of reasons
         //including this one: / it runs infinitely if / we don't make it stop 
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        /*text.append('\n' + "Left Front Motor Port: " + table.getNumber("LeftFrontMotor", -1));
-         text.append('\n' + "Left Back Motor Port: " + table.getNumber("LeftBackMotor", -1));
-         text.append('\n' + "Right Front Motor Port: " + table.getNumber("RightFrontMotor", -1));
-         text.append('\n' + "Right Back Motor Port: " + table.getNumber("RightBackMotor", -1));
-         text.append('\n' + "Intake Motor Port: " + table.getNumber("IntakeMotor", -1));
-         text.append('\n' + "Feeder Motor Port: " + table.getNumber("FeederMotor", -1));
-         text.append('\n' + "Shooter Motor Port: " + table.getNumber("ShooterMotor", -1));
-         text.append('\n' + "Climber Motor Port: " + table.getNumber("ClimberMotor", -1));
-         text.append('\n' + "");
-         text.append('\n' + "Left Analog Stick: " + table.getNumber("LeftAnalog", -1));
-         text.append('\n' + "Right Analog Stick: " + table.getNumber("RightAnalog", -1));
-         text.append('\n' + "Half Speed Toggle: " + table.getNumber("HalfSpeedToggle", -1));
-         text.append('\n' + "Intake In Button: " + table.getNumber("IntakeInButton", -1));
-         text.append('\n' + "Intake Out Button: " + table.getNumber("IntakeOutButton", -1));
-         text.append('\n' + "Feeder Button: " + table.getNumber("FeederButton", -1));
-         text.append('\n' + "Shooter Toggle: " + table.getNumber("ShooterToggle", -1));
-         text.append('\n' + "Shooter Increase Speed POV: " + table.getNumber("ShooterIncreaseSpeed", -1));
-         text.append('\n' + "Shooter Decrease Speed POV: " + table.getNumber("ShooterDecreaseSpeed", -1));
-         text.append('\n' + "Climber Button: " + table.getNumber("ClimberButton", -1));*/
         //adds text to text field / that shows us ports and mappings / so we can see them
         text.append("Left Front Motor Port: " + LeftFrontMotor);
         text.append('\n' + "Left Back Motor Port: " + LeftBackMotor);
@@ -288,7 +269,26 @@ public class NetworkTablesClient extends JFrame {
 
                 //updates the window / using the values that just / got sent to table
                 text.setText("");
-                text.append("Left Front Motor Port: " + LeftFrontMotor);
+                text.append('\n' + "Left Front Motor Port: " + (int) table.getNumber("LeftFrontMotor", -1));
+                text.append('\n' + "Left Back Motor Port: " + (int) table.getNumber("LeftBackMotor", -1));
+                text.append('\n' + "Right Front Motor Port: " + (int) table.getNumber("RightFrontMotor", -1));
+                text.append('\n' + "Right Back Motor Port: " + (int) table.getNumber("RightBackMotor", -1));
+                text.append('\n' + "Intake Motor Port: " + (int) table.getNumber("IntakeMotor", -1));
+                text.append('\n' + "Feeder Motor Port: " + (int) table.getNumber("FeederMotor", -1));
+                text.append('\n' + "Shooter Motor Port: " + (int) table.getNumber("ShooterMotor", -1));
+                text.append('\n' + "Climber Motor Port: " + (int) table.getNumber("ClimberMotor", -1));
+                text.append('\n' + "");
+                text.append('\n' + "Left Analog Stick: " + (int) table.getNumber("LeftAnalog", -1));
+                text.append('\n' + "Right Analog Stick: " + (int) table.getNumber("RightAnalog", -1));
+                text.append('\n' + "Half Speed Toggle: " + (int) table.getNumber("HalfSpeedToggle", -1));
+                text.append('\n' + "Intake In Button: " + (int) table.getNumber("IntakeInButton", -1));
+                text.append('\n' + "Intake Out Button: " + (int) table.getNumber("IntakeOutButton", -1));
+                text.append('\n' + "Feeder Button: " + (int) table.getNumber("FeederButton", -1));
+                text.append('\n' + "Shooter Toggle: " + (int) table.getNumber("ShooterToggle", -1));
+                text.append('\n' + "Shooter Increase Speed POV: " + (int) table.getNumber("ShooterIncreaseSpeed", -1));
+                text.append('\n' + "Shooter Decrease Speed POV: " + (int) table.getNumber("ShooterDecreaseSpeed", -1));
+                text.append('\n' + "Climber Button: " + (int) table.getNumber("ClimberButton", -1));
+                /*text.append("Left Front Motor Port: " + LeftFrontMotor);
                 text.append('\n' + "Left Back Motor Port: " + LeftBackMotor);
                 text.append('\n' + "Right Front Motor Port: " + RightFrontMotor);
                 text.append('\n' + "Right Back Motor Port: " + RightBackMotor);
@@ -306,7 +306,7 @@ public class NetworkTablesClient extends JFrame {
                 text.append('\n' + "Shooter Toggle: " + ShooterToggle);
                 text.append('\n' + "Shooter Increase Speed POV: " + ShooterIncreaseSpeed);
                 text.append('\n' + "Shooter Decrease Speed POV: " + ShooterDecreaseSpeed);
-                text.append('\n' + "Climber Button: " + ClimberButton);
+                text.append('\n' + "Climber Button: " + ClimberButton);*/
 
             } catch (Exception ex) {
 
