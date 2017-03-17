@@ -19,6 +19,9 @@ private:
 	CANTalon *rightBackMotor;
 	CANTalon *rightFrontMotor;
 
+	CANTalon *shooterMotor;
+	CANTalon *feederMotor;
+
 	const double wheelDiam = WHEEL_DIAM;
 	const double driveDiam = DRIVE_DIAM;
 	const double pulsePerRev = PULSE_PER_REV;
@@ -36,6 +39,7 @@ public:
 	void DriveBackward(double speed, double distance);
 	void RotateClockwise(double speed, double angle);
 	void RotateCounterclockwise(double speed, double angle);
+	void Shoot(double speed, double time);
 	void Wait(double time);
 	void AutonomousInit();
 	void AutonomousPeriodic();
