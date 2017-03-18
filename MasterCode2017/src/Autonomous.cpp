@@ -220,7 +220,7 @@ void Autonomous::AutonomousPeriodic(){
 			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateClockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateClockwise(0.3,60.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
 			DriveBackward(0.4,60.0);
@@ -246,7 +246,7 @@ void Autonomous::AutonomousPeriodic(){
 			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateCounterclockwise(0.3,60.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
 			DriveBackward(0.4,60.0);
@@ -262,7 +262,7 @@ void Autonomous::AutonomousPeriodic(){
 			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateClockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateClockwise(0.3,60.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
 			DriveBackward(0.4,60.0);
@@ -288,7 +288,7 @@ void Autonomous::AutonomousPeriodic(){
 			DriveBackward(0.5,57.0);//gear port is on back / so we must drive backwards to / deliver the gear
 		}
 		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,65.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
+			RotateCounterclockwise(0.3,60.0);//rotate clockwise to / drive to the airship to dock / pray we hit the spike
 		}
 		else if (autonomousPhase == 2){
 			DriveBackward(0.4,60.0);
