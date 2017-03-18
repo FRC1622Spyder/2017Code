@@ -30,8 +30,8 @@ private:
 	const double pulse_per_inch  = (pulsePerRev) / (wheelDiam * pi);
 	const double pulse_per_radian = (driveDiam / 2) * pulse_per_inch;
 
-	int autonomousPhase;
-	int counter;
+	int autonomousPhase = 0;
+	int counter = 0;
 	int autonomousChooser;
 
 public:
