@@ -25,6 +25,9 @@ void Drive::DriveInit() {
 	leftFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	rightFrontMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 
+	leftFrontMotor->ConfigEncoderCodesPerRev(20);
+	rightFrontMotor->ConfigEncoderCodesPerRev(20);
+
 	speedValueLeft = 0.0;
 	speedValueRight = 0.0;
 }
@@ -132,6 +135,11 @@ void Drive::DriveAutomatic(){
 
 	if(isDriving == true){
 		if(drivePhase == 0){
+			leftFrontMotor->SetEncPosition(0);
+			rightFrontMotor->SetEncPosition(0);
+			drivePhase++;
+		}
+		else if(drivePhase == 1){
 			double encoderValue = leftFrontMotor->GetEncPosition();
 			double encoderDistance = 30.0 * pulse_per_inch;
 			if(abs(encoderValue) <= encoderDistance){
@@ -150,7 +158,7 @@ void Drive::DriveAutomatic(){
 				drivePhase++;
 			}
 		}
-		else if(drivePhase == 1){
+		else if(drivePhase == 2){
 			isDriving = false;
 			drivePhase = 0;
 		}
