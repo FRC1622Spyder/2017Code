@@ -124,3 +124,41 @@ void Drive::DriveTeleopPeriodic() {
 	DriveLeft(leftSpeed);
 	DriveRight(rightSpeed);
 }
+
+void Drive::DriveAutomatic(){
+	drive = driveStick->GetRawButton(DriveButton);
+	if(drive == true && wasDriving == false && isDriving == false){
+		isDriving = true;
+		wasDriving = true;
+	}
+
+	if(drive == false){
+		wasDriving = false;
+	}
+
+	if(isDriving == true){
+		if(drivePhase == 0){
+			double encoderValue = leftFrontMotor->GetEncPosition();
+			double encoderDistance = 30.0 * pulse_per_inch;
+			if(abs(encoderValue) <= encoderDistance){
+				leftFrontMotor->Set(0.6);
+				leftBackMotor->Set(0.6);
+				rightFrontMotor->Set(0.6);
+				rightBackMotor->Set(0.6);
+			}
+			else {
+				leftFrontMotor->Set(0.0);
+				leftBackMotor->Set(0.0);
+				rightFrontMotor->Set(0.0);
+				rightBackMotor->Set(0.0);
+				leftFrontMotor->SetEncPosition(0);
+				rightFrontMotor->SetEncPosition(0);
+				drivePhase++;
+			}
+		}
+		else if(drivePhase == 1){
+			isDriving = false;
+			drivePhase = 0;
+		}
+	}
+}

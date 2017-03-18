@@ -24,6 +24,7 @@ void Config::ConfigInit(){
     table->PutNumber("LeftAnalog", 1);
     table->PutNumber("RightAnalog", 3);
     table->PutNumber("HalfSpeedToggle", 1);
+    table->PutNumber("AutomaticDriveButton", 1);
     table->PutNumber("IntakeInButton", 1);
     table->PutNumber("IntakeOutButton", 4);
     table->PutNumber("FeederButton", 6);
@@ -88,6 +89,10 @@ int Config::GetControlMapping(MAPPING mapping){
 	else if(mapping == HalfSpeedToggleMapping){
 		map = (int) table->GetNumber("HalfSpeedToggle", 1);
 		return map;
+	}
+	else if(mapping == AutomaticDriveMapping){
+			map = (int) table->GetNumber("AutomaticDriveButton", 1);
+			return map;
 	}
 	else if(mapping == IntakeInMapping){
 		map = (int) table->GetNumber("IntakeInButton", 1);

@@ -19,6 +19,7 @@ public class NetworkTablesClient extends JFrame {
     int LeftAnalog;
     int RightAnalog;
     int HalfSpeedToggle;
+    int AutomaticDriveButton;
     int IntakeInButton; 
     int IntakeOutButton;
     int FeederButton;
@@ -66,6 +67,7 @@ public class NetworkTablesClient extends JFrame {
         text.append('\n' + "Left Analog Stick: " + LeftAnalog);
         text.append('\n' + "Right Analog Stick: " + RightAnalog);
         text.append('\n' + "Half Speed Toggle: " + HalfSpeedToggle);
+        text.append('\n' + "Automatic Drive Button: " + AutomaticDriveButton);
         text.append('\n' + "Intake In Button: " + IntakeInButton);
         text.append('\n' + "Intake Out Button: " + IntakeOutButton);
         text.append('\n' + "Feeder Button: " + FeederButton);
@@ -116,6 +118,7 @@ public class NetworkTablesClient extends JFrame {
                 configWrite.write('\n' + "Left Analog Stick = 1");
                 configWrite.write('\n' + "Right Analog Stick = 3");
                 configWrite.write('\n' + "Half Speed Toggle = 1");
+                configWrite.write('\n' + "Automatic Drive Button = 6");
                 configWrite.write('\n' + "Intake In Button = 1");
                 configWrite.write('\n' + "Intake Out Button = 4");
                 configWrite.write('\n' + "Feeder Button = 6");
@@ -168,6 +171,8 @@ public class NetworkTablesClient extends JFrame {
                         RightAnalog = Character.getNumericValue(line.charAt(21));
                     } else if (line.contains("Half Speed Toggle")) {
                         HalfSpeedToggle = Character.getNumericValue(line.charAt(20));
+                    } else if (line.contains("Automatic Drive Button")) {
+                        AutomaticDriveButton = Character.getNumericValue(line.charAt(25));
                     } else if (line.contains("Intake In Button")) {
                         IntakeInButton = Character.getNumericValue(line.charAt(19));
                     } else if (line.contains("Intake Out Button")) {
@@ -234,6 +239,7 @@ public class NetworkTablesClient extends JFrame {
                     configWrite.write('\n' + "Left Analog Stick = 1");
                     configWrite.write('\n' + "Right Analog Stick = 3");
                     configWrite.write('\n' + "Half Speed Toggle = 1");
+                    configWrite.write('\n' + "Automatic Drive Button = 6");
                     configWrite.write('\n' + "Intake In Button = 1");
                     configWrite.write('\n' + "Intake Out Button = 4");
                     configWrite.write('\n' + "Feeder Button = 6");
@@ -259,6 +265,7 @@ public class NetworkTablesClient extends JFrame {
                 table.putNumber("LeftAnalog", LeftAnalog);
                 table.putNumber("RightAnalog", RightAnalog);
                 table.putNumber("HalfSpeedToggle", HalfSpeedToggle);
+                table.putNumber("AutomaticDriveButton", AutomaticDriveButton);
                 table.putNumber("IntakeInButton", IntakeInButton);
                 table.putNumber("IntakeOutButton", IntakeOutButton);
                 table.putNumber("FeederButton", FeederButton);
@@ -269,7 +276,7 @@ public class NetworkTablesClient extends JFrame {
 
                 //updates the window / using the values that just / got sent to table
                 text.setText("");
-                text.append('\n' + "Left Front Motor Port: " + (int) table.getNumber("LeftFrontMotor", -1));
+                text.append("Left Front Motor Port: " + (int) table.getNumber("LeftFrontMotor", -1));
                 text.append('\n' + "Left Back Motor Port: " + (int) table.getNumber("LeftBackMotor", -1));
                 text.append('\n' + "Right Front Motor Port: " + (int) table.getNumber("RightFrontMotor", -1));
                 text.append('\n' + "Right Back Motor Port: " + (int) table.getNumber("RightBackMotor", -1));
@@ -281,6 +288,7 @@ public class NetworkTablesClient extends JFrame {
                 text.append('\n' + "Left Analog Stick: " + (int) table.getNumber("LeftAnalog", -1));
                 text.append('\n' + "Right Analog Stick: " + (int) table.getNumber("RightAnalog", -1));
                 text.append('\n' + "Half Speed Toggle: " + (int) table.getNumber("HalfSpeedToggle", -1));
+                text.append('\n' + "Automatic Drive Button: " + (int) table.getNumber("AutomaticDriveButton", -1));
                 text.append('\n' + "Intake In Button: " + (int) table.getNumber("IntakeInButton", -1));
                 text.append('\n' + "Intake Out Button: " + (int) table.getNumber("IntakeOutButton", -1));
                 text.append('\n' + "Feeder Button: " + (int) table.getNumber("FeederButton", -1));
