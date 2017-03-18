@@ -33,6 +33,7 @@ void Drive::DriveInit() {
 	LeftAxis = config.GetControlMapping(Config::LeftAnalogMapping);
 	RightAxis = config.GetControlMapping(Config::RightAnalogMapping);
 	SpeedToggle = config.GetControlMapping(Config::HalfSpeedToggleMapping);
+	DriveButton = config.GetControlMapping(Config::AutomaticDriveMapping);
 }
 //this is a function / that drives the left side motors / it uses doubles 
 void Drive::DriveLeft(double speed){
