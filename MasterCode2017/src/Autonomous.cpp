@@ -648,24 +648,24 @@ void Autonomous::AutonomousPeriodic(){
 	}
 	else if(autonomousChooser == 19){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,40.0);
+			DriveBackward(0.7,59.0);
 		}
 		else if (autonomousPhase == 1){
 			RotateCounterclockwise(0.3,45.0);
 		}
 		else if (autonomousPhase == 2){
-			Shoot(0.6, 10.0);
+			Shoot(0.7, 10.0);
 		}
 	}
 	else if(autonomousChooser == 20){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,40.0);
+			DriveBackward(0.7,59.0);
 		}
 		else if (autonomousPhase == 1){
 			RotateClockwise(0.3,45.0);
 		}
 		else if (autonomousPhase == 2){
-			Shoot(0.6, 10.0);
+			Shoot(0.7, 10.0);
 		}
 	}
 }

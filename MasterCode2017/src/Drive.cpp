@@ -14,10 +14,10 @@ void Drive::DriveInit() {
 	//declares a joystick / which will be used for driving / uses port zero
 	driveStick = new Joystick(0);
 	//declares the motors / for all sides of the robot / three, four, one, and two 
-	leftBackMotor = new CANTalon(3);
-	leftFrontMotor = new CANTalon(4);
-	rightBackMotor = new CANTalon(1);
-	rightFrontMotor = new CANTalon(2);
+	leftBackMotor = new CANTalon(4);
+	leftFrontMotor = new CANTalon(3);
+	rightBackMotor = new CANTalon(2);
+	rightFrontMotor = new CANTalon(1);
 	//inverts the left side / so that the robot drives straight / or else it will spin 
 	leftBackMotor->SetInverted(true);
 	leftFrontMotor->SetInverted(true);
@@ -55,7 +55,7 @@ void Drive::DriveTeleopPeriodic() {
 	if(toggleButton == false){
 		buttonPressed = false;	
 	}
-	
+
 	//gets left joystick speed / to make robot start driving / from the left axis
 	double leftSpeed = driveStick->GetRawAxis(1);
 	if(halfSpeed == true){
@@ -117,4 +117,42 @@ void Drive::DriveTeleopPeriodic() {
 	//drive the robot / with modified speed values / post-calculations
 	DriveLeft(leftSpeed);
 	DriveRight(rightSpeed);
+}
+
+void Drive::DriveAutomatic(){
+	drive = driveStick->GetRawButton(6);
+	if(drive == true && wasDriving == false && isDriving == false){
+		isDriving = true;
+		wasDriving = true;
+	}
+
+	if(drive == false){
+		wasDriving = false;
+	}
+
+	if(isDriving == true){
+		if(drivePhase == 0){
+			double encoderValue = leftFrontMotor->GetEncPosition();
+			double encoderDistance = 30.0 * pulse_per_inch;
+			if(abs(encoderValue) <= encoderDistance){
+				leftFrontMotor->Set(0.6);
+				leftBackMotor->Set(0.6);
+				rightFrontMotor->Set(0.6);
+				rightBackMotor->Set(0.6);
+			}
+			else {
+				leftFrontMotor->Set(0.0);
+				leftBackMotor->Set(0.0);
+				rightFrontMotor->Set(0.0);
+				rightBackMotor->Set(0.0);
+				leftFrontMotor->SetEncPosition(0);
+				rightFrontMotor->SetEncPosition(0);
+				drivePhase++;
+			}
+		}
+		else if(drivePhase == 1){
+			isDriving = false;
+			drivePhase = 0;
+		}
+	}
 }

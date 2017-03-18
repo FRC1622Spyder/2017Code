@@ -53,6 +53,7 @@ public:
 	void TeleopPeriodic() {
 		//runs the teleop / periodic functions of / every subsystem
 		drive.DriveTeleopPeriodic();
+		drive.DriveAutomatic();
 		feeder.FeederTeleopPeriodic();
 		intake.IntakeTeleopPeriodic();
 		shooter.ShooterTeleopPeriodic();
