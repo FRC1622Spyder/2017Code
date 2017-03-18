@@ -300,7 +300,7 @@ void Autonomous::AutonomousPeriodic(){
 	//our spot is red left / triggers one hopper only / we don't do a gear
 	if(autonomousChooser == 7){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7,208.9);//drive back to hopper / rotate to face the hopper / get all of the balls
+			DriveBackward(0.7,172.9);//drive back to hopper / rotate to face the hopper / get all of the balls
 		}
 		else if (autonomousPhase == 1){
 			RotateClockwise(0.3,90);
@@ -458,7 +458,7 @@ void Autonomous::AutonomousPeriodic(){
 	//our spot is blue right / triggers one hopper only / we don't do a gear
 	else if(autonomousChooser == 12){
 		if(autonomousPhase == 0){
-			DriveBackward(0.7,208.9);//drive back to hopper / rotate to face the hopper / get all of the balls
+			DriveBackward(0.7,172.9);//drive back to hopper / rotate to face the hopper / get all of the balls
 		}
 		else if (autonomousPhase == 1){
 			RotateCounterclockwise(0.3,90);
