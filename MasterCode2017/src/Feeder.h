@@ -2,6 +2,7 @@
 #define SRC_FEEDER_H_
 #include <CANTalon.h>
 #include <Joystick.h>
+#include <IterativeRobot.h>
 
 class Feeder {
 

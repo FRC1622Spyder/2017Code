@@ -9,6 +9,7 @@
 #include <Climber.h>
 #include <Dashboard.h>
 #include <Autonomous.h>
+#include <Flashlight.h>
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
@@ -24,6 +25,7 @@ public:
 	Shooter shooter;
 	Climber climber;
 	Dashboard dashboard;
+	Flashlight flashlight;
 	Autonomous autonomous;
 
 	void RobotInit() {
@@ -33,6 +35,7 @@ public:
 		intake.IntakeInit();
 		shooter.ShooterInit();
 		climber.ClimberInit();
+		flashlight.FlashlightInit();
 		dashboard.DashboardInit();
 	}
 
@@ -58,6 +61,7 @@ public:
 		intake.IntakeTeleopPeriodic();
 		shooter.ShooterTeleopPeriodic();
 		climber.ClimberTeleopPeriodic();
+		flashlight.FlashlightTeleopPeriodic();
 	}
 
 	void TestPeriodic() {

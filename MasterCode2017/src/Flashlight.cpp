@@ -8,26 +8,17 @@
 #include <IterativeRobot.h>
 
 void Flashlight::FlashlightInit(){
+	//create a relay / that can light up our flashlight / if button is pressed
 	flashlightRelay = new Relay(3);
+	//create a joystick / and some boolean values / for our cool flashlight
 	drivestick = new Joystick(0);
-	isLit = false;
-	toggleOn = false;
 }
 
 void Flashlight::FlashlightTeleopPeriodic(){
+	//this here boolean / makes an on-off for flashlight / based on button five
 	bool toggleButton = drivestick->GetRawButton(5);
-	if(isLit == false && toggleButton == true && toggleOn == false) {
-		isLit = true;
-		toggleOn = true;
-	}
-	else if(isLit == true && toggleButton == true && toggleOn == false){
-		isLit =  false;
-		toggleOn = true;
-	}
-	if(toggleButton == false){
-		toggleOn = false;
-	}
-	if(isLit == true){
+	//if toggle is on / set the relay to light up / or else turn it off
+	if(toggleButton == true){
 		flashlightRelay->Set(Relay::Value::kForward);
 	}
 	else{

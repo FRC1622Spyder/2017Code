@@ -7,8 +7,6 @@ class Flashlight{
 private:
 	Relay *flashlightRelay;
 	Joystick *drivestick;
-	bool isLit;
-	bool toggleOn;
 public:
 	void FlashlightInit();
 	void FlashlightTeleopPeriodic();
