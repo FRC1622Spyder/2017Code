@@ -43,6 +43,7 @@ public:
 	void Wait(double time);
 	void AutonomousInit();
 	void AutonomousPeriodic();
+	void SmoothCurve(double speed, double distance, double delta);
 };
 
 #endif /* SRC_AUTONOMOUS_H_ */

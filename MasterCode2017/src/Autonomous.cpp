@@ -164,6 +164,38 @@ void Autonomous::Shoot(double speed, double time){
 		autonomousPhase++;
 	}
 }
+//delta positive means clockwise
+//delta negative means counterclockwise
+void Autonomous::SmoothCurve(double speed, double distance, double delta){
+	double encoderValue = leftFrontMotor->GetEncPosition();
+	double encoderDistance = distance * pulse_per_inch;
+	if(abs(encoderValue) <= encoderDistance){
+		std::cout << (speed+delta) << std::endl;
+		leftFrontMotor->Set(speed+delta);
+		leftBackMotor->Set(speed+delta);
+		rightFrontMotor->Set(speed-delta);
+		rightBackMotor->Set(speed-delta);
+	}
+	else if(counter <= 25){
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		counter++;
+		std::cout << counter << std::endl;
+	}
+	//clean slate we need to / reset the values of auto / add one to auto phase
+	else {
+		leftFrontMotor->Set(0.0);
+		leftBackMotor->Set(0.0);
+		rightFrontMotor->Set(0.0);
+		rightBackMotor->Set(0.0);
+		leftFrontMotor->SetEncPosition(0);
+		rightFrontMotor->SetEncPosition(0);
+		counter = 0;
+		autonomousPhase++;
+	}
+}
 
 void Autonomous::Wait(double time){
 	double periods = time * 50;
@@ -669,7 +701,7 @@ void Autonomous::AutonomousPeriodic(){
 
 	}
 	else if(autonomousChooser == 20){
-		if (autonomousPhase == 0){
+	/*	if (autonomousPhase == 0){
 			DriveBackward(0.7,86.0);
 		}
 		else if (autonomousPhase == 1){
@@ -687,10 +719,18 @@ void Autonomous::AutonomousPeriodic(){
 		else if(autonomousPhase == 5){
 			DriveForward(0.7,60.0);
 			Shoot(0.9,10.0);
+		}*/
+
+		std::cout << "Entering phase 0" << std::endl;
+		if(autonomousPhase == 0){
+			std::cout << "in phase 0" << std::endl;
+		SmoothCurve(-0.4, 173, -0.09);
+		}
+		else if(autonomousPhase == 1){
+			SmoothCurve(0.4, 95.0,0.16);
+			Shoot(0.9,10.0);
 		}
 
 	}
 
 }
-
-
