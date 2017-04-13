@@ -679,23 +679,12 @@ void Autonomous::AutonomousPeriodic(){
 		}
 	}
 	else if(autonomousChooser == 19){
-		if (autonomousPhase == 0){
-			DriveBackward(0.7,86.0);
+		if(autonomousPhase == 0){
+			std::cout << "in phase 0" << std::endl;
+		SmoothCurve(-0.4, 103.0, 0.08);
 		}
-		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,85.0);
-		}
-		else if (autonomousPhase == 2){
-			DriveBackward(0.7,81.0);
-		}
-		else if(autonomousPhase == 3){
-			DriveForward(0.7,26.0);
-		}
-		else if(autonomousPhase == 4){
-			RotateClockwise(0.3,85.0);
-		}
-		else if(autonomousPhase == 5){
-			DriveForward(0.7,60.0);
+		else if(autonomousPhase == 1){
+			SmoothCurve(0.4, 19.0, -0.23);
 			Shoot(0.9,10.0);
 		}
 
@@ -727,7 +716,7 @@ void Autonomous::AutonomousPeriodic(){
 		SmoothCurve(-0.4, 173, -0.09);
 		}
 		else if(autonomousPhase == 1){
-			SmoothCurve(0.4, 95.0,0.16);
+			SmoothCurve(0.4, 97.0,0.16);
 			Shoot(0.9,10.0);
 		}
 
