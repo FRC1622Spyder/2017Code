@@ -648,26 +648,49 @@ void Autonomous::AutonomousPeriodic(){
 	}
 	else if(autonomousChooser == 19){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,59.0);
+			DriveBackward(0.7,86.0);
 		}
 		else if (autonomousPhase == 1){
-			RotateCounterclockwise(0.3,45.0);
+			RotateCounterclockwise(0.3,85.0);
 		}
 		else if (autonomousPhase == 2){
-			Shoot(0.7, 10.0);
+			DriveBackward(0.7,81.0);
 		}
+		else if(autonomousPhase == 3){
+			DriveForward(0.7,26.0);
+		}
+		else if(autonomousPhase == 4){
+			RotateClockwise(0.3,85.0);
+		}
+		else if(autonomousPhase == 5){
+			DriveForward(0.7,60.0);
+			Shoot(0.9,10.0);
+		}
+
 	}
 	else if(autonomousChooser == 20){
 		if (autonomousPhase == 0){
-			DriveBackward(0.7,59.0);
+			DriveBackward(0.7,86.0);
 		}
 		else if (autonomousPhase == 1){
-			RotateClockwise(0.3,45.0);
+			RotateCounterclockwise(0.3,85.0);
 		}
 		else if (autonomousPhase == 2){
-			Shoot(0.7, 10.0);
+			DriveBackward(0.7,81.0);
 		}
+		else if(autonomousPhase == 3){
+			DriveForward(0.7,26.0);
+		}
+		else if(autonomousPhase == 4){
+			RotateClockwise(0.3,85.0);
+		}
+		else if(autonomousPhase == 5){
+			DriveForward(0.7,60.0);
+			Shoot(0.9,10.0);
+		}
+
 	}
+
 }
 
 
