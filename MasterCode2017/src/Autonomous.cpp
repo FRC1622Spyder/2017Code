@@ -149,7 +149,9 @@ void Autonomous::RotateClockwise(double speed, double angle){
 }
 
 void Autonomous::Shoot(double speed, double time){
+	//Periodic mode / updates each twenty ms/ time and time again
 	double periods = time * 50;
+	//we run the shooter / and start the feeder after / so flywheel warms up
 	if(counter <= periods){
 		shooterMotor->Set(-speed);
 		if(counter >= 50){
@@ -157,6 +159,7 @@ void Autonomous::Shoot(double speed, double time){
 		}
 		counter++;
 	}
+	//once the time is done / reset all variables / for the next function
 	else{
 		feederMotor->Set(0.0);
 		shooterMotor->Set(0.0);
@@ -164,8 +167,8 @@ void Autonomous::Shoot(double speed, double time){
 		autonomousPhase++;
 	}
 }
-//delta positive means clockwise
-//delta negative means counterclockwise
+//positive delta / means the robot curves clockwise / while driving forward
+//negative delta / makes the curve counterclockwise / also drives forward
 void Autonomous::SmoothCurve(double speed, double distance, double delta){
 	double encoderValue = leftFrontMotor->GetEncPosition();
 	double encoderDistance = distance * pulse_per_inch;
@@ -184,7 +187,7 @@ void Autonomous::SmoothCurve(double speed, double distance, double delta){
 		counter++;
 		std::cout << counter << std::endl;
 	}
-	//clean slate we need to / reset the values of auto / add one to auto phase
+	//reset the motors / and other variables / to make a clean slate
 	else {
 		leftFrontMotor->Set(0.0);
 		leftBackMotor->Set(0.0);
@@ -198,6 +201,7 @@ void Autonomous::SmoothCurve(double speed, double distance, double delta){
 }
 
 void Autonomous::Wait(double time){
+	//take time in seconds / convert it to periods / and wait that amount
 	double periods = time * 50;
 	if(counter <= periods){
 		leftFrontMotor->Set(0.0);
@@ -206,6 +210,7 @@ void Autonomous::Wait(double time){
 		rightBackMotor->Set(0.0);
 		counter++;
 	}
+	//reset the counter / increment the autophase / and end the function
 	else{
 		counter = 0;
 		autonomousPhase++;
