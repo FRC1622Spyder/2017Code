@@ -42,7 +42,7 @@ void Drive::DriveRight(double speed){
 
 void Drive::DriveTeleopPeriodic() {
 	//this is a toggle / so robot drives at half speed / 'cuz it's more exact 
-	bool toggleButton = driveStick->GetRawButton(1);
+	bool toggleButton = driveStick->GetRawButton(2);
 	if(toggleButton == true && buttonPressed == false && halfSpeed == false){
 		halfSpeed = true;
 		buttonPressed = true;

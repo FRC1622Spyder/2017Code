@@ -27,13 +27,6 @@ public:
 	Autonomous autonomous;
 
 	void RobotInit() {
-		//run init functions / for all of the subsystems / so robot might work
-		drive.DriveInit();
-		feeder.FeederInit();
-		intake.IntakeInit();
-		shooter.ShooterInit();
-		climber.ClimberInit();
-		dashboard.DashboardInit();
 	}
 
 	void AutonomousInit() {
@@ -47,13 +40,19 @@ public:
 	}
 
 	void TeleopInit() {
-
+		//run init functions / for all of the subsystems / so robot might work
+		drive.DriveInit();
+		feeder.FeederInit();
+		intake.IntakeInit();
+		shooter.ShooterInit();
+		climber.ClimberInit();
+		dashboard.DashboardInit();
 	}
 
 	void TeleopPeriodic() {
 		//runs the teleop / periodic functions of / every subsystem
 		drive.DriveTeleopPeriodic();
-		drive.DriveAutomatic();
+		//drive.DriveAutomatic();
 		feeder.FeederTeleopPeriodic();
 		intake.IntakeTeleopPeriodic();
 		shooter.ShooterTeleopPeriodic();

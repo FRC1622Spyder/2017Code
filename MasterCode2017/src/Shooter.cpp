@@ -14,7 +14,11 @@
 
 void Shooter::ShooterInit(){
 	//declares controller / in addition to motors / which will run shooter
-	controlStick = new Joystick(1);
+	if(SmartDashboard::GetBoolean("DB/Button 0", false) == true){
+		controlStick = new Joystick(0);
+	} else {
+		controlStick = new Joystick(1);
+	}
 	flywheelMotor = new CANTalon(8);
 	flywheelMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	isSpinning = false;

@@ -12,7 +12,11 @@
 
 void Intake::IntakeInit(){
 	//declares controller / which runs the intake motor / it is a joystick
-	controlStick = new Joystick(1);
+	if(SmartDashboard::GetBoolean("DB/Button 0", false) == true){
+		controlStick = new Joystick(0);
+	} else {
+		controlStick = new Joystick(1);
+	}
 	//makes intake motor / it sucks up all of the balls / on port number six
 	intakeMotor = new CANTalon(6);
 	intakeForward = false;

@@ -14,9 +14,12 @@ void Feeder::FeederInit(){
 	// declare the motor / which will control the feeder / it's a CANTalon
 	feederMotor = new CANTalon(5);
 	//declare the joystick / which will control the feeder / it is a joystick
-	controlStick = new Joystick(1);
+	if(SmartDashboard::GetBoolean("DB/Button 0", false) == true){
+		controlStick = new Joystick(0);
+	} else {
+		controlStick = new Joystick(1);
+	}
 }
-
 void Feeder::FeederTeleopPeriodic() {
 	//declare the button / which activates the feeder / is on the joystick 
 	bool toggleWork = controlStick->GetRawButton(6);

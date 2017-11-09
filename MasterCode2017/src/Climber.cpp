@@ -14,7 +14,11 @@ void Climber::ClimberInit(){
 	//declares the motor / on the port number seven / for climbing the rope
 	ClimberMotor = new CANTalon(7);
 	//declares controller / it is also a joystick / on port number one 
-	controlStick = new Joystick(1);
+	if(SmartDashboard::GetBoolean("DB/Button 0", false) == true){
+		controlStick = new Joystick(0);
+	} else {
+		controlStick = new Joystick(1);
+	}
 }
 void Climber::ClimberTeleopPeriodic() {
 	//declare the button / the button is button one / it runs the climber 
