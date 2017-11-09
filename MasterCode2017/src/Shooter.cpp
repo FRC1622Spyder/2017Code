@@ -29,7 +29,12 @@ void Shooter::SpinFlywheel(){
 	//another toggle / turns the flywheel on and off / it is a button 
 	bool toggleSpin = controlStick->GetRawButton(5);
 	DriverStation &povStick = DriverStation::GetInstance();
-	int pov = povStick.GetStickPOV(1,0);
+	int pov = -1;
+	if(SmartDashboard::GetBoolean("DB/Button 0", false) == true){
+		pov = povStick.GetStickPOV(0,0);
+	} else {
+		pov = povStick.GetStickPOV(1,0);
+	}
 	if(toggleSpin == true && isSpinning == false && togglePressed == false){
 		flywheelSpeed = 1;
 		isSpinning = true;
